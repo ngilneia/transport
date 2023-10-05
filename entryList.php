@@ -1,26 +1,12 @@
 <?php
 require('db.php');
 include("header.php");
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    $sql = "SELECT * FROM `entry` WHERE id='$id'";
-    $result = $con->query($sql);
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $name = $row['name'];
-            $fName = $row['fname'];
-            $address = $row['address'];
-            $regNo = $row['regNo'];
-            $reason = $row['reason'];
-            $pHolder = $row['pHolder'];
-        }
-    }
-}
 ?>
 <div>
-    <p>Inspection</p>
+    <p>Application</p>
+    <a class="btn btn-info" href="entryApplication.php">Enter New Application</a>
     <hr />
-    <table id="entry" class="table table-striped" style="width:100%">
+    <table id="example" class="table table-striped" style="width:100%">
         <thead>
             <tr>
                 <th>Sl No</th>
@@ -51,7 +37,9 @@ if (isset($_GET['id'])) {
                         <td><?php echo $row['reason']; ?></td>
                         <td><?php echo $row['pHolder']; ?></td>
                         <td><?php echo '<a href="http://localhost/transport/' . $row['file'] . '">View Document</a>'; ?></td>
-                        <td><a class="btn btn-info" href="inspection.php?id=<?php echo $row['id']; ?>">Approve</a>
+                        <td><a class="btn btn-info" href="updateList.php?id=<?php echo $row['id']; ?>">Edit</a>
+                            &nbsp;
+                            <a class="btn btn-danger" href="deleteList.php?id=<?php echo $row['id']; ?>">Delete</a>
                         </td>
                     </tr>
             <?php       }
@@ -66,7 +54,7 @@ if (isset($_GET['id'])) {
 <script src="DataTables/datatables.min.js"></script>
 <script type='text/javascript'>
     $(document).ready(function() {
-        new DataTable('#entry');
+        new DataTable('#example');
     });
 </script>
 

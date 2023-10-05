@@ -14,6 +14,9 @@ $users = $_SESSION["username"];
     <meta name="generator" content="Hugo 0.118.2">
     <title>Transport Department</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/sweetalert2.min.css" rel="stylesheet">
+    <link href="DataTables/datatables.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 <body class="col-lg-8 mx-auto p-4 py-md-5">
     <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Eleventh navbar example">
@@ -29,7 +32,7 @@ $users = $_SESSION["username"];
                         <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="entryApplication">UDC</a>
+                        <a class="nav-link" href="entryList">UDC</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="inspectionList.php">Asst. Direcotor</a>
