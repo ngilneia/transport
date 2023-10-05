@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 include("auth.php");
 $users = $_SESSION["username"];
 ?>
@@ -32,17 +35,18 @@ $users = $_SESSION["username"];
                         <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="entryList">UDC</a>
+                        <a class="nav-link" href="dealingentryList.php">UDC</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="inspectionList.php">Asst. Direcotor</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Joint Director</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="">Director Director</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="approveList.php">Joint Director</a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="">Director</a>
                     </li>

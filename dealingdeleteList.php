@@ -12,11 +12,9 @@ if (isset($_GET['id'])) {
         echo "Error:" . $sql . "<br>" . $con->error;
     }
 } else {
-    header('Location: entryList.php');
+    header('Location: dealingentryList.php');
 }
 ?>
 
 
-</body>
-
-</html>
+<?php include('footer.php') ?>

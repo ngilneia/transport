@@ -1,24 +1,10 @@
 <?php
 require('db.php');
 include("header.php");
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    $sql = "SELECT * FROM `entry` WHERE entry_id='$id'";
-    $result = $con->query($sql);
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $name = $row['name'];
-            $fName = $row['fname'];
-            $address = $row['address'];
-            $regNo = $row['regNo'];
-            $reason = $row['reason'];
-            $pHolder = $row['pHolder'];
-        }
-    }
-}
+
 ?>
 <div>
-    <p>Inspection</p>
+    <p>Application List</p>
     <hr />
     <table id="entry" class="table table-striped" style="width:100%">
         <thead>
@@ -30,14 +16,14 @@ if (isset($_GET['id'])) {
                 <th>Registration No</th>
                 <th>Reason</th>
                 <th>Current Holder</th>
-                <th>File</th>
+                <th>Remarks</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
 
             <?php
-            $sql = "SELECT * FROM entry";
+            $sql = "SELECT * FROM `entry` JOIN `inspection` on entry.regNo=inspection.regNo";
             $result = $con->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
@@ -50,14 +36,15 @@ if (isset($_GET['id'])) {
                         <td><?php echo $row['regNo']; ?></td>
                         <td><?php echo $row['reason']; ?></td>
                         <td><?php echo $row['pHolder']; ?></td>
-                        <td><?php echo '<a href="http://localhost/transport/' . $row['file'] . '">View Document</a>'; ?></td>
+                        <td><?php echo $row['remarks']; ?></td>
                         <?php
                         if ($row['jd_approve'] > 0) {
                             echo '<td><a class="btn btn-success" href="">Approved</a></td>';
                         } else {
-                            echo '<td><a class="btn btn-info" href="inspection.php?id=' . $row["entry_id"] . ';" ?>Approve</a></td>';
+                            echo '<td><a class="btn btn-info" href="approve.php?id=' . $row["inspection_id"] . ' "?>Approve</a></td>';
                         }
                         ?>
+
                     </tr>
             <?php       }
             }

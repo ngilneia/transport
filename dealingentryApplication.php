@@ -10,6 +10,9 @@ if (isset($_POST['submit'])) {
     $regNo = $_POST['regNo'];
     $reason = $_POST['reason'];
     $currentOwner = $_POST['currentOwner'];
+    $phoneNo = $_POST['phoneNo'];
+    $VehicleType = $_POST['VehicleType'];
+    $dto = $_POST['dto'];
     $file = $_FILES["file"]["name"];
     $fileName = basename($_FILES["file"]["name"]);
     $targetFilePath = $targetDir . $fileName;
@@ -32,14 +35,14 @@ if (isset($_POST['submit'])) {
         $statusMsg = 'Please select a file to upload.';
     }
 
-    $sql = "INSERT INTO `entry`(`name`, `fName`, `address`, `regNo`, `reason`, `pHolder`, `file`) VALUES ('$name','$fName','$address','$regNo','$reason','$currentOwner','$targetFilePath')";
+    $sql = "INSERT INTO `entry`(`name`, `fName`, `address`, `regNo`, `reason`, `pHolder`, `phoneNo`,`typeOfVehicle`,`dto`,`file`) 
+    VALUES ('$name','$fName','$address','$regNo','$reason','$currentOwner','$phoneNo','$VehicleType','$dto','$targetFilePath')";
     $result = $con->query($sql);
     if ($result == TRUE) {
         echo "<script type='text/javascript'>
         $(document).ready(function(){
                   Swal . fire(
-            'Good job!',
-            'Recorded!',   
+            'Application Submitted!',   
             'success'
         )});
         </script>";
@@ -84,9 +87,44 @@ if (isset($_POST['submit'])) {
             <label for="currentOwner" class="form-label">Name of Present Permit Holder with Full address</label>
             <input type="text" name="currentOwner" class="form-control" id="currentOwner" placeholder="Name of Present Permit Holder with Full address">
         </div>
+        <div class="col-md-4">
+            <label for="phoneNo" class="form-label">Phone No</label>
+            <input type="text" name="phoneNo" class="form-control" id="phoneNo" placeholder="Phone No">
+        </div>
+        <div class="col-md-4">
+            <label for="VehicleType" class="form-label">Type of Vehicle</label>
+            <input type="text" name="VehicleType" class="form-control" id="VehicleType" placeholder="Type of Vehicle">
+        </div>
+        <div class="col-md-4">
+            <label for="dto" class="form-label">DTO</label>
+            <input type="text" name="dto" class="form-control" id="dto" placeholder="DTO">
+        </div>
         <div class="mb-3">
-            <label for="formFile" class="form-label">Upload File(Combile all scanned document in one pdf)</label>
+            <label for="formFile" class="form-label">Voters ID(Present Holder)</label>
             <input class="form-control" name="file" type="file" id="formFile">
+            <label for="formFile1" class="form-label">Sales Letter</label>
+            <input class="form-control" name="file1" type="file" id="formFile1">
+            <label for="formFile2" class="form-label">REgistration Certificate</label>
+            <input class="form-control" name="file2" type="file" id="formFile2">
+            <label for="formFile3" class="form-label">Plying permit</label>
+            <input class="form-control" name="file3" type="file" id="formFile3">
+            <label for="formFile4" class="form-label">Pollution Certificate</label>
+            <input class="form-control" name="file4" type="file" id="formFile4">
+        </div>
+        <hr />
+        <h4>In Case of Accident Vehicle</h4>
+        <hr />
+        <div class="mb-3">
+            <label for="formFil5e" class="form-label">Police Report</label>
+            <input class="form-control" name="file5" type="file" id="formFile5">
+        </div>
+        <div class="mb-3">
+            <label for="formFile6" class="form-label">MVI Inspection Report</label>
+            <input class="form-control" name="file6" type="file" id="formFile6">
+        </div>
+        <div class="mb-3">
+            <label for="formFile7" class="form-label">Death Certificate</label>
+            <input class="form-control" name="file7" type="file" id="formFile7">
         </div>
         <div class="mb-3">
             <button type="submit" name="submit" value="submit" class="btn btn-primary">Submit</button>
@@ -94,8 +132,4 @@ if (isset($_POST['submit'])) {
     </form>
 </div>
 
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/sweetalert2.all.min.js"></script>
-</body>
-
-</html>
+<?php include('footer.php') ?>

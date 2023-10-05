@@ -2,7 +2,9 @@
 require('db.php');
 include("header.php");
 if (isset($_POST['submit'])) {
-    $vClass = $_POST['vehicleClass'];
+    $regNo = $_POST['regNo'];
+    $address = $_POST['address'];
+    $vClass = $_POST['vClass'];
     $mYear = $_POST['mYear'];
     $rTax = $_POST['rTax'];
     $pTax = $_POST['pTax'];
@@ -15,28 +17,21 @@ if (isset($_POST['submit'])) {
     $sql = "INSERT INTO `inspection`(`regNo`,`address`,`vClass`,`mYear`,`rTax`,`pTax`,`fc`,`fp`,`i`,`p`,`remarks`) VALUES ('$regNo','$address','$vClass','$mYear','$rTax','$pTax','$fc','$fp','$i','$p','$remarks')";
     $result = $con->query($sql);
     if ($result == TRUE) {
-        echo "<script type='text/javascript'>
+        echo
+        "<script type='text/javascript'>
         $(document).ready(function(){
                   Swal . fire(
-            'Good job!',
-            'Approved!',   
+            'Application Approved!',   
             'success'
         )});
         </script>";
     } else {
-        echo    "<script type='text/javascript'>
-        $(document).ready(function(){
-                  Swal . fire(
-            'Error!',
-            'Not Approved!',   
-            'error'
-        )});
-        </script>";
+        echo "Error:" . $sql . "<br>" . $con->error;
     }
 }
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $sql = "SELECT * FROM `entry` WHERE id='$id'";
+    $sql = "SELECT * FROM `entry` WHERE entry_id='$id'";
     $result = $con->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -48,12 +43,10 @@ if (isset($_GET['id'])) {
             $pHolder = $row['pHolder'];
         }
 
-
-
 ?>
         <div>
             <p>Inspection</p>
-            <form class="row g-3">
+            <form class="row g-3" method="post" enctype="multipart/form-data">
                 <div class="form-check col-3">
                     <label class="form-check-label" for="11">
                         1) Registration No
@@ -67,15 +60,15 @@ if (isset($_GET['id'])) {
                     <input type="text" name="address" class="form-control" id="12" value="<?php echo $address; ?>">
                 </div>
                 <div class="form-check col-3">
-                    <label for="vehicleClass" class="form-label">3) Vehicle Class</label>
-                    <input type="text" name="vehicleClass" class="form-control" id="vehicleClass" placeholder="Vehicle Class">
+                    <label for="vClass" class="form-label">3) Vehicle Class</label>
+                    <input type="text" name="vClass" class="form-control" id="vClass" placeholder="Vehicle Class">
                 </div>
                 <div class="form-check col-3">
                     <label for="mYear" class="form-label">4) Year of Manufacture as printed in RC</label>
-                    <input type="text" name="mYear" class="form-control" id="mYear" placeholder="Year of Manufacture as printed in RC">
+                    <input type="text" name="mYear" class="form-control" id="mYear" placeholder="Year of Manufacture">
                 </div>
                 <div class="form-check">
-                    <label class="form-check-label" for="">
+                    <label class="form-check-label">
                         5) Validity of documents
                     </label>
                 </div>
@@ -88,7 +81,7 @@ if (isset($_GET['id'])) {
                 <div class="form-check col-4">
                     <input class="form-check-input" type="checkbox" value="1" name="pTax" id="5">
                     <label class="form-check-label" for="5">
-                        2) P&G Tax
+                        1) P&amp;G TAX
                     </label>
                 </div>
                 <div class="form-check col-4">
@@ -122,7 +115,7 @@ if (isset($_GET['id'])) {
                     <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Remarks">
                 </div>
                 <div class="col-12">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" name="submit" value="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
         </div>

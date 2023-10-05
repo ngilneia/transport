@@ -9,7 +9,7 @@ if (isset($_POST['update'])) {
     $regNo = $_POST['regNo'];
     $reason = $_POST['reason'];
     $currentOwner = $_POST['currentOwner'];
-    $sql = "UPDATE `entry` SET `name`='$name',`fname`='$fName', `address`='$inputAddress',`regNo`='$regNo',`reason`='$reason',`pHolder`='$currentOwner' WHERE `id`='$id'";
+    $sql = "UPDATE `entry` SET `name`='$name',`fname`='$fName', `address`='$inputAddress',`regNo`='$regNo',`reason`='$reason',`pHolder`='$currentOwner' WHERE `entry_id`='$id'";
     $result = $con->query($sql);
     if ($result == TRUE) {
         echo
@@ -21,7 +21,7 @@ if (isset($_POST['update'])) {
             'success'
         )});
         </script>";
-        header('Location: entryList.php');
+        header('Location: dealingentryList.php');
     } else {
         echo "Error:" . $sql . "<br>" . $con->error;
     }
@@ -29,7 +29,7 @@ if (isset($_POST['update'])) {
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $sql = "SELECT * FROM `entry` WHERE id='$id'";
+    $sql = "SELECT * FROM `entry` WHERE entry_id='$id'";
     $result = $con->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -86,7 +86,7 @@ if (isset($_GET['id'])) {
 
 <?php
     } else {
-        header('Location: entryList.php');
+        header('Location: dealingentryList.php');
     }
 }
 ?>

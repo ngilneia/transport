@@ -4,9 +4,9 @@ include("header.php");
 ?>
 <div>
     <p>Application</p>
-    <a class="btn btn-info" href="entryApplication.php">Enter New Application</a>
+    <a class="btn btn-info" href="dealingentryApplication.php">Enter New Application</a>
     <hr />
-    <table id="example" class="table table-striped" style="width:100%">
+    <table id="entry" class="table table-striped" style="width:100%">
         <thead>
             <tr>
                 <th>Sl No</th>
@@ -16,6 +16,9 @@ include("header.php");
                 <th>Registration No</th>
                 <th>Reason</th>
                 <th>Current Holder</th>
+                <th>Phone No</th>
+                <th>Type of Vehicle</th>
+                <th>DTO</th>
                 <th>File</th>
                 <th>Action</th>
             </tr>
@@ -29,17 +32,20 @@ include("header.php");
                 while ($row = $result->fetch_assoc()) {
             ?>
                     <tr>
-                        <td><?php echo $row['id']; ?></td>
+                        <td><?php echo $row['entry_id']; ?></td>
                         <td><?php echo $row['name']; ?></td>
                         <td><?php echo $row['fname']; ?></td>
                         <td><?php echo $row['address']; ?></td>
                         <td><?php echo $row['regNo']; ?></td>
                         <td><?php echo $row['reason']; ?></td>
                         <td><?php echo $row['pHolder']; ?></td>
+                        <td><?php echo $row['phoneNo']; ?></td>
+                        <td><?php echo $row['typeOfVehicle']; ?></td>
+                        <td><?php echo $row['dto']; ?></td>
                         <td><?php echo '<a href="http://localhost/transport/' . $row['file'] . '">View Document</a>'; ?></td>
-                        <td><a class="btn btn-info" href="updateList.php?id=<?php echo $row['id']; ?>">Edit</a>
+                        <td><a class="btn btn-info" href="dealingupdateList.php?id=<?php echo $row['entry_id']; ?>">Edit</a>
                             &nbsp;
-                            <a class="btn btn-danger" href="deleteList.php?id=<?php echo $row['id']; ?>">Delete</a>
+                            <a class="btn btn-danger" href="dealingdeleteList.php?id=<?php echo $row['entry_id']; ?>">Delete</a>
                         </td>
                     </tr>
             <?php       }
@@ -50,14 +56,4 @@ include("header.php");
 
 </div>
 
-<script src="js/bootstrap.min.js"></script>
-<script src="DataTables/datatables.min.js"></script>
-<script type='text/javascript'>
-    $(document).ready(function() {
-        new DataTable('#example');
-    });
-</script>
-
-</body>
-
-</html>
+<?php include('footer.php') ?>
