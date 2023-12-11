@@ -50,7 +50,13 @@ if (isset($_GET['id'])) {
                         <td><?php echo $row['regNo']; ?></td>
                         <td><?php echo $row['reason']; ?></td>
                         <td><?php echo $row['pHolder']; ?></td>
-                        <td><?php echo '<a href="http://localhost/transport/' . $row['file'] . '">View Document</a>'; ?></td>
+                        <td>
+                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://localhost/transport/' . $row['voters'] . '">Voters ID</a><br/>'; ?>
+                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://localhost/transport/' . $row['saleLetter'] . '">Sales Letter</a><br/>'; ?>
+                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://localhost/transport/' . $row['regCertf'] . '">Registration Certificate</a><br/>'; ?>
+                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://localhost/transport/' . $row['plying'] . '">Plying Permit</a><br/>'; ?>
+                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://localhost/transport/' . $row['pollution'] . '">Pollution Certificate</a>'; ?>
+                        </td>
                         <?php
                         if ($row['jd_approve'] > 0) {
                             echo '<td><a class="btn btn-success" href="">Approved</a></td>';
@@ -67,7 +73,7 @@ if (isset($_GET['id'])) {
 
 </div>
 
-<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
 <script src="DataTables/datatables.min.js"></script>
 <script type='text/javascript'>
     $(document).ready(function() {

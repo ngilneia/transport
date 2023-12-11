@@ -7,7 +7,7 @@ $users = $_SESSION["username"];
 ?>
 
 <!doctype html>
-<html lang="en" data-bs-theme="auto">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="utf-8">
@@ -19,9 +19,9 @@ $users = $_SESSION["username"];
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sweetalert2.min.css" rel="stylesheet">
     <link href="DataTables/datatables.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
 
-<body class="col-lg-8 mx-auto p-4 py-md-5">
+<body class="col-lg-12 mx-auto p-4 py-md-5">
     <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Eleventh navbar example">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Navbar</a>
@@ -34,11 +34,26 @@ $users = $_SESSION["username"];
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="dealingentryList.php">UDC</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Dealing</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="dealingentryList.php">Application Entry</a></li>
+                            <li><a class="dropdown-item" href="inspectionList.php">Inspection Form</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="inspectionList.php">Asst. Direcotor</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Asst. Director(STA)</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="adtApprovalList_I.php">Part I</a></li>
+                            <li><a class="dropdown-item" href="adtApprovalList_II.php">Part II</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Asst. Director(MV)</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="adtApprovalList_I.php">Part I</a></li>
+                            <li><a class="dropdown-item" href="adtApprovalList_II.php">Part II</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="">Director Director</a>
@@ -53,15 +68,7 @@ $users = $_SESSION["username"];
                     <!-- <li class="nav-item">
                             <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                         </li> -->
-                    <!-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="index.php">Home</a></li>
-                                <li><a class="dropdown-item" href="index.php">Dashboard</a></li>
-                                <li><a class="dropdown-item" href="logout.php">Logout</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li> -->
+
                 </ul>
                 <ul class="navbar-nav">
                     <li class=" nav-item"><a class="nav-link" href="logout.php">Logout</a></li>

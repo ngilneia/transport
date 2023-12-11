@@ -9,7 +9,11 @@ if (isset($_POST['update'])) {
     $regNo = $_POST['regNo'];
     $reason = $_POST['reason'];
     $currentOwner = $_POST['currentOwner'];
-    $sql = "UPDATE `entry` SET `name`='$name',`fname`='$fName', `address`='$inputAddress',`regNo`='$regNo',`reason`='$reason',`pHolder`='$currentOwner' WHERE `entry_id`='$id'";
+    $phoneNo = $_POST['phoneNo'];
+    $VehicleType = $_POST['VehicleType'];
+    $dto = $_POST['dto'];
+    $sql = "UPDATE `entry` SET `name`='$name',`fname`='$fName', `address`='$inputAddress',`regNo`='$regNo',`reason`='$reason',`pHolder`='$currentOwner'
+    ,`phoneNo`='$phoneNo',`typeOfVehicle`='$VehicleType',`dto`='$dto' WHERE `entry_id`='$id'";
     $result = $con->query($sql);
     if ($result == TRUE) {
         echo
@@ -39,6 +43,9 @@ if (isset($_GET['id'])) {
             $regNo = $row['regNo'];
             $reason = $row['reason'];
             $pHolder = $row['pHolder'];
+            $phoneNo = $row['phoneNo'];
+            $vehicleType = $row['typeOfVehicle'];
+            $dto = $row['dto'];
         }
 ?>
 
@@ -67,11 +74,23 @@ if (isset($_GET['id'])) {
                 <label for="currentOwner" class="form-label">Name of Present Permit Holder with Full address</label>
                 <input type="text" name="currentOwner" class="form-control" id="currentOwner" value="<?php echo $pHolder; ?>">
             </div>
+            <div class="col-md-4">
+                <label for="phoneNo" class="form-label">Phone No</label>
+                <input type="text" name="phoneNo" class="form-control" id="phoneNo" value="<?php echo $phoneNo; ?>">
+            </div>
+            <div class=" col-md-4">
+                <label for="VehicleType" class="form-label">Type of Vehicle</label>
+                <input type="text" name="VehicleType" class="form-control" id="VehicleType" value="<?php echo $vehicleType; ?>">
+            </div>
+            <div class="col-md-4">
+                <label for="dto" class="form-label">DTO</label>
+                <input type="text" name="dto" class="form-control" id="dto" value="<?php echo $dto; ?>">
+            </div>
             <div class="mb-3">
                 <button type="update" name="update" value="update" class="btn btn-primary">Update</button>
             </div>
         </form>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
         <script src="DataTables/datatables.min.js"></script>
         <script type='text/javascript'>
             $(document).ready(function() {
