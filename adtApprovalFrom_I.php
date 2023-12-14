@@ -1,12 +1,11 @@
 <?php
 require('db.php');
+$id = $_GET['id'];
 include("header.php");
-if (isset($_POST['submit'])) {
-    $regNo = $_POST['regNo'];
-    $p = $_POST['p'];
-    $remarks = $_POST['remarks'];
+if (isset($_POST['approve'])) {
+    $remarks = $_POST['remarksA'];
 
-    $sql = "INSERT INTO `inspection`(`regNo`,`name`,`address`,`vClass`,`mYear`,`rTax`,`pTax`,`fc`,`fp`,`i`,`p`,`remarks`) VALUES ('$regNo','$name','$address','$vClass','$mYear','$rTax','$pTax','$fc','$fp','$i','$p','$remarks')";
+    $sql = "UPDATE `entry` set adtsta='1',adtstaApproveDate=now(),adtstaRemarks='$remarks' where entry_id=$id;";
     $result = $con->query($sql);
     if ($result == TRUE) {
         echo
@@ -35,6 +34,7 @@ if (isset($_GET['id'])) {
             $reason = $row['reason'];
             $pHolder = $row['pHolder'];
             $dot = $row['dot'];
+            $pno = $row['pNo'];
         }
 ?>
         <div class="container text-center">
@@ -48,16 +48,32 @@ if (isset($_GET['id'])) {
                     <div class="col-6 col-md-4">
                         <p><?php echo $pHolderName; ?></p>
                         <p>(Transferer)(Hralhtu)</p>
-                        <p>Date:<?php echo ''; ?></p>
+                        <p>Date:<?php echo $dot; ?></p>
                     </div>
                     <div class="col-6 col-md-4"></div>
                     <div class=" col-6 col-md-4">
                         <p><?php echo $name; ?></p>
                         <p>(Transferee)(Leitu)</p>
-                        <p><?php echo ''; ?></p>
+                        <p><?php echo $pno; ?></p>
                     </div>
                 </div>
             </div>
+
+
+            <form class="row g-3" method="post" enctype="multipart/form-data">
+                <div class="form-check">
+                    <label class="form-check-label" for="remarksA">
+                        Remarks of Inspecting Authority
+                    </label>
+                    <input type="text" name="remarksA" class="form-control" id="remarksA">
+                </div>
+                <div class="col">
+                    <button type="submit" name="approve" value="approve" class="btn btn-primary">Approve</button>
+                    <button type="submit" name="reject" value="reject" class="btn btn-danger">Reject</button>
+                </div>
+            </form>
+
+
         </div>
 <?php }
 } ?>

@@ -1,12 +1,9 @@
 <?php
 require('db.php');
 include("header.php");
-if (isset($_POST['submit'])) {
-    $regNo = $_POST['regNo'];
-    $p = $_POST['p'];
-    $remarks = $_POST['remarks'];
-
-    $sql = "INSERT INTO `inspection`(`regNo`,`name`,`address`,`vClass`,`mYear`,`rTax`,`pTax`,`fc`,`fp`,`i`,`p`,`remarks`) VALUES ('$regNo','$name','$address','$vClass','$mYear','$rTax','$pTax','$fc','$fp','$i','$p','$remarks')";
+if (isset($_POST['approve'])) {
+    $remarks = $_POST['remarksA'];
+    $sql = "UPDATE `entry` set adtsta='1',adtstaApproveDate=now(),adtstaRemarks='$remarks' where entry_id=$id;";
     $result = $con->query($sql);
     if ($result == TRUE) {
         echo

@@ -1,6 +1,7 @@
 <?php
 require('db.php');
 include("header.php");
+$ids = $_GET['id'];
 if (isset($_POST['submit'])) {
     $regNo = $_POST['regNo'];
     $name = $_POST['name'];
@@ -13,58 +14,26 @@ if (isset($_POST['submit'])) {
     $fp = $_POST['fp'];
     $i = $_POST['i'];
     $p = $_POST['p'];
-    $roles = $_POST['roles'];
     $remarks = $_POST['remarks'];
-    if ($roles = 5) {
-        $sql = "INSERT INTO `adt_mv`(`regNo`,`name`,`address`,`vClass`,`mYear`,`rTax`,`pTax`,`fc`,`fp`,`i`,`p`,`assign`,`remarks`) VALUES ('$regNo','$name','$address','$vClass','$mYear','$rTax','$pTax','$fc','$fp','$i','$p','$roles','$remarks')";
-        $result = $con->query($sql);
-        if ($result == TRUE) {
-            echo
-            "<script type='text/javascript'>
+
+    $sql = "INSERT INTO `inspection`(`regNo`,`name`,`address`,`vClass`,`mYear`,`rTax`,`pTax`,`fc`,`fp`,`i`,`p`,`remarks`) 
+    values ('$regNo','$name','$address','$vClass','$mYear','$rTax','$pTax','$fc','$fp','$i','$p','$remarks')";
+    $insert = $con->query($sql);
+
+    $updateSql = "UPDATE `entry` set inspection=now() where entry_id=$ids";
+    $result = $con->query($updateSql);
+    if ($result == TRUE && $insert == TRUE) {
+        echo
+        "<script type='text/javascript'>
         $(document).ready(function(){
                   Swal . fire(
-            'Application Approved and Assign to Assistant Director(MV)',   
+            'Application Inspected and Assign to Assistant Director(MV & STA)',   
             'success'
         )});
         </script>";
-        } else {
-            echo "Error:" . $sql . "<br>" . $con->error;
-        }
-    } else if ($roles = 2) {
-
-
-        $sql = "INSERT INTO `adt_sta`(`regNo`,`name`,`address`,`vClass`,`mYear`,`rTax`,`pTax`,`fc`,`fp`,`i`,`p`,`assign`,`remarks`) VALUES ('$regNo','$name','$address','$vClass','$mYear','$rTax','$pTax','$fc','$fp','$i','$p','$roles','$remarks')";
-        $result = $con->query($sql);
-        if ($result == TRUE) {
-            echo
-            "<script type='text/javascript'>
-        $(document).ready(function(){
-                  Swal . fire(
-            'Application Approved and Assign to Assistant Director(STA)',   
-            'success'
-        )});
-        </script>";
-        } else {
-            echo "Error:" . $sql . "<br>" . $con->error;
-        }
-    } else if ($roles = 3) {
-
-
-        $sql = "INSERT INTO `dd`(`regNo`,`name`,`address`,`vClass`,`mYear`,`rTax`,`pTax`,`fc`,`fp`,`i`,`p`,`assign`,`remarks`) VALUES ('$regNo','$name','$address','$vClass','$mYear','$rTax','$pTax','$fc','$fp','$i','$p','$roles','$remarks')";
-        $result = $con->query($sql);
-        if ($result == TRUE) {
-            echo
-            "<script type='text/javascript'>
-        $(document).ready(function(){
-                  Swal . fire(
-            'Application Approved and Assign to Deputy Director',   
-            'success'
-        )});
-        </script>";
-        } else {
-            echo "Error:" . $sql . "<br>" . $con->error;
-        }
     } else {
+        echo "Error:" . $updateSql . "<br>" . $con->error;
+        echo "Error:" . $sql . "<br>" . $con->error;
     }
 }
 if (isset($_GET['id'])) {
@@ -88,19 +57,19 @@ if (isset($_GET['id'])) {
                     <label class="form-check-label" for="11">
                         1) Registration No
                     </label>
-                    <input type="text" name="regNo" class="form-control" id="11" value="<?php echo $regNo; ?>">
+                    <input type="text" name="regNo" class="form-control" id="11" value="<?php echo $regNo; ?>" readonly="readonly">
                 </div>
                 <div class="form-check col-2">
                     <label class="form-check-label" for="12">
                         2) Owner's Name
                     </label>
-                    <input type="text" name="name" class="form-control" id="12" value="<?php echo $name; ?>">
+                    <input type="text" name="name" class="form-control" id="12" value="<?php echo $name; ?>" readonly="readonly">
                 </div>
                 <div class="form-check col-4">
                     <label class="form-check-label" for="13">
                         3) Address
                     </label>
-                    <input type="text" name="address" class="form-control" id="13" value="<?php echo $address; ?>">
+                    <input type="text" name="address" class="form-control" id="13" value="<?php echo $address; ?>" readonly="readonly">
                 </div>
                 <div class="form-check col-2">
                     <label for="vClass" class="form-check-label">4) Vehicle Class</label>
@@ -117,40 +86,29 @@ if (isset($_GET['id'])) {
                 </div>
                 <div class="form-check col-4">
                     <label class="form-check-label" for="4">1) Road Tax</label>
-                    <input class="form-control" type="text" name="rTax" id="4">
+                    <input class="form-control" type="date" name="rTax" id="4">
                 </div>
                 <div class="form-check col-4">
                     <label class="form-check-label" for="5">2) P&amp;G TAX</label>
-                    <input class="form-control" type="text" name="pTax" id="5">
+                    <input class="form-control" type="date" name="pTax" id="5">
                 </div>
                 <div class="form-check col-4">
                     <label class="form-check-label" for="6">3) Fitness Certificate</label>
-                    <input class="form-control" type="text" name="fc" id="6">
+                    <input class="form-control" type="date" name="fc" id="6">
                 </div>
                 <div class="form-check col-4">
                     <label class="form-check-label" for="7">4) Flying Permit</label>
-                    <input class="form-control" type="text" name="fp" id="7">
+                    <input class="form-control" type="date" name="fp" id="7">
                 </div>
                 <div class="form-check col-4">
                     <label class="form-check-label" for="8">5) Insurance</label>
-                    <input class="form-control" type="text" name="i" id="8">
+                    <input class="form-control" type="date" name="i" id="8">
                 </div>
                 <div class="form-check col-4">
                     <label class="form-check-label" for="9">6) Pollution</label>
-                    <input class="form-control" type="text" name="p" id="9">
+                    <input class="form-control" type="date" name="p" id="9">
                 </div>
-                <div class="form-check col-4">
-                    <label class="form-check-label" for="remarks">Assign to</label>
-                    <SELECT name="roles" class="form-select">
-                        <?php
-                        $sql = "select * from role";
-                        $result = $con->query($sql);
-                        while ($row = $result->fetch_assoc()) {
-                            echo '<option value="' . $row['id'] . '">' . $row['role'] . '</option>';
-                        }
-                        ?>
-                    </SELECT>
-                </div>
+
                 <div class="form-check col-8">
                     <label class="form-check-label" for="remarks">
                         Remarks

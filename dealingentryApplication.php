@@ -98,8 +98,7 @@ if (isset($_POST['submit'])) {
     `relation`,`news`,`transferDate`,`appName`,`pNo`,`voters`,`pVoters`,`saleLetter`,`regCertf`,`plying`,`pollution`) 
     VALUES ('$name','$fName','$address','$regNo','$reason','$currentOwnerName','$currentOwner','$phoneNo','$VehicleType','$dto','$dot','$deceased','$place',
     '$relation','$news','$transferDate','$appName','$pNo','$votersFilePath','$pVotersFilePath','$saleLetterFilePath','$regCertfFilePath','$plyingFilePath','$pollutionFilePath')";
-    $result = $con->query($sql);
-    if ($result == TRUE) {
+    if ($result = $con->query($sql)) {
         echo "<script type='text/javascript'>
         $(document).ready(function(){
                   Swal . fire(

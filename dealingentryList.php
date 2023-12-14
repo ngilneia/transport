@@ -49,14 +49,23 @@ include("header.php");
                             <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://localhost/transport/' . $row['plying'] . '">Plying Permit</a><br/>'; ?>
                             <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://localhost/transport/' . $row['pollution'] . '">Pollution Certificate</a>'; ?>
                         </td>
-                        <td><a class="btn btn-info" href="dealingupdateList.php?id=<?php echo $row['entry_id']; ?>">Edit</a>
-                            &nbsp;
-                            <a class="btn btn-danger" href="dealingdeleteList.php?id=<?php echo $row['entry_id']; ?>">Delete</a>
-                        </td>
+
+                        <?php
+                        if ($row['d'] == 1) {
+                        ?>
+                            <td><a class="btn btn-success" href="approval.php?id=<?php echo $row['entry_id']; ?>">Download Approval Letter</a></td>
+                        <?php
+                        } else {
+                        ?>
+                            <td><a class="btn btn-info" href="dealingupdateList.php?id=<?php echo $row['entry_id']; ?>">Edit</a>
+                                &nbsp;
+                                <a class="btn btn-danger" href="dealingdeleteList.php?id=<?php echo $row['entry_id']; ?>">Delete</a>
+                            </td>
                     </tr>
-            <?php       }
-            }
-            ?>
+        <?php       }
+                    }
+                }
+        ?>
         </tbody>
     </table>
 
