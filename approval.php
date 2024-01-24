@@ -9,6 +9,9 @@ if (@file_exists(dirname(__FILE__) . '/lang/eng.php')) {
     require_once(dirname(__FILE__) . '/lang/eng.php');
     $pdf->setLanguageArray($l);
 }
+$pdf->setPrintHeader(false);
+$pdf->setPrintFooter(false);
+$pdf->SetMargins(15, 5, 15);
 $pdf->SetFont('times', '', 12);
 $pdf->AddPage('P', 'A4');
 $vClass = '';
@@ -42,17 +45,18 @@ $html = '<html>
                 <body>
 
                 <div>
-                <h3 style="text-align: center; margin:-5 0; padding:-5 0;">GOVERNMENT OF MIZORAM</h3>
-                <h3 style="text-align: center; margin:-5 0; padding:-5 0;">OFFICE OF THE SECRETARY : STATE TRANSPORT AUTHORITY</h3>
-                <h3 style="text-align: center; margin:0; padding:0;">MIZORAM : AIZAWL</h3>
+                <h3 style="text-align: center; line-height:5px;">GOVERNMENT OF MIZORAM</h3>
+                <h3 style="text-align: center; line-height:5px;">OFFICE OF THE SECRETARY : STATE TRANSPORT AUTHORITY</h3>
+                <h3 style="text-align: center; line-height:5px;">MIZORAM : AIZAWL</h3>
+                <h1></h1>
+                <h1></h1>
                 <table>
                     <tr>
                         <td style="text-align: left;"><strong>F.20016/10/2023-DTE(STA)Vol-V</strong></td>
                         <td style="text-align: right;"><strong>Dated Aizawl the ' . date('d-M-Y') . '</strong></td>
                     </tr>
                 </table>
-                <br/>
-                <br/>
+                             <br/>
                 <h3 style="text-align: center; text-decoration:underline;">ORDER</h3>
                 <p style="text-align: justify; text-indent:30px;">On payment of Rs 1000/-(Rupees One thousand) only and as permissible under Sec 82 of MV Act 1988 r/w Rule 113 of the Mizoram Motor Vehicle Rules 1996 ' . $vClass . ' bearing Registration Number
                 ' . $regNo . ' is hereby allowed transfer of permit from ' . $pHolderName . ' of ' . $pHolder . ' to ' . $name . ' of ' . $address . '</p>
@@ -67,8 +71,8 @@ $html = '<html>
                 <tr><td></td><td></td></tr>
                 <tr><td></td><td></td></tr>
                     <tr>
-                        <td style="width:60%;"></td>
-                        <td style="width:40%; text-align:center;">
+                        <td style="width:65%;"></td>
+                        <td style="width:35%; text-align:center;">
                         Sd/-<br/>
                         Secretary<br/>
                         State Transport Authority<br/>
@@ -94,11 +98,15 @@ $html = '<html>
                 <tr><td></td><td></td></tr>
                 <tr><td></td><td></td></tr>
                     <tr>
-                        <td style="width:60%;"></td>
-                        <td style="width:40%; text-align:center;">
-                        Secretary<br/>
-                        State Transport Authority<br/>
-                        Mizoram, Aizawl        
+                        <td style="width:65%;"></td>
+                        <td style="width:35%; text-align:center;">
+                        <div style="position:relative;">
+                            <div><img style="width:550%;" src="img/DirectorSignature.png"/></div>
+                            <div style="position: absolute;  bottom:80px;">
+                            Secretary<br/> 
+                            State Transport Authority<br/>
+                            Mizoram, Aizawl </div>   
+                        </div>    
                         </td>
                     </tr>
                 </table>

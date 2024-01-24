@@ -1,7 +1,7 @@
 <?php
 require('db.php');
 include("header.php");
-$targetDir = "uploads/";
+$targetDir = "uploads";
 $statusMsg = '';
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
@@ -29,24 +29,26 @@ if (isset($_POST['submit'])) {
     $regCertf = $_FILES["regCertf"]["name"];
     $plying = $_FILES["plying"]["name"];
     $pollution = $_FILES["pollution"]["name"];
+    $targetDir = $targetDir . '/' . $regNo . '/';
+    mkdir($targetDir . '/' . $regNo . '/', 0666, true);
 
     $voters = basename($_FILES["voters"]["name"]);
-    $votersFilePath = $targetDir . $regNo . $voters;
+    $votersFilePath = $targetDir . $voters;
 
     $pVoters = basename($_FILES["pVoters"]["name"]);
-    $pVotersFilePath = $targetDir . $regNo . $pVoters;
+    $pVotersFilePath = $targetDir . $pVoters;
 
     $saleLetter = basename($_FILES["saleLetter"]["name"]);
-    $saleLetterFilePath = $targetDir . $regNo . $saleLetter;
+    $saleLetterFilePath = $targetDir . $saleLetter;
 
     $regCertf = basename($_FILES["regCertf"]["name"]);
-    $regCertfFilePath = $targetDir . $regNo . $regCertf;
+    $regCertfFilePath = $targetDir . $regCertf;
 
     $plying = basename($_FILES["plying"]["name"]);
-    $plyingFilePath = $targetDir . $regNo . $plying;
+    $plyingFilePath = $targetDir . $plying;
 
     $pollution = basename($_FILES["pollution"]["name"]);
-    $pollutionFilePath = $targetDir . $regNo . $pollution;
+    $pollutionFilePath = $targetDir . $pollution;
 
     $fileType = pathinfo($votersFilePath, PATHINFO_EXTENSION);
 
@@ -54,6 +56,7 @@ if (isset($_POST['submit'])) {
         isset($_POST["submit"]) && !empty($_FILES["voters"]["name"]) && !empty($_FILES["pVoters"]["name"]) && !empty($_FILES["saleLetter"]["name"]) && !empty($_FILES["regCertf"]["name"])
         && !empty($_FILES["plying"]["name"]) && !empty($_FILES["pollution"]["name"])
     ) {
+
         //allow certain file formats
         $allowTypes = array('jpg', 'png', 'jpeg', 'pdf');
         if (in_array($fileType, $allowTypes)) {

@@ -5,32 +5,32 @@ $adtstacount = 0;
 $adtmvcount = 0;
 $ddcount = 0;
 $jdcount = 0;
-$sql = "SELECT adtsta, count(*) as count from entry where adtsta is null group by adtsta having count(*)>1 ";
+$sql = "SELECT SUM(CASE WHEN adtsta is null THEN 1 ELSE 0 END) AS adtsta_null FROM entry; ";
 $result = $con->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $adtstacount = $row['count'];
+        $adtstacount = $row['adtsta_null'];
     }
 }
-$sql = "SELECT adtmv, count(*) as count from entry where adtmv is null group by adtmv having count(*)>1 ";
+$sql = "SELECT SUM(CASE WHEN adtmv is null THEN 1 ELSE 0 END) AS adtmv_null FROM entry; ";
 $result = $con->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $adtmvcount = $row['count'];
+        $adtmvcount = $row['adtmv_null'];
     }
 }
-$sql = "SELECT dd, count(*) as count from entry where dd is null and adtmv is not null  and adtsta is not null group by dd having count(*)>1 ";
+$sql = "SELECT SUM(CASE WHEN dd is null  AND adtmv is not null AND adtsta is not null THEN 1 ELSE 0 END) AS dd_null FROM entry; ";
 $result = $con->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $ddcount = $row['count'];
+        $ddcount = $row['dd_null'];
     }
 }
-$sql = "SELECT jd, count(*) as count from entry where jd is null and dd is not null group by jd having count(*)>1 ";
+$sql = "SELECT SUM(CASE WHEN jd is null AND dd is not null THEN 1 ELSE 0 END) AS jd_null FROM entry; ";
 $result = $con->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $jdcount = $row['count'];
+        $jdcount = $row['jd_null'];
     }
 }
 ?>

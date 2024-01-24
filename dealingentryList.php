@@ -53,7 +53,7 @@ include("header.php");
                         <?php
                         if ($row['d'] == 1) {
                         ?>
-                            <td><a class="btn btn-success" href="approval.php?id=<?php echo $row['entry_id']; ?>">Download Approval Letter</a></td>
+                            <td><a class="btn btn-success" target="_blank" href="approval.php?id=<?php echo $row['entry_id']; ?>">Download Approval Letter</a></td>
                         <?php
                         } else {
                         ?>

@@ -1,5 +1,6 @@
 <?php
 require('db.php');
+$id = $_GET['id'];
 include("header.php");
 if (isset($_POST['approve'])) {
     $remarks = $_POST['remarksA'];
@@ -56,6 +57,18 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
             </div>
+            <form class="row g-3" method="post" enctype="multipart/form-data">
+                <div class="form-check">
+                    <label class="form-check-label" for="remarksA">
+                        Remarks of Inspecting Authority
+                    </label>
+                    <input type="text" name="remarksA" class="form-control" id="remarksA">
+                </div>
+                <div class="col">
+                    <button type="submit" name="approve" value="approve" class="btn btn-primary">Approve</button>
+                    <button type="submit" name="reject" value="reject" class="btn btn-danger">Reject</button>
+                </div>
+            </form>
         </div>
 <?php }
 } ?>
