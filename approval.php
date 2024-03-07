@@ -100,12 +100,13 @@ $html = '<html>
                     <tr>
                         <td style="width:65%;"></td>
                         <td style="width:35%; text-align:center;">
-                        <div style="position:relative;">
-                            <div><img style="width:550%;" src="img/DirectorSignature.png"/></div>
-                            <div style="position: absolute;  bottom:80px;">
-                            Secretary<br/> 
-                            State Transport Authority<br/>
-                            Mizoram, Aizawl </div>   
+                        <div style="position: relative;">                            
+                            <img style="width:550%;" src="img/DirectorSignature.png"/>    
+                            <div style="position: absolute;  bottom: 20px;">
+                                Secretary<br/> 
+                                State Transport Authority<br/>
+                                Mizoram, Aizawl 
+                            </div>   
                         </div>    
                         </td>
                     </tr>

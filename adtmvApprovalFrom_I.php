@@ -3,12 +3,9 @@ require('db.php');
 include("header.php");
 $id = $_GET['id'];
 if (isset($_POST['approve'])) {
-    $regNo = $_POST['regNo'];
-    $chasis = $_POST['chasis'];
-    $place = $_POST['place'];
     $remarks = $_POST['remarksA'];
 
-    $entrySql = "UPDATE `entry` set `adtmv`=1, `adtmvApproveDate`=now(),`chasis`='$chasis', `inspectionPlace`='$place',`adtmvRemarks`='$remarks' WHERE `entry_id`=$id";
+    $entrySql = "UPDATE `entry` set `adtmv`=1, `adtmvApproveDate`=now(),`adtmvRemarks`='$remarks' WHERE `entry_id`=$id";
     $updateSQL = $con->query($entrySql);
     if ($updateSQL == TRUE) {
         echo
@@ -92,22 +89,8 @@ if (isset($_GET['id'])) {
                 </table>
             </div>
             <div class="col">
-                <p>I, the udersigned hereby declare the above validity of documents shown are true and correct</p>
                 <form class="row g-3" method="post" enctype="multipart/form-data">
-                    <div class="form-check col-6">
-                        <label class="form-check-label" for="chasis">Chasis No. Pencil Print enclosed</label>
-                        <select name="chasis" class="form-select">
-                            <option value="YES">YES</option>
-                            <option value="NO">NO</option>
-                        </select>
-                    </div>
-                    <div class="form-check col-6">
-                        <label class="form-check-label" for="place">
-                            Place of Inspection
-                        </label>
-                        <input type="text" name="place" class="form-control" id="place">
-                        <input type="hidden" name="regNo" class=" form-control" value="<?php echo $regNo; ?>">
-                    </div>
+                    <p>I, the udersigned hereby declare the above validity of documents shown are true and correct</p>
                     <div class="form-check">
                         <label class="form-check-label" for="remarksA">
                             Remarks of Inspecting Authority
@@ -120,11 +103,11 @@ if (isset($_GET['id'])) {
                     </div>
                 </form>
             </div>
-        </div>
-<?php }
-} ?>
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/sweetalert2.all.min.js"></script>
-</body>
 
-</html>
+    <?php }
+} ?>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/sweetalert2.all.min.js"></script>
+    </body>
+
+    </html>

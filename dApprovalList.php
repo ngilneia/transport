@@ -19,7 +19,7 @@ include("header.php");
         <tbody>
 
             <?php
-            $sql = "SELECT * FROM entry where jd is not null";
+            $sql = "SELECT * FROM entry where chasis is not null";
             $result = $con->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
@@ -31,7 +31,7 @@ include("header.php");
                         <td><?php echo $row['ddRemarks'] . '-' . $row['ddApproveDate']; ?></td>
                         <td><?php echo $row['jdRemarks'] . '-' . $row['jdApproveDate']; ?></td>
                         <?php
-                        if ($row['d'] > 0) {
+                        if ($row['d'] > 2) {
                             echo '<td><a class="btn btn-success" href="">Approved</a></td>';
                         } else {
                             echo '<td><a class="btn btn-info" href="dApprovalFrom_I.php?id=' . $row["entry_id"] . ';" ?>Approve</a></td>';

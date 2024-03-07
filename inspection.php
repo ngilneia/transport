@@ -15,12 +15,14 @@ if (isset($_POST['submit'])) {
     $i = $_POST['i'];
     $p = $_POST['p'];
     $remarks = $_POST['remarks'];
+    $chasis = $_POST['chasis'];
+    $place = $_POST['place'];
 
     $sql = "INSERT INTO `inspection`(`regNo`,`name`,`address`,`vClass`,`mYear`,`rTax`,`pTax`,`fc`,`fp`,`i`,`p`,`remarks`) 
     values ('$regNo','$name','$address','$vClass','$mYear','$rTax','$pTax','$fc','$fp','$i','$p','$remarks')";
     $insert = $con->query($sql);
 
-    $updateSql = "UPDATE `entry` set inspection=now() where entry_id=$ids";
+    $updateSql = "UPDATE `entry` set inspection=now(),`chasis`='$chasis', `inspectionPlace`='$place' where entry_id=$ids";
     $result = $con->query($updateSql);
     if ($result == TRUE && $insert == TRUE) {
         echo
@@ -109,16 +111,35 @@ if (isset($_GET['id'])) {
                     <input class="form-control" type="date" name="p" id="9">
                 </div>
 
-                <div class="form-check col-8">
-                    <label class="form-check-label" for="remarks">
-                        Remarks
-                    </label>
-                    <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Remarks">
-                </div>
-                <div class="col-12">
-                    <button type="submit" name="submit" value="submit" class="btn btn-primary">Submit</button>
-                </div>
+
+
+        </div>
+        <div class="col">
+            <p>I, the udersigned hereby declare the above validity of documents shown are true and correct</p>
+            <div class="form-check col-6">
+                <label class="form-check-label" for="chasis">Chasis No. Pencil Print enclosed</label>
+                <select name="chasis" class="form-select">
+                    <option value="YES">YES</option>
+                    <option value="NO">NO</option>
+                </select>
+            </div>
+            <div class="form-check col-6">
+                <label class="form-check-label" for="place">
+                    Place of Inspection
+                </label>
+                <input type="text" name="place" class="form-control" id="place">
+            </div>
+            <div class="form-check col-8">
+                <label class="form-check-label" for="remarks">
+                    Remarks
+                </label>
+                <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Remarks">
+            </div>
+            <div class="col-12">
+                <button type="submit" name="submit" value="submit" class="btn btn-primary">Submit</button>
+            </div>
             </form>
+        </div>
         </div>
 <?php }
 } ?>

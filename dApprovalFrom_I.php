@@ -4,7 +4,13 @@ $id = $_GET['id'];
 include("header.php");
 if (isset($_POST['approve'])) {
     $remarks = $_POST['remarksA'];
-    $entrySql = "UPDATE `entry` set d='1',dApproveDate=now(),dRemarks='$remarks' where entry_id=$id;";
+    $adtmvremarks = $_POST['adtmvRemarks'];
+    $adtstaremarks = $_POST['adtstaRemarks'];
+    $ddremarks = $_POST['ddRemarks'];
+    $jdremarks = $_POST['jdRemarks'];
+
+
+    $entrySql = "UPDATE `entry` set d='1',dApproveDate=now(),adtstaRemarks = '$adtstaremarks',adtmvRemarks = '$adtmvremarks',ddRemarks = '$ddremarks',jdRemarks = '$jdremarks', dRemarks='$remarks' where entry_id=$id;";
     $result = $con->query($entrySql);
     if ($result == TRUE) {
         echo
@@ -38,11 +44,66 @@ if (isset($_GET['id'])) {
             $p = $row['p'];
             $remarks = $row['remarks'];
             $approve = $row['adtmvApproveDate'];
+            $adtmvremarks = $row['adtmvRemarks'];
+            $adtstaremarks = $row['adtstaRemarks'];
+            $ddremarks = $row['ddRemarks'];
+            $jdremarks = $row['jdRemarks'];
         }
 ?>
         <div class="container">
             <h3 class="text-center">APPLICATION FOR TRANSFER OF PERMIT</h3>
             <h4 class="text-center"><?php echo 'VEHICLE NUMBER : ' . $regNo; ?></h4>
+            <br />
+            <h6>Inspection Report of Vehicle</h6>
+            <table class="table">
+                <tr>
+                    <td>Registration No</td>
+                    <td colspan="3"><?php echo $regNo; ?></td>
+                </tr>
+                <tr>
+                    <td>Owner's Name</td>
+                    <td colspan="3"><?php echo $name; ?></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td colspan="3"><?php echo $address; ?></td>
+                </tr>
+                <tr>
+                    <td>Year of Manufacture<br />(As printed in RC)</td>
+                    <td colspan="3"><?php echo $mYear; ?></td>
+                </tr>
+                <tr>
+                    <td colapan="4">Validity of Documents</td>
+                </tr>
+                <tr>
+                    <td>1. MV Tax</td>
+                    <td><?php echo $rTax;  ?></td>
+                </tr>
+                <tr>
+                    <td>2. P&G Tax</td>
+                    <td><?php echo $p; ?></td>
+                </tr>
+                <tr>
+                    <td>3. Fitness</td>
+                    <td><?php echo $fc; ?></td>
+                </tr>
+                <tr>
+                    <td>4. Plying permit</td>
+                    <td><?php echo $pTax; ?></td>
+                </tr>
+                <tr>
+                    <td>5. Insuarance</td>
+                    <td><?php echo $i; ?></td>
+                </tr>
+                <tr>
+                    <td>6. PUCC</td>
+                    <td><?php echo $fp; ?></td>
+                </tr>
+                <tr>
+                    <td>Approved on</td>
+                    <td><?php echo $approve; ?></td>
+                </tr>
+            </table>
             <table class="table">
                 <tr>
                     <td>FORM MVR -55<br />[See Rule 113(1)</td>
@@ -169,87 +230,20 @@ if (isset($_GET['id'])) {
                         <!-- End Modal -->
                     </td>
                 </tr>
-                <tr>
-                    <td>Inspection Report of Vehicle</td>
-                    <td>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            View
-                        </button>
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">INSPECTION REPORT</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <table class="table">
-                                            <tr>
-                                                <td>Registration No</td>
-                                                <td colspan="3"><?php echo $regNo; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Owner's Name</td>
-                                                <td colspan="3"><?php echo $name; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Address</td>
-                                                <td colspan="3"><?php echo $address; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Year of Manufacture<br />(As printed in RC)</td>
-                                                <td colspan="3"><?php echo $mYear; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td colapan="4">Validity of Documents</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1. MV Tax</td>
-                                                <td><?php echo $rTax;  ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>2. P&G Tax</td>
-                                                <td><?php echo $p; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>3. Fitness</td>
-                                                <td><?php echo $fc; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>4. Plying permit</td>
-                                                <td><?php echo $pTax; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>5. Insuarance</td>
-                                                <td><?php echo $i; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>6. PUCC</td>
-                                                <td><?php echo $fp; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Approved on</td>
-                                                <td><?php echo $approve; ?></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Modal -->
-                    </td>
-                </tr>
             </table>
-
             <form class="row g-3" method="post" enctype="multipart/form-data">
                 <div class="form-check">
-                    <label class="form-check-label" for="remarksA">
-                        Remarks of Inspecting Authority
+                    <label class="form-check-label" for="adtstaremarks">Remarks of Assistant Director(STA)</label>
+                    <input type="text" name="adtstaRemarks" class="form-control" id="adtstaRemarks" value="<?php echo $adtstaremarks; ?>">
+                    <label class="form-check-label" for="adtmvRemarks">Remarks of Assistant Director(MV)</label>
+                    <input type="text" name="adtmvRemarks" class="form-control" id="adtmvRemarks" value="<?php echo $adtmvremarks; ?>">
+                    <label class=" form-check-label" for="ddRemarks">Remarks of Deputy Director</label>
+                    <input type="text" name="ddRemarks" class="form-control" id="ddRemarks" value="<?php echo $ddremarks; ?>">
+                    <label class=" form-check-label" for="jdRemarks">Remarks of Joint Director</label>
+                    <input type="text" name="jdRemarks" class="form-control" id="jdRemarks" value="<?php echo $jdremarks; ?>">
+
+                    <label class=" form-check-label" for="remarksA">
+                        Remarks of Secretary
                     </label>
                     <input type="text" name="remarksA" class="form-control" id="remarksA">
                 </div>
