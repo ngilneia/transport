@@ -10,8 +10,7 @@ include("header.php");
             <tr>
                 <th>Registration Number</th>
                 <th>Chasis Verified or not</th>
-                <th>ADT(MV) Remarks and date</th>
-                <th>ADT(STA) Remarks and date</th>
+                <th>MVI Inspection date</th>
                 <th>DD Remarks and date</th>
                 <th>Action</th>
             </tr>
@@ -27,8 +26,7 @@ include("header.php");
                     <tr>
                         <td><?php echo $row['regNo']; ?></td>
                         <td><?php echo $row['chasis']; ?></td>
-                        <td><?php echo $row['adtmvRemarks'] . '-' . $row['adtmvApproveDate']; ?></td>
-                        <td><?php echo $row['adtstaRemarks'] . '-' . $row['adtstaApproveDate']; ?></td>
+                        <td><?php echo $row['inspection']; ?></td>
                         <td><?php echo $row['ddRemarks'] . '-' . $row['ddApproveDate']; ?></td>
                         <?php
                         if ($row['jd'] > 0) {
@@ -47,8 +45,10 @@ include("header.php");
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="DataTables/datatables.min.js"></script>
 <script type='text/javascript'>
-    $(document).ready(function() {
-        new DataTable('#entry');
+    $('#entry').DataTable({
+        order: [
+            [0, 'desc']
+        ]
     });
 </script>
 </body>

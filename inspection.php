@@ -22,14 +22,14 @@ if (isset($_POST['submit'])) {
     values ('$regNo','$name','$address','$vClass','$mYear','$rTax','$pTax','$fc','$fp','$i','$p','$remarks')";
     $insert = $con->query($sql);
 
-    $updateSql = "UPDATE `entry` set inspection=now(),`chasis`='$chasis', `inspectionPlace`='$place' where entry_id=$ids";
+    $updateSql = "UPDATE `entry` set `mvi`=1, inspection=now(),`chasis`='$chasis', `inspectionPlace`='$place' where entry_id=$ids";
     $result = $con->query($updateSql);
     if ($result == TRUE && $insert == TRUE) {
         echo
         "<script type='text/javascript'>
         $(document).ready(function(){
                   Swal . fire(
-            'Application Inspected and Assign to Assistant Director(MV & STA)',   
+            'Application Inspected and Assign to Deputy Director',   
             'success'
         )});
         </script>";

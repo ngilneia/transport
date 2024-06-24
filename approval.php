@@ -119,4 +119,4 @@ $html = '<html>
 $pdf->writeHTML($html, true, 0, true, 0);
 
 $pdf->lastPage();
-$pdf->Output('htmlout.pdf', 'I');
+$pdf->Output($regNo, 'I');

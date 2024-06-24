@@ -9,8 +9,7 @@ include("header.php");
         <thead>
             <tr>
                 <th>Registration Number</th>
-                <th>ADT(MV) Remarks and date</th>
-                <th>ADT(STA) Remarks and date</th>
+                <th>Inspection date</th>
                 <th>DD Remarks and date</th>
                 <th>JD Remarks and date</th>
                 <th>Action</th>
@@ -26,13 +25,12 @@ include("header.php");
             ?>
                     <tr>
                         <td><?php echo $row['regNo']; ?></td>
-                        <td><?php echo $row['adtmvRemarks'] . '-' . $row['adtmvApproveDate']; ?></td>
-                        <td><?php echo $row['adtstaRemarks'] . '-' . $row['adtstaApproveDate']; ?></td>
+                        <td><?php echo $row['inspection']; ?></td>
                         <td><?php echo $row['ddRemarks'] . '-' . $row['ddApproveDate']; ?></td>
                         <td><?php echo $row['jdRemarks'] . '-' . $row['jdApproveDate']; ?></td>
                         <?php
-                        if ($row['d'] > 2) {
-                            echo '<td><a class="btn btn-success" href="">Approved</a></td>';
+                        if ($row['d'] != 0) {
+                            echo '<td><a class="btn btn-success" target="_blank" href="approval.php?id=' . $row["entry_id"] . '">Download Approval Letter</a></td>';
                         } else {
                             echo '<td><a class="btn btn-info" href="dApprovalFrom_I.php?id=' . $row["entry_id"] . ';" ?>Approve</a></td>';
                         }

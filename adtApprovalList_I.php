@@ -61,8 +61,10 @@ include("header.php");
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="DataTables/datatables.min.js"></script>
 <script type='text/javascript'>
-    $(document).ready(function() {
-        new DataTable('#entry');
+    $('#entry').DataTable({
+        order: [
+            [0, 'desc']
+        ]
     });
 </script>
 

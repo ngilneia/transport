@@ -37,7 +37,7 @@ if (isset($_GET['id'])) {
         <tbody>
 
             <?php
-            $sql = "SELECT * FROM entry where `deceased` IS NOT NULL";
+            $sql = "SELECT * FROM entry where `deceased` IS NOT NULL ORDER BY `entry_id` DESC";
             $result = $con->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
@@ -76,8 +76,10 @@ if (isset($_GET['id'])) {
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="DataTables/datatables.min.js"></script>
 <script type='text/javascript'>
-    $(document).ready(function() {
-        new DataTable('#entry');
+    $('#entry').DataTable({
+        order: [
+            [0, 'desc']
+        ]
     });
 </script>
 

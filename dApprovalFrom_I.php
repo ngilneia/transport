@@ -4,13 +4,11 @@ $id = $_GET['id'];
 include("header.php");
 if (isset($_POST['approve'])) {
     $remarks = $_POST['remarksA'];
-    $adtmvremarks = $_POST['adtmvRemarks'];
-    $adtstaremarks = $_POST['adtstaRemarks'];
     $ddremarks = $_POST['ddRemarks'];
     $jdremarks = $_POST['jdRemarks'];
 
 
-    $entrySql = "UPDATE `entry` set d='1',dApproveDate=now(),adtstaRemarks = '$adtstaremarks',adtmvRemarks = '$adtmvremarks',ddRemarks = '$ddremarks',jdRemarks = '$jdremarks', dRemarks='$remarks' where entry_id=$id;";
+    $entrySql = "UPDATE `entry` set d='1',dApproveDate=now(),ddRemarks = '$ddremarks',jdRemarks = '$jdremarks', dRemarks='$remarks' where entry_id=$id;";
     $result = $con->query($entrySql);
     if ($result == TRUE) {
         echo
@@ -44,8 +42,7 @@ if (isset($_GET['id'])) {
             $p = $row['p'];
             $remarks = $row['remarks'];
             $approve = $row['adtmvApproveDate'];
-            $adtmvremarks = $row['adtmvRemarks'];
-            $adtstaremarks = $row['adtstaRemarks'];
+            $inspection = $row['inspection'];
             $ddremarks = $row['ddRemarks'];
             $jdremarks = $row['jdRemarks'];
         }
@@ -233,10 +230,8 @@ if (isset($_GET['id'])) {
             </table>
             <form class="row g-3" method="post" enctype="multipart/form-data">
                 <div class="form-check">
-                    <label class="form-check-label" for="adtstaremarks">Remarks of Assistant Director(STA)</label>
-                    <input type="text" name="adtstaRemarks" class="form-control" id="adtstaRemarks" value="<?php echo $adtstaremarks; ?>">
-                    <label class="form-check-label" for="adtmvRemarks">Remarks of Assistant Director(MV)</label>
-                    <input type="text" name="adtmvRemarks" class="form-control" id="adtmvRemarks" value="<?php echo $adtmvremarks; ?>">
+                    <label class="form-check-label" for="inspection">Inspection Date</label>
+                    <input type="text" name="inspection" class="form-control" id="inspection" value="<?php echo $inspection; ?>">
                     <label class=" form-check-label" for="ddRemarks">Remarks of Deputy Director</label>
                     <input type="text" name="ddRemarks" class="form-control" id="ddRemarks" value="<?php echo $ddremarks; ?>">
                     <label class=" form-check-label" for="jdRemarks">Remarks of Joint Director</label>
