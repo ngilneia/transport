@@ -123,7 +123,7 @@ if (isset($_POST['submit'])) {
 }
 ?>
 <div class="container">
-    <p>Entry Application</p>
+    <h3>Transfer of Ownership</h3>
     <form class="row g-3" method="post" enctype="multipart/form-data">
         <div class="col-md-4">
             <label for="name" class="form-label">Name of Applicant</label>

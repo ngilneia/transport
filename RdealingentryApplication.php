@@ -1,6 +1,10 @@
 <?php
 require('db.php');
 include("header.php");
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 $targetDir = "uploads";
 $statusMsg = '';
 if (isset($_POST['submit'])) {
@@ -40,10 +44,7 @@ if (isset($_POST['submit'])) {
 
     $fileType = pathinfo($RvotersFilePath, PATHINFO_EXTENSION);
 
-    if (
-        isset($_POST["submit"]) && !empty($_FILES["Rvoters"]["name"]) && !empty($_FILES["RRegCertf"]["name"]) && !empty($_FILES["ROtherDoc"]["name"]) && !empty($_FILES["RMVIReport"]["name"])
-    ) {
-
+    if (isset($_POST["submit"]) && !empty($_FILES["Rvoters"]["name"]) && !empty($_FILES["RRegCertf"]["name"]) && !empty($_FILES["ROtherDoc"]["name"]) && !empty($_FILES["RMVIReport"]["name"])) {
         //allow certain file formats
         $allowTypes = array('jpg', 'png', 'jpeg', 'pdf');
         if (in_array($fileType, $allowTypes)) {
@@ -56,17 +57,17 @@ if (isset($_POST['submit'])) {
             if (move_uploaded_file($_FILES["RRegCertf"]["tmp_name"], $RRegCertfFilePath)) {
                 $statusMsgp = "The file " . $RRegCertf . " has been uploaded.";
             } else {
-                $statusMsg2 = "Sorry, there was an error uploading your file.";
+                $statusMsg3 = "Sorry, there was an error uploading your file.";
             }
             if (move_uploaded_file($_FILES["ROtherDoc"]["tmp_name"], $ROtherDocFilePath)) {
                 $statusMsg7 = "The file " . $ROtherDoc . " has been uploaded.";
             } else {
-                $statusMsg8 = "Sorry, there was an error uploading your file.";
+                $statusMsg4 = "Sorry, there was an error uploading your file.";
             }
             if (move_uploaded_file($_FILES["RMVIReport"]["tmp_name"], $RMVIReportFilePath)) {
                 $statusMsg9 = "The file " . $RMVIReport . " has been uploaded.";
             } else {
-                $statusMsg10 = "Sorry, there was an error uploading your file.";
+                $statusMsg5 = "Sorry, there was an error uploading your file.";
             }
         } else {
             $statusMsg = 'Sorry, only JPG, JPEG, PNG & PDF files are allowed to upload.';
@@ -74,12 +75,17 @@ if (isset($_POST['submit'])) {
     } else {
         $statusMsg = 'Please select a file to upload.';
     }
-    $sql = "INSERT INTO `entry`(`name`, `address`, `regNo`, `pHolderName`, `phoneNo`,`typeOfVehicle`,`voters`,`RYearofManufacture`,
-    `RKum`,`RChasisNo`,`REngineNo`,`RLoan`,`RDetailofPermit`,`RMotorVehicle`,`RRegCertficate`,`ROtherDoc`,`RMVIReport`) 
-    VALUES ('$Rname','$Raddress','$RregNo','$RCurrentOwnerName',
-    '$RphoneNo','$RVehicleType','$Rvoters','$RYearofManufacture',
+    $sql = "INSERT INTO `entry`(
+    `name`, `address`, `regNo`, `pHolderName`, `phoneNo`,
+    `typeOfVehicle`,`voters`,`RYearofManufacture`,`RKum`,
+    `RChasisNo`,`REngineNo`,`RLoan`,`RDetailofPermit`,
+    `RMotorModel`,`RRegCertificate`,`ROtherDoc`,`RMVIReport`
+    ) 
+    VALUES (
+    '$Rname','$Raddress','$RregNo','$RCurrentOwnerName','$RphoneNo',
+    '$RVehicleType','$RvotersFilePath','$RYearofManufacture',
     '$RKum','$RChasisNo','$REngineNo','$RLoan','$RDetailofPermit',
-    '$RMotorModel','$RRegCertf','$ROtherDoc','$RMVIReport')";
+    '$RMotorModel','$RRegCertfFilePath','$ROtherDocFilePath','$RMVIReportFilePath')";
     if ($result = $con->query($sql)) {
         echo "<script type='text/javascript'>
         $(document).ready(function(){
@@ -102,7 +108,7 @@ if (isset($_POST['submit'])) {
 }
 ?>
 <div class="container">
-    <p>Entry Application</p>
+    <h3>Replacement of Vehicle</h3>
     <form class="row g-3" method="post" enctype="multipart/form-data">
         <div class="col-md-4">
             <label for="name" class="form-label">Name of Applicant</label>
@@ -143,7 +149,6 @@ if (isset($_POST['submit'])) {
             <label for="RYearofManufacture" class="form-label">Year of Manufacture</label>
             <input type="date" name="RYearofManufacture" class="form-control" id="RYearofManufacture" placeholder="Year of Manufacture">
         </div>
-
         <div class="col-md-4">
             <label for="RChasisNo" class="form-label">Chasis No</label>
             <input type="text" name="RChasisNo" class="form-control" id="RChasisNo" placeholder="Chasis No">

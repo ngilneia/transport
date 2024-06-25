@@ -44,7 +44,7 @@ if ($result->num_rows > 0) {
                     <div class="card-body">
                         <h5 class="card-title">Replacement of Vehicle</h5>
                         <a href="RdealingentryApplication.php" class="btn btn-info">Enter New Application</a><br />
-                        <a href="dealingentryList.php" class="btn btn-success">Entry List</a>
+                        <a href="RdealingentryList.php" class="btn btn-success">Entry List</a>
                     </div>
                 </div>
 
