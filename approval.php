@@ -20,6 +20,7 @@ $pHolderName = '';
 $pHolder = '';
 $name = '';
 $address = '';
+$filename = '';
 
 $id = $_GET['id'];
 $sql = "SELECT * FROM `entry` WHERE entry_id=$id";
@@ -119,4 +120,5 @@ $html = '<html>
 $pdf->writeHTML($html, true, 0, true, 0);
 
 $pdf->lastPage();
-$pdf->Output($regNo, 'I');
+$filename = $regNo . '.pdf';
+$pdf->Output($filename, 'I');

@@ -33,11 +33,17 @@ if ($result->num_rows > 0) {
         <div class="row">
             <div class="col">
                 <h4>DEALING</h4>
-
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Transfer of Permit</h5>
-                        <a href="dealingentryApplication.php" class="btn btn-info">Enter New Application</a><br />
+                        <a href="dealingentryApplication.php" class="btn btn-primary">Enter New Application</a><br />
+                        <a href="dealingentryList.php" class="btn btn-success">Entry List</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Replacement of Vehicle</h5>
+                        <a href="RdealingentryApplication.php" class="btn btn-info">Enter New Application</a><br />
                         <a href="dealingentryList.php" class="btn btn-success">Entry List</a>
                     </div>
                 </div>
@@ -47,10 +53,18 @@ if ($result->num_rows > 0) {
                 <h4>MVI</h4>
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Inspection</h5>
+                        <h5 class="card-title">Transfer of Permit</h5>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             <?php echo $mvicount; ?></span>
-                        <a href="inspectionList.php" class="btn btn-primary">List of Application</a><br />
+                        <a href="inspectionList.php" class="btn btn-primary">List of Applications</a><br />
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Replacement of Vehicle</h5>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            <?php echo $mvicount; ?></span>
+                        <a href="" class="btn btn-info">List of Applications</a><br />
                     </div>
                 </div>
 
@@ -61,11 +75,20 @@ if ($result->num_rows > 0) {
                 <h4>DEPUTY DIRECTOR</h4>
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Deputy Director</h5>
+                        <h5 class="card-title">Transfer of Permit</h5>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             <?php echo $ddcount; ?>
                         </span>
                         <a href="inspectedList.php" class="btn btn-primary">LIST OF INSPECTED APPLICATIONS</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Replacement of Vehicle</h5>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            <?php echo $ddcount; ?>
+                        </span>
+                        <a href="" class="btn btn-info">LIST OF INSPECTED APPLICATIONS</a>
                     </div>
                 </div>
             </div>
@@ -73,8 +96,18 @@ if ($result->num_rows > 0) {
                 <h4>JOINT DIRECTOR</h4>
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Joint Director</h5>
-                        <a href="jdApprovalList.php" class="btn btn-info">List of Applications
+                        <h5 class="card-title">Transfer of Permit</h5>
+                        <a href="jdApprovalList.php" class="btn btn-primary">List of Applications
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                <?php echo $jdcount; ?>
+                            </span></a><br />
+                        </a><br />
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Replacement of Vehicle</h5>
+                        <a href="" class="btn btn-info">List of Applications
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                 <?php echo $jdcount; ?>
                             </span></a><br />

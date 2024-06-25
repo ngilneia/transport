@@ -29,7 +29,7 @@ if (isset($_GET['id'])) {
                 <th>Address</th>
                 <th>Registration No</th>
                 <th>Reason</th>
-                <th>Current Holder</th>
+                <th>MVI Remarks</th>
                 <th>File</th>
                 <th>Action</th>
             </tr>
@@ -37,7 +37,7 @@ if (isset($_GET['id'])) {
         <tbody>
 
             <?php
-            $sql = "SELECT * FROM entry";
+            $sql = "SELECT * FROM entry a inner join inspection b on a.entry_id=b.entry_id ";
             $result = $con->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
@@ -49,7 +49,7 @@ if (isset($_GET['id'])) {
                         <td><?php echo $row['address']; ?></td>
                         <td><?php echo $row['regNo']; ?></td>
                         <td><?php echo $row['reason']; ?></td>
-                        <td><?php echo $row['pHolder']; ?></td>
+                        <td><?php echo $row['remarks']; ?></td>
                         <td>
                             <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://localhost/transport/' . $row['voters'] . '">Voters ID</a><br/>'; ?>
                             <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://localhost/transport/' . $row['saleLetter'] . '">Sales Letter</a><br/>'; ?>

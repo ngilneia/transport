@@ -3,6 +3,7 @@ require('db.php');
 include("header.php");
 $ids = $_GET['id'];
 if (isset($_POST['submit'])) {
+    $entry_id = $ids;
     $regNo = $_POST['regNo'];
     $name = $_POST['name'];
     $address = $_POST['address'];
@@ -18,8 +19,8 @@ if (isset($_POST['submit'])) {
     $chasis = $_POST['chasis'];
     $place = $_POST['place'];
 
-    $sql = "INSERT INTO `inspection`(`regNo`,`name`,`address`,`vClass`,`mYear`,`rTax`,`pTax`,`fc`,`fp`,`i`,`p`,`remarks`) 
-    values ('$regNo','$name','$address','$vClass','$mYear','$rTax','$pTax','$fc','$fp','$i','$p','$remarks')";
+    $sql = "INSERT INTO `inspection`(`entry_id`,`regNo`,`name`,`address`,`vClass`,`mYear`,`rTax`,`pTax`,`fc`,`fp`,`i`,`p`,`remarks`) 
+    values ('$entry_id','$regNo','$name','$address','$vClass','$mYear','$rTax','$pTax','$fc','$fp','$i','$p','$remarks')";
     $insert = $con->query($sql);
 
     $updateSql = "UPDATE `entry` set `mvi`=1, inspection=now(),`chasis`='$chasis', `inspectionPlace`='$place' where entry_id=$ids";
@@ -44,6 +45,7 @@ if (isset($_GET['id'])) {
     $result = $con->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
+            $entry_id = $row['entry_id'];
             $name = $row['name'];
             $fName = $row['fname'];
             $address = $row['address'];
@@ -75,7 +77,17 @@ if (isset($_GET['id'])) {
                 </div>
                 <div class="form-check col-2">
                     <label for="vClass" class="form-check-label">4) Vehicle Class</label>
-                    <input type="text" name="vClass" class="form-control" id="vClass">
+                    <select name="vClass" class="form-control" id="vClass">
+                        <?php
+                        $run = 'SELECT * from class';
+                        $queryt = $con->query($run);
+                        if ($queryt->num_rows > 0) {
+                            while ($row = $queryt->fetch_assoc()) {
+                                echo '<option value="' . $row['name'] . '">' . $row['name'] . '</option>';
+                            }
+                        }
+                        ?>
+                    </select>
                 </div>
                 <div class="form-check col-2">
                     <label for="mYear" class="form-check-label">5) Year of Manufacture as printed in RC</label>

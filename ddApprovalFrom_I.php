@@ -21,7 +21,7 @@ if (isset($_POST['approve'])) {
 }
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $sql = "SELECT * FROM `inspection` a INNER JOIN `entry` b ON a.inspection_id=b.entry_id WHERE inspection_id='$id'";
+    $sql = "SELECT * FROM `inspection` a INNER JOIN `entry` b ON a.entry_id=b.entry_id WHERE inspection_id='$id'";
     $result = $con->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {

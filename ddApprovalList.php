@@ -3,7 +3,6 @@ require('db.php');
 include("header.php");
 ?>
 <div>
-    <p>Inspection</p>
     <hr />
     <table id="entry" class="table table-striped" style="width:100%">
         <thead>

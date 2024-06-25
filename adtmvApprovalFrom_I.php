@@ -209,25 +209,27 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
                 <!-- End Modal -->
-                <form class="row g-3" method="post" enctype="multipart/form-data">
-                    <p>I, the udersigned hereby declare the above validity of documents shown are true and correct</p>
-                    <div class="form-check">
-                        <label class="form-check-label" for="remarksA">
-                            Remarks of Inspecting Authority
-                        </label>
-                        <input type="text" name="remarksA" class="form-control" id="remarksA">
-                    </div>
-                    <div class="col">
-                        <button type="submit" name="approve" value="approve" class="btn btn-primary">Approve</button>
-                        <button type="submit" name="reject" value="reject" class="btn btn-danger">Reject</button>
-                    </div>
-                </form>
             </div>
+            <form class="row g-3" method="post" enctype="multipart/form-data">
 
-    <?php }
+                <p>I, the udersigned hereby declare the above validity of documents shown are true and correct</p>
+                <div class="form-check">
+                    <label class="form-check-label" for="remarksA">
+                        Remarks of Inspecting Authority
+                    </label>
+                    <input type="text" name="remarksA" class="form-control" id="remarksA">
+                </div>
+                <div class="col">
+                    <button type="submit" name="approve" value="approve" class="btn btn-primary">Approve</button>
+                    <button type="submit" name="reject" value="reject" class="btn btn-danger">Reject</button>
+                </div>
+            </form>
+        </div>
+
+<?php }
 } ?>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/sweetalert2.all.min.js"></script>
-    </body>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/sweetalert2.all.min.js"></script>
+</body>
 
-    </html>
+</html>

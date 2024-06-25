@@ -159,11 +159,35 @@ if (isset($_POST['submit'])) {
         </div>
         <div class="col-md-4">
             <label for="VehicleType" class="form-label">Type of Vehicle</label>
-            <input type="text" name="VehicleType" class="form-control" id="VehicleType" placeholder="Type of Vehicle">
+            <select name="VehicleType" class="form-control" id="VehicleType">
+                <option value="">----SELECT-----</option>
+                <?php
+                $query = "SELECT * from class";
+                $result = $con->query($query);
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo '<option value="' . $row['name'] . '">' . $row['name'] . '</option>';
+                    }
+                }
+                ?>
+            </select>
         </div>
         <div class="col-md-4">
             <label for="dto" class="form-label">DTO</label>
-            <input type="text" name="dto" class="form-control" id="dto" placeholder="DTO">
+            <select name="dto" class="form-control" id="dto">
+                <option value="">---SELECT---</option>
+                <?php
+                $sql = "SELECT * FROM dto";
+                $result1 = $con->query($sql);
+                if ($result1->num_rows > 0) {
+                    while ($row = $result1->fetch_assoc()) {
+                        echo
+                        '<option value="' . $row['dto_name'] . '">' . $row['dto_code'] . '-' . $row['dto_name'] . '</option>';
+                    }
+                }
+
+                ?>
+            </select>
         </div>
         <div class="col-md-4">
             <label for="dot" class="form-label">Date of Transfer</label>

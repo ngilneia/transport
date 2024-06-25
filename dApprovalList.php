@@ -3,13 +3,12 @@ require('db.php');
 include("header.php");
 ?>
 <div>
-    <p>Inspection</p>
     <hr />
     <table id="entry" class="table table-striped" style="width:100%">
         <thead>
             <tr>
                 <th>Registration Number</th>
-                <th>Inspection date</th>
+                <th>MVI Remarks and date</th>
                 <th>DD Remarks and date</th>
                 <th>JD Remarks and date</th>
                 <th>Action</th>
@@ -18,14 +17,14 @@ include("header.php");
         <tbody>
 
             <?php
-            $sql = "SELECT * FROM entry where chasis is not null";
+            $sql = "SELECT * FROM entry a inner join inspection b on a.entry_id=b.entry_id where chasis is not null";
             $result = $con->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
             ?>
                     <tr>
                         <td><?php echo $row['regNo']; ?></td>
-                        <td><?php echo $row['inspection']; ?></td>
+                        <td><?php echo $row['remarks'] . '-' . $row['inspection']; ?></td>
                         <td><?php echo $row['ddRemarks'] . '-' . $row['ddApproveDate']; ?></td>
                         <td><?php echo $row['jdRemarks'] . '-' . $row['jdApproveDate']; ?></td>
                         <?php
