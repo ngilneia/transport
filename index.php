@@ -6,6 +6,7 @@ $Rmvicount = 0;
 $ddcount = 0;
 $Rddcount = 0;
 $jdcount = 0;
+$Rjdcount = 0;
 $sql = "SELECT SUM(CASE WHEN mvi is null THEN 1 ELSE 0 END) AS mvi_null FROM entry WHERE RChasisNo is null; ";
 $result = $con->query($sql);
 if ($result->num_rows > 0) {
@@ -34,11 +35,18 @@ if ($result->num_rows > 0) {
         $Rddcount = $row['Rdd_null'];
     }
 }
-$sql = "SELECT SUM(CASE WHEN jd is null AND dd is not null THEN 1 ELSE 0 END) AS jd_null FROM entry; ";
+$sql = "SELECT SUM(CASE WHEN jd is null AND dd is not null THEN 1 ELSE 0 END) AS jd_null FROM entry WHERE RChasisNo is null; ";
 $result = $con->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $jdcount = $row['jd_null'];
+    }
+}
+$sql = "SELECT SUM(CASE WHEN jd is null AND dd is not null THEN 1 ELSE 0 END) AS Rjd_null FROM entry WHERE RChasisNo is not null; ";
+$result = $con->query($sql);
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $Rjdcount = $row['Rjd_null'];
     }
 }
 ?>
@@ -123,9 +131,9 @@ if ($result->num_rows > 0) {
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Replacement of Vehicle</h5>
-                        <a href="" class="btn btn-info">List of Applications
+                        <a href="RjdApprovalList.php" class="btn btn-info">List of Applications
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                <?php echo $jdcount; ?>
+                                <?php echo $Rjdcount; ?>
                             </span></a><br />
                         </a><br />
                     </div>

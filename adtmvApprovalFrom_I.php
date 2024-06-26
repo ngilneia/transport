@@ -19,6 +19,9 @@ if (isset($_POST['approve'])) {
     } else {
         echo "Error:" . $updateSQL . "<br>" . $con->error;
     }
+} else if (isset($_POST['reject'])) {
+    header("Location: inspectedList.php");
+    exit;
 }
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -30,13 +33,13 @@ if (isset($_GET['id'])) {
             $name = $row['name'];
             $address = $row['address'];
             $vClass = $row['vClass'];
-            $mYear = $row['mYear'];
-            $rTax = $row['rTax'];
-            $pTax = $row['pTax'];
-            $fc = $row['fc'];
-            $fp = $row['fp'];
-            $i = $row['i'];
-            $p = $row['p'];
+            $mYear = date('d-m-Y', strtotime($row['mYear']));
+            $rTax = date('d-m-Y', strtotime($row['rTax']));
+            $pTax = date('d-m-Y', strtotime($row['pTax']));
+            $fc = date('d-m-Y', strtotime($row['fc']));
+            $fp = date('d-m-Y', strtotime($row['fp']));
+            $i = date('d-m-Y', strtotime($row['i']));
+            $p = date('d-m-Y', strtotime($row['p']));
             $remarks = $row['remarks'];
         }
 ?>
@@ -219,7 +222,7 @@ if (isset($_GET['id'])) {
                     </label>
                     <input type="text" name="remarksA" class="form-control" id="remarksA">
                 </div>
-                <div class="col">
+                <div class="col text-center">
                     <button type="submit" name="approve" value="approve" class="btn btn-primary">Approve</button>
                     <button type="submit" name="reject" value="reject" class="btn btn-danger">Reject</button>
                 </div>

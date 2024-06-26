@@ -18,7 +18,7 @@ include("header.php");
         <tbody>
 
             <?php
-            $sql = "SELECT * FROM entry where dd is not null and RChasisNo is null";
+            $sql = "SELECT * FROM entry where dd is not null and RChasisNo is not null";
             $result = $con->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
@@ -32,7 +32,7 @@ include("header.php");
                         if ($row['jd'] > 0) {
                             echo '<td><a class="btn btn-success" href="">Approved</a></td>';
                         } else {
-                            echo '<td><a class="btn btn-info" href="jdApprovalFrom_I.php?id=' . $row["entry_id"] . ';" ?>Approve</a></td>';
+                            echo '<td><a class="btn btn-info" href="RjdApprovalFrom_I.php?id=' . $row["entry_id"] . ';" ?>Approve</a></td>';
                         }
                         ?>
                     </tr>

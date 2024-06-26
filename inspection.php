@@ -8,13 +8,13 @@ if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $address = $_POST['address'];
     $vClass = $_POST['vClass'];
-    $mYear = $_POST['mYear'];
-    $rTax = $_POST['rTax'];
-    $pTax = $_POST['pTax'];
-    $fc = $_POST['fc'];
-    $fp = $_POST['fp'];
-    $i = $_POST['i'];
-    $p = $_POST['p'];
+    $mYear = date('d-m-Y', strtotime($row['mYear']));
+    $rTax = date('d-m-Y', strtotime($row['rTax']));
+    $pTax = date('d-m-Y', strtotime($row['pTax']));
+    $fc = date('d-m-Y', strtotime($row['fc']));
+    $fp = date('d-m-Y', strtotime($row['fp']));
+    $i = date('d-m-Y', strtotime($row['i']));
+    $p = date('d-m-Y', strtotime($row['p']));
     $remarks = $_POST['remarks'];
     $chasis = $_POST['chasis'];
     $place = $_POST['place'];
@@ -111,7 +111,7 @@ if (isset($_GET['id'])) {
                     <input class="form-control" type="date" name="fc" id="6">
                 </div>
                 <div class="form-check col-4">
-                    <label class="form-check-label" for="7">4) Flying Permit</label>
+                    <label class="form-check-label" for="7">4) Plying Permit</label>
                     <input class="form-control" type="date" name="fp" id="7">
                 </div>
                 <div class="form-check col-4">
@@ -126,20 +126,23 @@ if (isset($_GET['id'])) {
 
 
         </div>
+        <hr />
         <div class="col">
             <p>I, the udersigned hereby declare the above validity of documents shown are true and correct</p>
-            <div class="form-check col-6">
-                <label class="form-check-label" for="chasis">Chasis No. Pencil Print enclosed</label>
-                <select name="chasis" class="form-select">
-                    <option value="YES">YES</option>
-                    <option value="NO">NO</option>
-                </select>
-            </div>
-            <div class="form-check col-6">
-                <label class="form-check-label" for="place">
-                    Place of Inspection
-                </label>
-                <input type="text" name="place" class="form-control" id="place">
+            <div class="row">
+                <div class="form-check col-6">
+                    <label class="form-check-label" for="chasis">Chasis No. Pencil Print enclosed</label>
+                    <select name="chasis" class="form-select">
+                        <option value="YES">YES</option>
+                        <option value="NO">NO</option>
+                    </select>
+                </div>
+                <div class="form-check col-6">
+                    <label class="form-check-label" for="place">
+                        Place of Inspection
+                    </label>
+                    <input type="text" name="place" class="form-control" id="place">
+                </div>
             </div>
             <div class="form-check col-8">
                 <label class="form-check-label" for="remarks">
@@ -147,8 +150,8 @@ if (isset($_GET['id'])) {
                 </label>
                 <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Remarks">
             </div>
-            <div class="col-12">
-                <button type="submit" name="submit" value="submit" class="btn btn-primary">Submit</button>
+            <div class="col-12  text-center">
+                <button type="submit" name="submit" value="submit" class="btn btn-primary"> Submit </button>
             </div>
             </form>
         </div>

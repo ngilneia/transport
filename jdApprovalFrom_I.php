@@ -18,6 +18,9 @@ if (isset($_POST['approve'])) {
     } else {
         echo "Error:" . $entrySql . "<br>" . $con->error;
     }
+} else if (isset($_POST['reject'])) {
+    header("Location: jdApprovalList.php");
+    exit;
 }
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -29,13 +32,13 @@ if (isset($_GET['id'])) {
             $name = $row['name'];
             $address = $row['address'];
             $vClass = $row['vClass'];
-            $mYear = $row['mYear'];
-            $rTax = $row['rTax'];
-            $pTax = $row['pTax'];
-            $fc = $row['fc'];
-            $fp = $row['fp'];
-            $i = $row['i'];
-            $p = $row['p'];
+            $mYear = date('d-m-Y', strtotime($row['mYear']));
+            $rTax = date('d-m-Y', strtotime($row['rTax']));
+            $pTax = date('d-m-Y', strtotime($row['pTax']));
+            $fc = date('d-m-Y', strtotime($row['fc']));
+            $fp = date('d-m-Y', strtotime($row['fp']));
+            $i = date('d-m-Y', strtotime($row['i']));
+            $p = date('d-m-Y', strtotime($row['p']));
             $remarks = $row['remarks'];
             $approve = $row['adtmvApproveDate'];
         }
@@ -49,7 +52,7 @@ if (isset($_GET['id'])) {
                     <td>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#I">
-                            PART I
+                            VIEW PART I
                         </button>
                         <!-- Modal -->
                         <div class="modal fade" id="I" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -110,7 +113,7 @@ if (isset($_GET['id'])) {
                         <br />
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#II">
-                            PART II
+                            VIEW PART II
                         </button>
                         <!-- Modal -->
                         <div class="modal fade" id="II" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -172,76 +175,57 @@ if (isset($_GET['id'])) {
                 <tr>
                     <td>Inspection Report of Vehicle</td>
                     <td>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            View
-                        </button>
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">INSPECTION REPORT</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <table class="table">
-                                            <tr>
-                                                <td>Registration No</td>
-                                                <td colspan="3"><?php echo $regNo; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Owner's Name</td>
-                                                <td colspan="3"><?php echo $name; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Address</td>
-                                                <td colspan="3"><?php echo $address; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Year of Manufacture<br />(As printed in RC)</td>
-                                                <td colspan="3"><?php echo $mYear; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td colapan="4">Validity of Documents</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1. MV Tax</td>
-                                                <td><?php echo $rTax;  ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>2. P&G Tax</td>
-                                                <td><?php echo $p; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>3. Fitness</td>
-                                                <td><?php echo $fc; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>4. Plying permit</td>
-                                                <td><?php echo $pTax; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>5. Insuarance</td>
-                                                <td><?php echo $i; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>6. PUCC</td>
-                                                <td><?php echo $fp; ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Approved on</td>
-                                                <td><?php echo $approve; ?></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Modal -->
+
+                        <table class="table">
+                            <tr>
+                                <td>Registration No</td>
+                                <td colspan="3"><?php echo $regNo; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Owner's Name</td>
+                                <td colspan="3"><?php echo $name; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Address</td>
+                                <td colspan="3"><?php echo $address; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Year of Manufacture<br />(As printed in RC)</td>
+                                <td colspan="3"><?php echo $mYear; ?></td>
+                            </tr>
+                            <tr>
+                                <td colapan="4">Validity of Documents</td>
+                            </tr>
+                            <tr>
+                                <td>1. MV Tax</td>
+                                <td><?php echo $rTax;  ?></td>
+                            </tr>
+                            <tr>
+                                <td>2. P&G Tax</td>
+                                <td><?php echo $p; ?></td>
+                            </tr>
+                            <tr>
+                                <td>3. Fitness</td>
+                                <td><?php echo $fc; ?></td>
+                            </tr>
+                            <tr>
+                                <td>4. Plying permit</td>
+                                <td><?php echo $pTax; ?></td>
+                            </tr>
+                            <tr>
+                                <td>5. Insuarance</td>
+                                <td><?php echo $i; ?></td>
+                            </tr>
+                            <tr>
+                                <td>6. PUCC</td>
+                                <td><?php echo $fp; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Approved on</td>
+                                <td><?php echo $approve; ?></td>
+                            </tr>
+                        </table>
+
                     </td>
                 </tr>
             </table>
@@ -253,7 +237,7 @@ if (isset($_GET['id'])) {
                     </label>
                     <input type="text" name="remarksA" class="form-control" id="remarksA">
                 </div>
-                <div class="col">
+                <div class="col text-center">
                     <button type="submit" name="approve" value="approve" class="btn btn-primary">Approve</button>
                     <button type="submit" name="reject" value="reject" class="btn btn-danger">Reject</button>
                 </div>
