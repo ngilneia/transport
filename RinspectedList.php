@@ -25,10 +25,8 @@ if (isset($_GET['id'])) {
             <tr>
                 <th>Sl No</th>
                 <th>Name</th>
-                <th>Fathers Name</th>
                 <th>Address</th>
                 <th>Registration No</th>
-                <th>Reason</th>
                 <th>MVI Remarks</th>
                 <th>File</th>
                 <th>Action</th>
@@ -37,7 +35,7 @@ if (isset($_GET['id'])) {
         <tbody>
 
             <?php
-            $sql = "SELECT * FROM entry a inner join inspection b on a.entry_id=b.entry_id where a.RChasisNo is null";
+            $sql = "SELECT * FROM entry a inner join inspection b on a.entry_id=b.entry_id where a.RChasisNo is not null ";
             $result = $con->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
@@ -45,10 +43,8 @@ if (isset($_GET['id'])) {
                     <tr>
                         <td><?php echo $row['entry_id']; ?></td>
                         <td><?php echo $row['name']; ?></td>
-                        <td><?php echo $row['fname']; ?></td>
                         <td><?php echo $row['address']; ?></td>
                         <td><?php echo $row['regNo']; ?></td>
-                        <td><?php echo $row['reason']; ?></td>
                         <td><?php echo $row['remarks']; ?></td>
                         <td>
                             <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://localhost/transport/' . $row['voters'] . '">Voters ID</a><br/>'; ?>
@@ -61,7 +57,7 @@ if (isset($_GET['id'])) {
                         if ($row['dd'] > 0) {
                             echo '<td><a class="btn btn-success" href="">Approved</a></td>';
                         } else {
-                            echo '<td><a class="btn btn-info" href="adtmvApprovalFrom_I.php?id=' . $row["entry_id"] . '" ?>Approve</a></td>';
+                            echo '<td><a class="btn btn-info" href="RadtmvApprovalFrom_I.php?id=' . $row["entry_id"] . '" ?>Approve</a></td>';
                         }
                         ?>
                     </tr>

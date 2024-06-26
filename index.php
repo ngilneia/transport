@@ -2,20 +2,36 @@
 include("header.php");
 include("db.php");
 $mvicount = 0;
+$Rmvicount = 0;
 $ddcount = 0;
+$Rddcount = 0;
 $jdcount = 0;
-$sql = "SELECT SUM(CASE WHEN mvi is null THEN 1 ELSE 0 END) AS mvi_null FROM entry; ";
+$sql = "SELECT SUM(CASE WHEN mvi is null THEN 1 ELSE 0 END) AS mvi_null FROM entry WHERE RChasisNo is null; ";
 $result = $con->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $mvicount = $row['mvi_null'];
     }
 }
-$sql = "SELECT SUM(CASE WHEN dd is null AND mvi is not NULL THEN 1 ELSE 0 END) AS dd_null FROM entry; ";
+$sql = "SELECT SUM(CASE WHEN mvi is null THEN 1 ELSE 0 END) AS Rmvi_null FROM entry WHERE RChasisNo is not null; ";
+$result = $con->query($sql);
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $Rmvicount = $row['Rmvi_null'];
+    }
+}
+$sql = "SELECT SUM(CASE WHEN dd is null AND mvi is not NULL THEN 1 ELSE 0 END) AS dd_null FROM entry WHERE RChasisNo is null; ";
 $result = $con->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $ddcount = $row['dd_null'];
+    }
+}
+$sql = "SELECT SUM(CASE WHEN dd is null AND mvi is not NULL THEN 1 ELSE 0 END) AS Rdd_null FROM entry WHERE RChasisNo is not null; ";
+$result = $con->query($sql);
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $Rddcount = $row['Rdd_null'];
     }
 }
 $sql = "SELECT SUM(CASE WHEN jd is null AND dd is not null THEN 1 ELSE 0 END) AS jd_null FROM entry; ";
@@ -63,8 +79,8 @@ if ($result->num_rows > 0) {
                     <div class="card-body">
                         <h5 class="card-title">Replacement of Vehicle</h5>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            <?php echo $mvicount; ?></span>
-                        <a href="" class="btn btn-info">List of Applications</a><br />
+                            <?php echo $Rmvicount; ?></span>
+                        <a href="RinspectionList.php" class="btn btn-info">List of Applications</a><br />
                     </div>
                 </div>
 
@@ -86,9 +102,9 @@ if ($result->num_rows > 0) {
                     <div class="card-body">
                         <h5 class="card-title">Replacement of Vehicle</h5>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            <?php echo $ddcount; ?>
+                            <?php echo $Rddcount; ?>
                         </span>
-                        <a href="" class="btn btn-info">LIST OF INSPECTED APPLICATIONS</a>
+                        <a href="RinspectedList.php" class="btn btn-info">LIST OF INSPECTED APPLICATIONS</a>
                     </div>
                 </div>
             </div>
