@@ -22,10 +22,13 @@ if (isset($_POST['approve'])) {
     } else {
         echo "Error:" . $entrySql . "<br>" . $con->error;
     }
+} else if (isset($_POST['reject'])) {
+    header("Location: dApprovalList.php");
+    exit;
 }
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $sql = "SELECT * FROM `inspection` a INNER JOIN `entry` b ON a.inspection_id=b.entry_id WHERE inspection_id='$id'";
+    $sql = "SELECT *, b.RChasisNo FROM `inspection` a INNER JOIN `entry` b ON a.entry_id=b.entry_id WHERE a.entry_id='$id'";
     $result = $con->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -41,6 +44,7 @@ if (isset($_GET['id'])) {
             $i = date('d-m-Y', strtotime($row['i']));
             $p = date('d-m-Y', strtotime($row['p']));
             $remarks = $row['remarks'];
+            $RChasisNo = $row['RChasisNo'];
             $approve = $row['adtmvApproveDate'];
             $inspection = $row['inspection'];
             $ddremarks = $row['ddRemarks'];
@@ -48,8 +52,16 @@ if (isset($_GET['id'])) {
         }
 ?>
         <div class="container">
-            <h3 class="text-center">APPLICATION FOR TRANSFER OF PERMIT</h3>
-            <h4 class="text-center"><?php echo 'VEHICLE NUMBER : ' . $regNo; ?></h4>
+            <?php
+            if (is_null($RChasisNo)) {
+                echo '<h3 class="text-center">APPLICATION FOR TRANSFER OF PERMIT</h3>';
+                echo '<h4 class="text-center">VEHICLE NUMBER : ' . $regNo . '</h4>';
+            } else {
+                echo '<h3 class="text-center">APPLICATIONM FOR REPLACEMENT OF VEHICLE</h3>';
+                echo '<h4 class="text-center">VEHICLE NUMBER : ' . $regNo . '</h4>';
+            }
+            ?>
+
             <br />
             <h6>Inspection Report of Vehicle</h6>
             <table class="table">
@@ -101,26 +113,87 @@ if (isset($_GET['id'])) {
                     <td><?php echo $approve; ?></td>
                 </tr>
             </table>
-            <table class="table">
-                <tr>
-                    <td>FORM MVR -55<br />[See Rule 113(1)</td>
-                    <td>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#I">
-                            PART I
-                        </button>
-                        <!-- Modal -->
-                        <div class="modal fade" id="I" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Application for Transfer of Permit - Part I</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <?php
+            if (is_null($RChasisNo)) { ?>
+                <table class="table">
+                    <tr>
+                        <td>FORM MVR -55<br />[See Rule 113(1)</td>
+                        <td>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#I">
+                                PART I
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="I" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Application for Transfer of Permit - Part I</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <?php
+                                            if (isset($_GET['id'])) {
+                                                $id = $_GET['id'];
+                                                $sql = "SELECT * FROM `entry` WHERE entry_id='$id'";
+                                                $result = $con->query($sql);
+                                                if ($result->num_rows > 0) {
+                                                    while ($row = $result->fetch_assoc()) {
+                                                        $name = $row['name'];
+                                                        $fName = $row['fname'];
+                                                        $pHolderName = $row['pHolderName'];
+                                                        $address = $row['address'];
+                                                        $regNo = $row['regNo'];
+                                                        $reason = $row['reason'];
+                                                        $pHolder = $row['pHolder'];
+                                                        $dot = $row['dot'];
+                                                        $pno = $row['pNo'];
+                                                    }
+                                            ?>
+                                                    <p>I, <?php echo $name; ?> apply for transfer of the above mentioned permit from <?php echo $pHolderName; ?>(Transfer) to <?php echo $name; ?>(Transferee).</p>
+                                                    <p>We hereby declare that the price agreed to be paid for each vehicle is stated below:-</p>
+                                                    <p>We hereby declare that the following agreement is made for transfer of the permit:</p>
+                                                    <p>The Transfer is to be effective from <?php echo $dot; ?></p>
+                                                    <div>
+                                                        <div class="row">
+                                                            <div class="col-6 col-md-4">
+                                                                <p><?php echo $pHolderName; ?></p>
+                                                                <p>(Transferer)(Hralhtu)</p>
+                                                                <p>Date:<?php echo $dot; ?></p>
+                                                            </div>
+                                                            <div class="col-6 col-md-4"></div>
+                                                            <div class=" col-6 col-md-4">
+                                                                <p><?php echo $name; ?></p>
+                                                                <p>(Transferee)(Leitu)</p>
+                                                                <p><?php echo $pno; ?></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            <?php }
+                                            } ?>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
                                     </div>
-                                    <div class="modal-body">
-                                        <?php
-                                        if (isset($_GET['id'])) {
-                                            $id = $_GET['id'];
+                                </div>
+                            </div>
+                            <!-- End Modal -->
+                            <br />
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#II">
+                                PART II
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="II" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Application for Transfer of Permit - Part II</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <?php
                                             $sql = "SELECT * FROM `entry` WHERE entry_id='$id'";
                                             $result = $con->query($sql);
                                             if ($result->num_rows > 0) {
@@ -132,102 +205,47 @@ if (isset($_GET['id'])) {
                                                     $regNo = $row['regNo'];
                                                     $reason = $row['reason'];
                                                     $pHolder = $row['pHolder'];
+                                                    $decease = $row['deceased'];
+                                                    $relation = $row['relation'];
+                                                    $news = $row['news'];
+                                                    $place = $row['place'];
                                                     $dot = $row['dot'];
-                                                    $pno = $row['pNo'];
                                                 }
-                                        ?>
-                                                <p>I, <?php echo $name; ?> apply for transfer of the above mentioned permit from <?php echo $pHolderName; ?>(Transfer) to <?php echo $name; ?>(Transferee).</p>
-                                                <p>We hereby declare that the price agreed to be paid for each vehicle is stated below:-</p>
-                                                <p>We hereby declare that the following agreement is made for transfer of the permit:</p>
-                                                <p>The Transfer is to be effective from <?php echo $dot; ?></p>
+                                            ?>
+
+                                                <p>I, <?php echo $name; ?> apply for transfer of the above mentioned permit which was held by Sri <?php echo $pHolderName; ?> who died on <?php echo $decease; ?> at<?php echo $place; ?>(Death Certificate Attached) </p>
+                                                <p>My relation to the demise permit holder is on <?php echo $relation; ?> the said vehicle is in my pocession.</p>
+                                                <p>I hereby declare that I have published a notice in __________ a local newspaper(<?php echo $news; ?> in its edition dated ______</p>
+                                                <p>A copy of the above mentioned edition of the said newspaper is attached herewith.</p>
                                                 <div>
                                                     <div class="row">
                                                         <div class="col-6 col-md-4">
-                                                            <p><?php echo $pHolderName; ?></p>
-                                                            <p>(Transferer)(Hralhtu)</p>
-                                                            <p>Date:<?php echo $dot; ?></p>
                                                         </div>
                                                         <div class="col-6 col-md-4"></div>
                                                         <div class=" col-6 col-md-4">
                                                             <p><?php echo $name; ?></p>
-                                                            <p>(Transferee)(Leitu)</p>
-                                                            <p><?php echo $pno; ?></p>
+                                                            <p>Name of Applicant</p>
+                                                            <p><?php echo ''; ?></p>
                                                         </div>
                                                     </div>
                                                 </div>
-                                        <?php }
-                                        } ?>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    <?php }
+                                    ?>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- End Modal -->
-                        <br />
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#II">
-                            PART II
-                        </button>
-                        <!-- Modal -->
-                        <div class="modal fade" id="II" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Application for Transfer of Permit - Part II</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <?php
-                                        $sql = "SELECT * FROM `entry` WHERE entry_id='$id'";
-                                        $result = $con->query($sql);
-                                        if ($result->num_rows > 0) {
-                                            while ($row = $result->fetch_assoc()) {
-                                                $name = $row['name'];
-                                                $fName = $row['fname'];
-                                                $pHolderName = $row['pHolderName'];
-                                                $address = $row['address'];
-                                                $regNo = $row['regNo'];
-                                                $reason = $row['reason'];
-                                                $pHolder = $row['pHolder'];
-                                                $decease = $row['deceased'];
-                                                $relation = $row['relation'];
-                                                $news = $row['news'];
-                                                $place = $row['place'];
-                                                $dot = $row['dot'];
-                                            }
-                                        ?>
+                            <!-- End Modal -->
+                        </td>
+                    </tr>
+                </table>
+            <?php
+            } ?>
 
-                                            <p>I, <?php echo $name; ?> apply for transfer of the above mentioned permit which was held by Sri <?php echo $pHolderName; ?> who died on <?php echo $decease; ?> at<?php echo $place; ?>(Death Certificate Attached) </p>
-                                            <p>My relation to the demise permit holder is on <?php echo $relation; ?> the said vehicle is in my pocession.</p>
-                                            <p>I hereby declare that I have published a notice in __________ a local newspaper(<?php echo $news; ?> in its edition dated ______</p>
-                                            <p>A copy of the above mentioned edition of the said newspaper is attached herewith.</p>
-                                            <div>
-                                                <div class="row">
-                                                    <div class="col-6 col-md-4">
-                                                    </div>
-                                                    <div class="col-6 col-md-4"></div>
-                                                    <div class=" col-6 col-md-4">
-                                                        <p><?php echo $name; ?></p>
-                                                        <p>Name of Applicant</p>
-                                                        <p><?php echo ''; ?></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    </div>
-                                <?php }
-                                ?>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Modal -->
-                    </td>
-                </tr>
-            </table>
+            <hr />
             <form class="row g-3" method="post" enctype="multipart/form-data">
                 <div class="form-check">
                     <label class="form-check-label" for="inspection">Inspection Date</label>
@@ -242,7 +260,7 @@ if (isset($_GET['id'])) {
                     </label>
                     <input type="text" name="remarksA" class="form-control" id="remarksA">
                 </div>
-                <div class="col">
+                <div class="col text-center">
                     <button type="submit" name="approve" value="approve" class="btn btn-primary">Approve</button>
                     <button type="submit" name="reject" value="reject" class="btn btn-danger">Reject</button>
                 </div>

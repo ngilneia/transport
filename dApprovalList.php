@@ -30,8 +30,10 @@ include("header.php");
                         <?php
                         if ($row['d'] != 0) {
                             echo '<td><a class="btn btn-success" target="_blank" href="approval.php?id=' . $row["entry_id"] . '">Download Approval Letter</a></td>';
+                        } else if (is_null($row['RChasisNo'])) {
+                            echo '<td><a class="btn btn-info" href="dApprovalFrom_I.php?id=' . $row["entry_id"] . ';" ?>Approve Transfer</a></td>';
                         } else {
-                            echo '<td><a class="btn btn-info" href="dApprovalFrom_I.php?id=' . $row["entry_id"] . ';" ?>Approve</a></td>';
+                            echo '<td><a class="btn btn-info" href="dApprovalFrom_I.php?id=' . $row["entry_id"] . ';" ?>Approve Replacement</a></td>';
                         }
                         ?>
                     </tr>

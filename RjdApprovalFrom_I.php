@@ -50,10 +50,8 @@ if (isset($_GET['id'])) {
             <?php echo $today; ?>
             <h4 class="text-center"><?php echo 'VEHICLE NUMBER : ' . $regNo; ?></h4>
             <table class="table">
-
                 <tr>
                     <td>
-
                         <table class="table">
                             <tr>
                                 <td>Registration No</td>
@@ -111,7 +109,6 @@ if (isset($_GET['id'])) {
                     <td><strong>Deputy Director Remarks :</strong> <?php echo $ddRemarks; ?></td>
                 </tr>
             </table>
-
             <form class="row g-3" method="post" enctype="multipart/form-data">
                 <div class="form-check">
                     <label class="form-check-label" for="remarksA">
