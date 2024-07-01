@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
     $phoneNo = $_POST['phoneNo'];
     $VehicleType = $_POST['VehicleType'];
     $dto = $_POST['dto'];
-    $dot = $_POST['dot'];
+    $dot = date('Y-m-d', strtotime($_POST['dot']));
     $deceased = $_POST['deceased'];
     $place = $_POST['place'];
     $relation = $_POST['relation'];
@@ -191,7 +191,7 @@ if (isset($_POST['submit'])) {
         </div>
         <div class="col-md-4">
             <label for="dot" class="form-label">Date of Transfer</label>
-            <input type="date" name="dot" class="form-control" id="dot" placeholder="Date of Transfer">
+            <input type="date" name="dot" class="form-control" id="dot" placeholder="Date of Transfer" autocomplete="off">
         </div>
         <hr />
         <h5>APPLICATION WITH DEATH CERTIFICATE</h5>
@@ -214,7 +214,7 @@ if (isset($_POST['submit'])) {
         </div>
         <div class="col-md-4">
             <label for="transferDate" class="form-label">Effective date of Transfer of Permit</label>
-            <input type="date" name="transferDate" class="form-control" id="transferDate" placeholder="Transfer Date">
+            <input type="date" name="transferDate" class="form-control" id="transferDate" placeholder="Transfer Date" autocomplete="off">
         </div>
         <div class="col-md-4">
             <label for="appName" class="form-label">Name of Applicant</label>

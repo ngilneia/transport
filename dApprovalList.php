@@ -29,7 +29,12 @@ include("header.php");
                         <td><?php echo $row['jdRemarks'] . '-' . $row['jdApproveDate']; ?></td>
                         <?php
                         if ($row['d'] != 0) {
-                            echo '<td><a class="btn btn-success" target="_blank" href="approval.php?id=' . $row["entry_id"] . '">Download Approval Letter</a></td>';
+
+                            if (is_null($row['RChasisNo'])) {
+                                echo '<td><a class="btn btn-success" target="_blank" href="approval.php?id=' . $row["entry_id"] . '">Download Approval Letter</a></td>';
+                            } else {
+                                echo '<td><a class="btn btn-success" target="_blank" href="Rapproval.php?id=' . $row["entry_id"] . '">Download Approval Letter</a></td>';
+                            }
                         } else if (is_null($row['RChasisNo'])) {
                             echo '<td><a class="btn btn-info" href="dApprovalFrom_I.php?id=' . $row["entry_id"] . ';" ?>Approve Transfer</a></td>';
                         } else {

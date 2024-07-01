@@ -24,7 +24,7 @@ if (isset($_POST['approve'])) {
 }
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $sql = "SELECT * FROM `inspection` a INNER JOIN `entry` b ON a.inspection_id=b.entry_id WHERE inspection_id='$id'";
+    $sql = "SELECT * FROM `inspection` a INNER JOIN `entry` b ON a.entry_id=b.entry_id WHERE a.entry_id='$id'";
     $result = $con->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -41,6 +41,15 @@ if (isset($_GET['id'])) {
             $p = date('d-m-Y', strtotime($row['p']));
             $remarks = $row['remarks'];
             $approve = $row['adtmvApproveDate'];
+            $currentDateTime = new DateTime('now');
+            $currentDate = $currentDateTime->format('d-m-Y');
+            $mYearD = date_diff(date_create($currentDate), date_create($mYear));
+            $rTaxD = date_diff(date_create($currentDate), date_create($rTax));
+            $pTaxD = date_diff(date_create($currentDate), date_create($pTax));
+            $fcD = date_diff(date_create($currentDate), date_create($fc));
+            $fpD = date_diff(date_create($currentDate), date_create($fp));
+            $iD = date_diff(date_create($currentDate), date_create($i));
+            $pD = date_diff(date_create($currentDate), date_create($p));
         }
 ?>
         <div class="container">
@@ -191,34 +200,34 @@ if (isset($_GET['id'])) {
                             </tr>
                             <tr>
                                 <td>Year of Manufacture<br />(As printed in RC)</td>
-                                <td colspan="3"><?php echo $mYear; ?></td>
+                                <td colspan="3"><?php echo $mYear . ', ' . $mYearD->format("%d Days left for renewal"); ?></td>
                             </tr>
                             <tr>
                                 <td colapan="4">Validity of Documents</td>
                             </tr>
                             <tr>
                                 <td>1. MV Tax</td>
-                                <td><?php echo $rTax;  ?></td>
+                                <td><?php echo $rTax . ', ' . $rTaxD->format("%d Days left for renewal"); ?></td>
                             </tr>
                             <tr>
                                 <td>2. P&G Tax</td>
-                                <td><?php echo $p; ?></td>
+                                <td><?php echo $p . ', ' . $pD->format("%d Days left for renewal"); ?></td>
                             </tr>
                             <tr>
                                 <td>3. Fitness</td>
-                                <td><?php echo $fc; ?></td>
+                                <td><?php echo $fc . ', ' . $fcD->format("%d Days left for renewal"); ?></td>
                             </tr>
                             <tr>
                                 <td>4. Plying permit</td>
-                                <td><?php echo $pTax; ?></td>
+                                <td><?php echo $pTax . ', ' . $pTaxD->format("%d Days left for renewal"); ?></td>
                             </tr>
                             <tr>
-                                <td>5. Insuarance</td>
-                                <td><?php echo $i; ?></td>
+                                <td>5. Insurance</td>
+                                <td><?php echo $i . ', ' . $iD->format("%d Days left for renewal"); ?></td>
                             </tr>
                             <tr>
                                 <td>6. PUCC</td>
-                                <td><?php echo $fp; ?></td>
+                                <td><?php echo $fp . ', ' . $fpD->format("%d Days left for renewal"); ?></td>
                             </tr>
                             <tr>
                                 <td>Approved on</td>

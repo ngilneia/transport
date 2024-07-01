@@ -8,12 +8,12 @@ if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $address = $_POST['address'];
     $vClass = $_POST['vClass'];
-    $mYear = $_POST['mYear'];
-    $rTax = $_POST['rTax'];
-    $pTax = $_POST['pTax'];
-    $fc = $_POST['fc'];
-    $fp = $_POST['fp'];
-    $i = $_POST['i'];
+    $mYear = date('Y-m-d', strtotime($_POST['mYear']));
+    $rTax = date('Y-m-d', strtotime($_POST['rTax']));
+    $pTax = date('Y-m-d', strtotime($_POST['pTax']));
+    $fc = date('Y-m-d', strtotime($_POST['fc']));
+    $fp = date('Y-m-d', strtotime($_POST['fp']));
+    $i = date('Y-m-d', strtotime($_POST['i']));
     $remarks = $_POST['remarks'];
     $chasis = $_POST['chasis'];
     $place = $_POST['place'];
@@ -90,7 +90,7 @@ if (isset($_GET['id'])) {
                 </div>
                 <div class="form-check col-2">
                     <label for="mYear" class="form-check-label">5) Year of Manufacture as printed in RC</label>
-                    <input type="date" name="mYear" class="form-control" id="mYear">
+                    <input type="date" name="mYear" class="form-control" id="mYear" autocomplete="off">
                 </div>
                 <div class="form-check">
                     <label class="form-check-label">
@@ -99,23 +99,23 @@ if (isset($_GET['id'])) {
                 </div>
                 <div class="form-check col-4">
                     <label class="form-check-label" for="4">1) Road Tax</label>
-                    <input class="form-control" type="date" name="rTax" id="4">
+                    <input class="form-control" type="date" name="rTax" id="4" autocomplete="off">
                 </div>
                 <div class="form-check col-4">
                     <label class="form-check-label" for="5">2) P&amp;G TAX</label>
-                    <input class="form-control" type="date" name="pTax" id="5">
+                    <input class="form-control" type="date" name="pTax" id="5" autocomplete="off">
                 </div>
                 <div class="form-check col-4">
                     <label class="form-check-label" for="6">3) Fitness Certificate</label>
-                    <input class="form-control" type="date" name="fc" id="6">
+                    <input class="form-control" type="date" name="fc" id="6" autocomplete="off">
                 </div>
                 <div class="form-check col-4">
                     <label class="form-check-label" for="7">4) Plying Permit</label>
-                    <input class="form-control" type="date" name="fp" id="7">
+                    <input class="form-control" type="date" name="fp" id="7" autocomplete="off">
                 </div>
                 <div class="form-check col-4">
                     <label class="form-check-label" for="8">5) Insurance</label>
-                    <input class="form-control" type="date" name="i" id="8">
+                    <input class="form-control" type="date" name="i" id="8" autocomplete="off">
                 </div>
         </div>
         <hr />

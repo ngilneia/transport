@@ -52,11 +52,15 @@ include("header.php");
 
                         <?php
                         if ($row['d'] == 1) {
+                            if (is_null($row['RChasisNo'])) {
                         ?>
-                            <td><a class="btn btn-success" target="_blank" href="approval.php?id=<?php echo $row['entry_id']; ?>">Download Approval Letter</a></td>
-                        <?php
+                                <td><a class="btn btn-success" target="_blank" href="approval.php?id=<?php echo $row['entry_id']; ?>">Download Approval Letter</a></td>
+                            <?php
+                            } else { ?>
+                                <td><a class="btn btn-success" target="_blank" href="Rapproval.php?id=<?php echo $row['entry_id']; ?>">Download Approval Letter</a></td>
+                            <?php }
                         } else {
-                        ?>
+                            ?>
                             <td><a class="btn btn-info" href="dealingupdateList.php?id=<?php echo $row['entry_id']; ?>">Edit</a>
                                 &nbsp;
                                 <a class="btn btn-danger" href="dealingdeleteList.php?id=<?php echo $row['entry_id']; ?>">Delete</a>

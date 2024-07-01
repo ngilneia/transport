@@ -28,7 +28,9 @@ if ($result->num_rows > 0) {
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/sweetalert2.min.css" rel="stylesheet">
         <link href="DataTables/datatables.min.css" rel="stylesheet">
+        <link href="css/datepicker.material.css" rel="stylesheet">
         <script src="js/jquery-3.7.1.min.js"></script>
+        <script src="js/datepicker.js"></script>
 
     <body class="col-lg-12 mx-auto p-4 py-md-5">
         <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Eleventh navbar example">

@@ -41,10 +41,20 @@ if (isset($_GET['id'])) {
             $i = date('d-m-Y', strtotime($row['i']));
             $p = date('d-m-Y', strtotime($row['p']));
             $remarks = $row['remarks'];
+            $currentDateTime = new DateTime('now');
+            $currentDate = $currentDateTime->format('d-m-Y');
+            $mYearD = date_diff(date_create($currentDate), date_create($mYear));
+            $rTaxD = date_diff(date_create($currentDate), date_create($rTax));
+            $pTaxD = date_diff(date_create($currentDate), date_create($pTax));
+            $fcD = date_diff(date_create($currentDate), date_create($fc));
+            $fpD = date_diff(date_create($currentDate), date_create($fp));
+            $iD = date_diff(date_create($currentDate), date_create($i));
+            $pD = date_diff(date_create($currentDate), date_create($p));
         }
 ?>
         <div class="row">
             <div class="col">
+                <?php echo $currentDate; ?>
                 <table class="table">
                     <tr>
                         <td>Registration No</td>
@@ -60,34 +70,34 @@ if (isset($_GET['id'])) {
                     </tr>
                     <tr>
                         <td>Year of Manufacture<br />(As printed in RC)</td>
-                        <td colspan="3"><?php echo $mYear; ?></td>
+                        <td colspan="3"><?php echo $mYear . ', ' . $mYearD->format("%d Days left for renewal"); ?></td>
                     </tr>
                     <tr>
                         <td colapan="4">Validity of Documents</td>
                     </tr>
                     <tr>
                         <td>1. MV Tax</td>
-                        <td><?php echo $rTax;  ?></td>
+                        <td><?php echo $rTax . ', ' . $rTaxD->format("%d Days left for renewal"); ?></td>
                     </tr>
                     <tr>
                         <td>2. P&G Tax</td>
-                        <td><?php echo $p; ?></td>
+                        <td><?php echo $p . ', ' . $pD->format("%d Days left for renewal"); ?></td>
                     </tr>
                     <tr>
                         <td>3. Fitness</td>
-                        <td><?php echo $fc; ?></td>
+                        <td><?php echo $fc . ', ' . $fcD->format("%d Days left for renewal"); ?></td>
                     </tr>
                     <tr>
                         <td>4. Plying permit</td>
-                        <td><?php echo $pTax; ?></td>
+                        <td><?php echo $pTax . ', ' . $pTaxD->format("%d Days left for renewal"); ?></td>
                     </tr>
                     <tr>
-                        <td>5. Insuarance</td>
-                        <td><?php echo $i; ?></td>
+                        <td>5. Insurance</td>
+                        <td><?php echo $i . ', ' . $iD->format("%d Days left for renewal"); ?></td>
                     </tr>
                     <tr>
                         <td>6. PUCC</td>
-                        <td><?php echo $fp; ?></td>
+                        <td><?php echo $fp . ', ' . $fpD->format("%d Days left for renewal"); ?></td>
                     </tr>
                 </table>
             </div>
@@ -185,7 +195,6 @@ if (isset($_GET['id'])) {
                                         $dot = $row['dot'];
                                     }
                                 ?>
-
                                     <p>I, <?php echo $name; ?> apply for transfer of the above mentioned permit which was held by Sri <?php echo $pHolderName; ?> who died on <?php echo $decease; ?> at<?php echo $place; ?>(Death Certificate Attached) </p>
                                     <p>My relation to the demise permit holder is on <?php echo $relation; ?> the said vehicle is in my pocession.</p>
                                     <p>I hereby declare that I have published a notice in __________ a local newspaper(<?php echo $news; ?> in its edition dated ______</p>
@@ -214,7 +223,6 @@ if (isset($_GET['id'])) {
                 <!-- End Modal -->
             </div>
             <form class="row g-3" method="post" enctype="multipart/form-data">
-
                 <p>I, the udersigned hereby declare the above validity of documents shown are true and correct</p>
                 <div class="form-check">
                     <label class="form-check-label" for="remarksA">

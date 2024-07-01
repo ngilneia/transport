@@ -8,7 +8,7 @@ if (isset($_POST['approve'])) {
     $jdremarks = $_POST['jdRemarks'];
 
 
-    $entrySql = "UPDATE `entry` set d='1',dApproveDate=now(),ddRemarks = '$ddremarks',jdRemarks = '$jdremarks', dRemarks='$remarks' where entry_id=$id;";
+    $entrySql = "UPDATE `entry` set d=1,jd=1,dd=1,dApproveDate=now(),ddRemarks = '$ddremarks',jdRemarks = '$jdremarks', dRemarks='$remarks' where entry_id=$id;";
     $result = $con->query($entrySql);
     if ($result == TRUE) {
         echo
@@ -23,8 +23,26 @@ if (isset($_POST['approve'])) {
         echo "Error:" . $entrySql . "<br>" . $con->error;
     }
 } else if (isset($_POST['reject'])) {
-    header("Location: dApprovalList.php");
-    exit;
+    $deletefromInspection = "DELETE from Inspection where entry_id=$id";
+    $deleteStmt = $con->query($deletefromInspection);
+    $rejectSql = "Update `entry` set d=2,dd=NULL,jd=NULL,mvi=NULL,dApprovedate=NULL,ddremarks=NULL,ddApproveDate=NULL,jdRemarks=NULL,jdApproveDate=NULL,dRemarks=NULL,dApproveDate=NULL,MVI=NULL,inspection=NULL,inspectionPlace=NULL where entry_id=$id;";
+    $reject = $con->query($rejectSql);
+    if ($result == TRUE) {
+        echo
+        "<script type='text/javascript'>
+        $(document).ready(function(){
+                  Swal . fire({
+            'Application Rejected!',   
+            'error'
+    })..then((result) => {
+  if (result.isConfirmed) {
+    location = 'dApprovalList.php'
+  }
+        });
+        </script>";
+    } else {
+        echo "Error:" . $entrySql . "<br>" . $con->error;
+    }
 }
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -49,6 +67,15 @@ if (isset($_GET['id'])) {
             $inspection = $row['inspection'];
             $ddremarks = $row['ddRemarks'];
             $jdremarks = $row['jdRemarks'];
+            $currentDateTime = new DateTime('now');
+            $currentDate = $currentDateTime->format('d-m-Y');
+            $mYearD = date_diff(date_create($currentDate), date_create($mYear));
+            $rTaxD = date_diff(date_create($currentDate), date_create($rTax));
+            $pTaxD = date_diff(date_create($currentDate), date_create($pTax));
+            $fcD = date_diff(date_create($currentDate), date_create($fc));
+            $fpD = date_diff(date_create($currentDate), date_create($fp));
+            $iD = date_diff(date_create($currentDate), date_create($i));
+            $pD = date_diff(date_create($currentDate), date_create($p));
         }
 ?>
         <div class="container">
@@ -79,34 +106,34 @@ if (isset($_GET['id'])) {
                 </tr>
                 <tr>
                     <td>Year of Manufacture<br />(As printed in RC)</td>
-                    <td colspan="3"><?php echo $mYear; ?></td>
+                    <td colspan="3"><?php echo $mYear . ', ' . $mYearD->format("%d Days left for renewal"); ?></td>
                 </tr>
                 <tr>
                     <td colapan="4">Validity of Documents</td>
                 </tr>
                 <tr>
                     <td>1. MV Tax</td>
-                    <td><?php echo $rTax;  ?></td>
+                    <td><?php echo $rTax . ', ' . $rTaxD->format("%d Days left for renewal"); ?></td>
                 </tr>
                 <tr>
                     <td>2. P&G Tax</td>
-                    <td><?php echo $p; ?></td>
+                    <td><?php echo $p . ', ' . $pD->format("%d Days left for renewal"); ?></td>
                 </tr>
                 <tr>
                     <td>3. Fitness</td>
-                    <td><?php echo $fc; ?></td>
+                    <td><?php echo $fc . ', ' . $fcD->format("%d Days left for renewal"); ?></td>
                 </tr>
                 <tr>
                     <td>4. Plying permit</td>
-                    <td><?php echo $pTax; ?></td>
+                    <td><?php echo $pTax . ', ' . $pTaxD->format("%d Days left for renewal"); ?></td>
                 </tr>
                 <tr>
-                    <td>5. Insuarance</td>
-                    <td><?php echo $i; ?></td>
+                    <td>5. Insurance</td>
+                    <td><?php echo $i . ', ' . $iD->format("%d Days left for renewal"); ?></td>
                 </tr>
                 <tr>
                     <td>6. PUCC</td>
-                    <td><?php echo $fp; ?></td>
+                    <td><?php echo $fp . ', ' . $fpD->format("%d Days left for renewal"); ?></td>
                 </tr>
                 <tr>
                     <td>Approved on</td>

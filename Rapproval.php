@@ -5,7 +5,6 @@ $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8',
 $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 
-
 if (@file_exists(dirname(__FILE__) . '/lang/eng.php')) {
     require_once(dirname(__FILE__) . '/lang/eng.php');
     $pdf->setLanguageArray($l);
@@ -54,22 +53,23 @@ $html = '<html>
                 <h1></h1>
                 <table>
                     <tr>
-                        <td style="text-align: left;"><strong>F.20016/10/2023-DTE(STA)Vol-V</strong></td>
+                        <td style="text-align: left;"><strong>F.20016/92/2020-DTE(STA)Vol-I</strong></td>
                         <td style="text-align: right;"><strong>Dated Aizawl the ' . date('d-M-Y') . '</strong></td>
                     </tr>
                 </table>
-                             <br/>
-                <h3 style="text-align: center; text-decoration:underline;">ORDER</h3>
-                <p style="text-align: justify; text-indent:30px;">On payment of Rs 1000/-(Rupees One thousand) only and as permissible under Sec 82 of MV Act 1988 r/w Rule 113 of the Mizoram Motor Vehicle Rules 1996 ' . $vClass . ' bearing Registration Number
-                ' . $regNo . ' is hereby allowed transfer of permit from ' . $pHolderName . ' of ' . $pHolder . ' to ' . $name . ' of ' . $address . '</p>
-                <p style="text-align: justify; text-indent:30px;">The new ' . $vClass . ' owner should contact DTO ' . $dto . ' District  with his/her Registration Certificates etc. for making necessary correnctions. Payment should be made at the concerned DTO
-                </p>
-                <br/>
-                <br/>
+                   <h3 style="text-align: center; text-decoration:underline;">ORDER</h3>
+                <p style="text-align: justify; text-indent:30px;">
+                As per Section 83 of the Central Motor Vehicle Act, 1988 and STA meeting decision made on the date 26/07/2016,' . $vClass . ' bearing Regn No' . $regNo . '
+                belonging to, Pi/Pu ' . $name . ' s/o ' . $fName . ' of ' . $address . ' is hereby allowed replacement, subjected to the following terms and condition.</p>
+                <ol>
+                <li>Replacement should be done within 1(One) year from the date of issue of this order and should replace only with brand new vehicle.</li>
+                <li>The old taxi(Two wheeler) should be converted into private vehicle/off roaded immediately.</li>
+                <li>Replacement is allowed for once only.</li>
+                <li>Replacement fee of Rs 1000/-(One Thousand Only) should be paid to their respective registering authority i.e DTO.</li>
+                </ol>
                 <br/>
                 <br/>
                 <table>
-                <tr><td></td><td></td></tr>
                 <tr><td></td><td></td></tr>
                 <tr><td></td><td></td></tr>
                     <tr>
@@ -84,16 +84,15 @@ $html = '<html>
                     <tr><td></td><td></td></tr>
 
                     <tr>
-                        <td style="text-align: left;"><strong>F.20016/10/2023-DTE(STA)Vol-V</strong></td>
+                        <td style="text-align: left;"><strong>F.20016/92/2020-DTE(STA)Vol-I</strong></td>
                         <td style="text-align: right;"><strong>Dated Aizawl the ' . date('d-M-Y') . '</strong></td>
                     </tr>
                     <tr>
                     <td colspan=2>
-                    Copy to:<br/>
-                    1. DTO, ' . $dto . ' District for kind information<br/>
-                    2. Holder concerned for information and necessary action.<br/>
-                    3. IT Cell, Transport Dept. for information and necessary action.<br/>
-                    4. Officer Order Book
+                    <br/><br/>Copy to:<br/>
+                    1. DTO, ' . $dto . ' (RA) District for information &amp; necessary action. Care must be taken to convert the old vehicle into private/Off roaded.<br/>
+                    2. Person concerned for compliance.<br/>
+                    3. Officer Order Book
                     </td>
                     </tr>
                     <tr><td></td><td></td></tr>

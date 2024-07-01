@@ -58,8 +58,10 @@ if (isset($_GET['id'])) {
                             <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://localhost/transport/' . $row['pollution'] . '">Pollution Certificate</a>'; ?>
                         </td>
                         <?php
-                        if ($row['inspection'] > 0) {
+                        if (!is_null($row['inspection'])) {
                             echo '<td><a class="btn btn-success" href="">Inspected</a></td>';
+                        } else if ($row['d'] == 2) {
+                            echo '<td><a class="btn btn-danger" href="inspection.php?id=' . $row["entry_id"] . ';" ?>Rejected</a></td>';
                         } else {
                             echo '<td><a class="btn btn-info" href="inspection.php?id=' . $row["entry_id"] . ';" ?>Inspect</a></td>';
                         }

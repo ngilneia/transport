@@ -111,23 +111,23 @@ if (isset($_POST['submit'])) {
     <h3>Replacement of Vehicle</h3>
     <form class="row g-3" method="post" enctype="multipart/form-data">
         <div class="col-md-4">
-            <label for="name" class="form-label">Name of Applicant</label>
+            <label for="name" class="form-label fw-semibold">Name of Applicant</label>
             <input type="text" name="Rname" class="form-control" id="name" placeholder="Name">
         </div>
         <div class="col-md-4">
-            <label for="Raddress" class="form-label">Address</label>
+            <label for="Raddress" class="form-label fw-semibold">Address</label>
             <input type="text" name="Raddress" class="form-control" id="Raddress" placeholder="Proof of address to be enclosed">
         </div>
         <div class="col-md-4">
-            <label for="RphoneNo" class="form-label">Phone No</label>
+            <label for="RphoneNo" class="form-label fw-semibold">Phone No</label>
             <input type="text" name="RphoneNo" class="form-control" id="RphoneNo" placeholder="Phone No">
         </div>
         <div class="col-md-4">
-            <label for="RKum" class="form-label">Kum</label>
+            <label for="RKum" class="form-label fw-semibold">Kum</label>
             <input type="text" name="RKum" class="form-control" id="RKum" placeholder="Kum">
         </div>
         <div class="col-md-4">
-            <label for="regNo" class="form-label">Registration No</label>
+            <label for="regNo" class="form-label fw-semibold">Registration No</label>
             <input type="text" name="RregNo" class="form-control" id="regNo" placeholder="MZ0XXX1234">
         </div>
         <div class="col-md-4">
@@ -146,23 +146,23 @@ if (isset($_POST['submit'])) {
             </select>
         </div>
         <div class="col-md-4">
-            <label for="RYearofManufacture" class="form-label">Year of Manufacture</label>
-            <input type="date" name="RYearofManufacture" class="form-control" id="RYearofManufacture" placeholder="Year of Manufacture">
+            <label for="RYearofManufacture" class="form-label fw-semibold">Year of Manufacture</label><br />
+            <input type="date" name="RYearofManufacture" class="form-control" id="RYearofManufacture" placeholder="Year of Manufacture" autocomplete="off">
         </div>
         <div class="col-md-4">
-            <label for="RChasisNo" class="form-label">Chasis No</label>
+            <label for="RChasisNo" class="form-label fw-semibold">Chasis No</label>
             <input type="text" name="RChasisNo" class="form-control" id="RChasisNo" placeholder="Chasis No">
         </div>
         <div class="col-md-4">
-            <label for="REngineNo" class="form-label">Engine No</label>
+            <label for="REngineNo" class="form-label fw-semibold">Engine No</label>
             <input type="text" name="REngineNo" class="form-control" id="REngineNo" placeholder="Engine No">
         </div>
         <div class="col-md-4">
-            <label for="RCurrentOwnerName" class="form-label">Current Owner Name</label>
+            <label for="RCurrentOwnerName" class="form-label fw-semibold">Current Owner Name</label>
             <input type="text" name="RCurrentOwnerName" class="form-control" id="RCurrentOwnerName" placeholder="Current Owner Name">
         </div>
         <div class="col-md-4">
-            <label for="RLoan" class="form-label">Loan hmang a lei a ni em</label>
+            <label for="RLoan" class="form-label fw-semibold">Loan hmang a lei a ni em</label>
             <select name="RLoan" class="form-control" id="RLoan">
                 <option value="">----SELECT---</option>
                 <option value="YES">YES</option>
@@ -170,11 +170,11 @@ if (isset($_POST['submit'])) {
             </select>
         </div>
         <div class="col-md-4">
-            <label for="RDetailofPermit" class="form-label">Detail of Permit</label>
+            <label for="RDetailofPermit" class="form-label fw-semibold">Detail of Permit</label>
             <input type="text" name="RDetailofPermit" class="form-control" id="RDetailofPermit" placeholder="Detail of Permit">
         </div>
         <div class="col-md-4">
-            <label for="RMotorModel" class="form-label">Replace na tur Motor hming leh Model</label>
+            <label for="RMotorModel" class="form-label fw-semibold">Replace na tur Motor hming leh Model</label>
             <input type="text" name="RMotorModel" class="form-control" id="RMotorModel" placeholder="Motor Model">
         </div>
         <div class="col-md-8">
