@@ -1,5 +1,5 @@
 <?php
-include("header.php");
+require("header.php");
 include("db.php");
 $mvicount = 0;
 $Rmvicount = 0;
@@ -51,9 +51,15 @@ if ($result->num_rows > 0) {
 }
 ?>
 <div class="form">
-    <p>Welcome <?php echo $_SESSION['username']; ?></p>
+    <p>Welcome <?php
+                if (isset($_SESSION['id'])) {
+                    echo  $users;
+                    $s = $_SESSION['id'];
+                ?></p>
 
     <div class="container">
+        <?php if ($s == 1) {
+                        echo '
         <div class="row">
             <div class="col">
                 <h4>DEALING</h4>
@@ -93,7 +99,31 @@ if ($result->num_rows > 0) {
                 </div>
 
             </div>
-        </div>
+        </div>';
+                    } else if ($s == 2) {
+                        echo '
+        <div class="col">
+                <h4>INSPECTION</h4>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Transfer of Permit</h5>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            <?php echo $mvicount; ?></span>
+                        <a href="inspectionList.php" class="btn btn-primary">List of Applications</a><br />
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Replacement of Vehicle</h5>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            <?php echo $Rmvicount; ?></span>
+                        <a href="RinspectionList.php" class="btn btn-info">List of Applications</a><br />
+                    </div>
+                </div>
+
+            </div>';
+                    } else if ($s == 3) {
+                        echo '
         <div class="row">
             <div class="col">
                 <h4>DEPUTY DIRECTOR</h4>
@@ -115,7 +145,9 @@ if ($result->num_rows > 0) {
                         <a href="RinspectedList.php" class="btn btn-info">LIST OF INSPECTED APPLICATIONS</a>
                     </div>
                 </div>
-            </div>
+            </div>';
+                    } else if ($s == 4) {
+                        echo '
             <div class="col">
                 <h4>JOINT DIRECTOR</h4>
                 <div class="card">
@@ -138,9 +170,15 @@ if ($result->num_rows > 0) {
                         </a><br />
                     </div>
                 </div>
-            </div>
-        </div>
+            </div>';
+                    } else if ($s == 5) {
+                        header("Location: dApprovalList.php");
+                    } ?>
     </div>
+</div>
+<?php
+                }
+?>
 </div>
 </body>
 <script src="js/bootstrap.bundle.min.js"></script>

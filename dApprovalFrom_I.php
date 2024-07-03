@@ -106,7 +106,7 @@ if (isset($_GET['id'])) {
                 </tr>
                 <tr>
                     <td>Year of Manufacture<br />(As printed in RC)</td>
-                    <td colspan="3"><?php echo $mYear . ', ' . $mYearD->format("%d Days left for renewal"); ?></td>
+                    <td colspan="3"><?php echo $mYear . ', ' . $mYearD->format("%m Month and %d Days left for renewal"); ?></td>
                 </tr>
                 <tr>
                     <td colapan="4">Validity of Documents</td>
