@@ -8,13 +8,34 @@ if (isset($_POST['approve'])) {
     $result = $con->query($entrySql);
     if ($result == TRUE) {
         echo
-        "<script type='text/javascript'>
+        '<script>
         $(document).ready(function(){
-                  Swal . fire(
-            'Application Approved!',   
-            'success'
-        )});
-        </script>";
+                Swal.fire({
+                title: "Application Approved",
+                type: "success"
+            }).then(function() {
+                window.location = "inspectedList.php";
+            })});
+        </script>';
+    } else {
+        echo "Error:" . $entrySql . "<br>" . $con->error;
+    }
+} else if (isset($_POST['reject'])) {
+    $deletefromInspection = "DELETE from Inspection where entry_id=$id";
+    $deleteStmt = $con->query($deletefromInspection);
+    $rejectSql = "Update `entry` set ,dd=2,mvi=NULL,MVI=NULL,inspection=NULL,inspectionPlace=NULL where entry_id=$id;";
+    $reject = $con->query($rejectSql);
+    if ($result == TRUE) {
+        echo
+        '<script>
+         $(document).ready(function(){
+                Swal.fire({
+                title: "Application Rejected",
+                type: "success"
+            }).then(function() {
+                window.location = "ddApprovalList.php";
+            })});
+        </script>';
     } else {
         echo "Error:" . $entrySql . "<br>" . $con->error;
     }

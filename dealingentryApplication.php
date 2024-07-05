@@ -19,6 +19,7 @@ if (isset($_POST['submit'])) {
     $place = $_POST['place'];
     $relation = $_POST['relation'];
     $news = $_POST['news'];
+    $newsDate = $_POST['newsDate'];
     $transferDate = $_POST['transferDate'];
     $appName = $_POST['appName'];
     $pNo = $_POST['pNo'];
@@ -98,17 +99,21 @@ if (isset($_POST['submit'])) {
         $statusMsg = 'Please select a file to upload.';
     }
     $sql = "INSERT INTO `entry`(`name`, `fName`, `address`, `regNo`, `reason`,`pHolderName`, `pHolder`, `phoneNo`,`typeOfVehicle`,`dto`,`dot`,`deceased`,`place`,
-    `relation`,`news`,`transferDate`,`appName`,`pNo`,`voters`,`pVoters`,`saleLetter`,`regCertf`,`plying`,`pollution`) 
+    `relation`,`news`,`newsDate`,`transferDate`,`appName`,`pNo`,`voters`,`pVoters`,`saleLetter`,`regCertf`,`plying`,`pollution`) 
     VALUES ('$name','$fName','$address','$regNo','$reason','$currentOwnerName','$currentOwner','$phoneNo','$VehicleType','$dto','$dot','$deceased','$place',
-    '$relation','$news','$transferDate','$appName','$pNo','$votersFilePath','$pVotersFilePath','$saleLetterFilePath','$regCertfFilePath','$plyingFilePath','$pollutionFilePath')";
+    '$relation','$news','$newsDate','$transferDate','$appName','$pNo','$votersFilePath','$pVotersFilePath','$saleLetterFilePath','$regCertfFilePath','$plyingFilePath','$pollutionFilePath')";
     if ($result = $con->query($sql)) {
-        echo "<script type='text/javascript'>
+        echo '
+        <script>
         $(document).ready(function(){
-                  Swal . fire(
-            'Application Submitted!',   
-            'success'
-        )});
-        </script>";
+                Swal.fire({
+                title: "Application Entered",
+                type: "success"
+            }).then(function() {
+                window.location = "index.php";
+            })});
+        </script>
+        </script>';
     } else {
         echo    "<script type='text/javascript'>
         $(document).ready(function(){
@@ -211,6 +216,10 @@ if (isset($_POST['submit'])) {
         <div class="col-md-4">
             <label for="news" class="form-label">Name of News Paper in which notice is published</label>
             <input type="text" name="news" class="form-control" id="news" placeholder="News Paper">
+        </div>
+        <div class="col-md-4">
+            <label for="newsDate" class="form-label">Date of News Paper in which notice is published</label>
+            <input type="date" name="newsDate" class="form-control" id="newsDate" autocomplete="off">
         </div>
         <div class="col-md-4">
             <label for="transferDate" class="form-label">Effective date of Transfer of Permit</label>

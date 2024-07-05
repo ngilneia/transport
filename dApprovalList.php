@@ -28,7 +28,7 @@ include("header.php");
                         <td><?php echo $row['ddRemarks'] . '-' . $row['ddApproveDate']; ?></td>
                         <td><?php echo $row['jdRemarks'] . '-' . $row['jdApproveDate']; ?></td>
                         <?php
-                        if ($row['d'] != 0) {
+                        if ($row['d'] == 1) {
 
                             if (is_null($row['RChasisNo'])) {
                                 echo '<td><a class="btn btn-success" target="_blank" href="approval.php?id=' . $row["entry_id"] . '">Download Approval Letter</a></td>';

@@ -19,6 +19,25 @@ if (isset($_POST['approve'])) {
     } else {
         echo "Error:" . $updateSQL . "<br>" . $con->error;
     }
+} else if (isset($_POST['reject'])) {
+    $deletefromInspection = "DELETE from Inspection where entry_id=$id";
+    $deleteStmt = $con->query($deletefromInspection);
+    $rejectSql = "UPDATE `entry` set ,dd=2,mvi=NULL,MVI=NULL,inspection=NULL,inspectionPlace=NULL where entry_id=$id;";
+    $reject = $con->query($rejectSql);
+    if ($result == TRUE) {
+        echo
+        '<script>
+        $(document).ready(function(){
+                Swal.fire({
+                title: "Application Approved",
+                type: "success"
+            }).then(function() {
+                window.location = "inspectedList.php";
+            })});
+        </script>';
+    } else {
+        echo "Error:" . $entrySql . "<br>" . $con->error;
+    }
 }
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -66,34 +85,34 @@ if (isset($_GET['id'])) {
                     </tr>
                     <tr>
                         <td>Year of Manufacture<br />(As printed in RC)</td>
-                        <td colspan="3"><?php echo $mYear . ', ' . $mYearD->format("%d Days left for renewal"); ?></td>
+                        <td colspan="3"><?php echo $mYear; ?></td>
                     </tr>
                     <tr>
                         <td colapan="4">Validity of Documents</td>
                     </tr>
                     <tr>
                         <td>1. MV Tax</td>
-                        <td><?php echo $rTax . ', ' . $rTaxD->format("%d Days left for renewal"); ?></td>
+                        <td><?php echo $rTax . ', ' . $rTaxD->format("%R%a Days left for renewal"); ?></td>
                     </tr>
                     <tr>
                         <td>2. P&G Tax</td>
-                        <td><?php echo $p . ', ' . $pD->format("%d Days left for renewal"); ?></td>
+                        <td><?php echo $p . ', ' . $pD->format("%R%a Days left for renewal"); ?></td>
                     </tr>
                     <tr>
                         <td>3. Fitness</td>
-                        <td><?php echo $fc . ', ' . $fcD->format("%d Days left for renewal"); ?></td>
+                        <td><?php echo $fc . ', ' . $fcD->format("%R%a Days left for renewal"); ?></td>
                     </tr>
                     <tr>
                         <td>4. Plying permit</td>
-                        <td><?php echo $pTax . ', ' . $pTaxD->format("%d Days left for renewal"); ?></td>
+                        <td><?php echo $pTax . ', ' . $pTaxD->format("%R%a Days left for renewal"); ?></td>
                     </tr>
                     <tr>
                         <td>5. Insurance</td>
-                        <td><?php echo $i . ', ' . $iD->format("%d Days left for renewal"); ?></td>
+                        <td><?php echo $i . ', ' . $iD->format("%R%a Days left for renewal"); ?></td>
                     </tr>
                     <tr>
                         <td>6. PUCC</td>
-                        <td><?php echo $fp . ', ' . $fpD->format("%d Days left for renewal"); ?></td>
+                        <td><?php echo $fp . ', ' . $fpD->format("%R%a Days left for renewal"); ?></td>
                     </tr>
                 </table>
             </div>

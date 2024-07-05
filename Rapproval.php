@@ -59,8 +59,8 @@ $html = '<html>
                 </table>
                    <h3 style="text-align: center; text-decoration:underline;">ORDER</h3>
                 <p style="text-align: justify; text-indent:30px;">
-                As per Section 83 of the Central Motor Vehicle Act, 1988 and STA meeting decision made on the date 26/07/2016,' . $vClass . ' bearing Regn No' . $regNo . '
-                belonging to, Pi/Pu ' . $name . ' s/o ' . $fName . ' of ' . $address . ' is hereby allowed replacement, subjected to the following terms and condition.</p>
+                As per Section 83 of the Central Motor Vehicle Act, 1988 and STA meeting decision made on the date 26/07/2016, <strong>' . $vClass . '</strong> bearing Regn No <strong>' . $regNo . '</strong>
+                belonging to, <strong>Pi/Pu ' . $name . ' s/o ' . $fName . ' of ' . $address . ' </strong>is hereby allowed replacement, subjected to the following terms and condition.</p>
                 <ol>
                 <li>Replacement should be done within 1(One) year from the date of issue of this order and should replace only with brand new vehicle.</li>
                 <li>The old taxi(Two wheeler) should be converted into private vehicle/off roaded immediately.</li>

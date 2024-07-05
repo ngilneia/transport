@@ -60,9 +60,9 @@ $html = '<html>
                 </table>
                              <br/>
                 <h3 style="text-align: center; text-decoration:underline;">ORDER</h3>
-                <p style="text-align: justify; text-indent:30px;">On payment of Rs 1000/-(Rupees One thousand) only and as permissible under Sec 82 of MV Act 1988 r/w Rule 113 of the Mizoram Motor Vehicle Rules 1996 ' . $vClass . ' bearing Registration Number
-                ' . $regNo . ' is hereby allowed transfer of permit from ' . $pHolderName . ' of ' . $pHolder . ' to ' . $name . ' of ' . $address . '</p>
-                <p style="text-align: justify; text-indent:30px;">The new ' . $vClass . ' owner should contact DTO ' . $dto . ' District  with his/her Registration Certificates etc. for making necessary correnctions. Payment should be made at the concerned DTO
+                <p style="text-align: justify; text-indent:30px;">On payment of Rs 1000/-(Rupees One thousand) only and as permissible under Sec 82 of MV Act 1988 r/w Rule 113 of the Mizoram Motor Vehicle Rules 1996 <strong>' . $vClass . '</strong> bearing Registration Number
+                <strong>' . $regNo . '</strong> is hereby allowed transfer of permit from <strong>' . $pHolderName . ' of ' . $pHolder . ' to ' . $name . ' of ' . $address . '</strong></p>
+                <p style="text-align: justify; text-indent:30px;">The new<strong> ' . $vClass . '</strong> owner should contact<strong> DTO ' . $dto . ' District </strong> with his/her Registration Certificates etc. for making necessary correnctions. Payment should be made at the concerned DTO
                 </p>
                 <br/>
                 <br/>

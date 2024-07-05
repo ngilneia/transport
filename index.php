@@ -85,7 +85,7 @@ if ($result->num_rows > 0) {
                     <div class="card-body">
                         <h5 class="card-title">Transfer of Permit</h5>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            <?php echo $mvicount; ?></span>
+                            ' . $mvicount . '</span>
                         <a href="inspectionList.php" class="btn btn-primary">List of Applications</a><br />
                     </div>
                 </div>
@@ -93,7 +93,7 @@ if ($result->num_rows > 0) {
                     <div class="card-body">
                         <h5 class="card-title">Replacement of Vehicle</h5>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            <?php echo $Rmvicount; ?></span>
+                            ' . $Rmvicount . '</span>
                         <a href="RinspectionList.php" class="btn btn-info">List of Applications</a><br />
                     </div>
                 </div>
@@ -108,7 +108,7 @@ if ($result->num_rows > 0) {
                     <div class="card-body">
                         <h5 class="card-title">Transfer of Permit</h5>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            <?php echo $mvicount; ?></span>
+                            ' . $mvicount . '</span>
                         <a href="inspectionList.php" class="btn btn-primary">List of Applications</a><br />
                     </div>
                 </div>
@@ -116,7 +116,7 @@ if ($result->num_rows > 0) {
                     <div class="card-body">
                         <h5 class="card-title">Replacement of Vehicle</h5>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            <?php echo $Rmvicount; ?></span>
+                            ' . $Rmvicount . '</span>
                         <a href="RinspectionList.php" class="btn btn-info">List of Applications</a><br />
                     </div>
                 </div>
@@ -131,7 +131,7 @@ if ($result->num_rows > 0) {
                     <div class="card-body">
                         <h5 class="card-title">Transfer of Permit</h5>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            <?php echo $ddcount; ?>
+                            ' . $ddcount . '
                         </span>
                         <a href="inspectedList.php" class="btn btn-primary">LIST OF INSPECTED APPLICATIONS</a>
                     </div>
@@ -140,7 +140,7 @@ if ($result->num_rows > 0) {
                     <div class="card-body">
                         <h5 class="card-title">Replacement of Vehicle</h5>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            <?php echo $Rddcount; ?>
+                            ' . $Rddcount . '
                         </span>
                         <a href="RinspectedList.php" class="btn btn-info">LIST OF INSPECTED APPLICATIONS</a>
                     </div>
@@ -155,7 +155,7 @@ if ($result->num_rows > 0) {
                         <h5 class="card-title">Transfer of Permit</h5>
                         <a href="jdApprovalList.php" class="btn btn-primary">List of Applications
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                <?php echo $jdcount; ?>
+                                ' . $jdcount . '
                             </span></a><br />
                         </a><br />
                     </div>
@@ -165,7 +165,7 @@ if ($result->num_rows > 0) {
                         <h5 class="card-title">Replacement of Vehicle</h5>
                         <a href="RjdApprovalList.php" class="btn btn-info">List of Applications
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                <?php echo $Rjdcount; ?>
+                                ' . $Rjdcount . '
                             </span></a><br />
                         </a><br />
                     </div>

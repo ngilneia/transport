@@ -6,8 +6,15 @@ if (isset($_GET['id'])) {
     $sql = "DELETE FROM `entry` WHERE `entry_id` ='$id'";
     $result = $con->query($sql);
     if ($result == TRUE) {
-        echo "Record deleted successfully.";
-        header('Location: dealingentryList.php');
+        echo '<script>
+         $(document).ready(function(){
+                Swal.fire({
+                title: "Application Deleted",
+                type: "success"
+            }).then(function() {
+                window.location = "dealingentryList.php";
+            })});
+        </script>';
     } else {
         echo "Error:" . $sql . "<br>" . $con->error;
     }

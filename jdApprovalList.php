@@ -18,7 +18,7 @@ include("header.php");
         <tbody>
 
             <?php
-            $sql = "SELECT * FROM entry where dd is not null and RChasisNo is null";
+            $sql = "SELECT * FROM entry a join inspection b on a.entry_id=b.entry_id where dd is not null and RChasisNo is null";
             $result = $con->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
@@ -26,7 +26,7 @@ include("header.php");
                     <tr>
                         <td><?php echo $row['regNo']; ?></td>
                         <td><?php echo $row['chasis']; ?></td>
-                        <td><?php echo $row['inspection']; ?></td>
+                        <td><?php echo $row['inspection'] . '-' . $row['remarks']; ?></td>
                         <td><?php echo $row['ddRemarks'] . '-' . $row['ddApproveDate']; ?></td>
                         <?php
                         if ($row['jd'] > 0) {

@@ -76,11 +76,8 @@ if (isset($_POST['submit'])) {
         $statusMsg = 'Please select a file to upload.';
     }
     $sql = "INSERT INTO `entry`(
-    `name`, `address`, `regNo`, `pHolderName`, `phoneNo`,
-    `typeOfVehicle`,`voters`,`RYearofManufacture`,`RKum`,
-    `RChasisNo`,`REngineNo`,`RLoan`,`RDetailofPermit`,
-    `RMotorModel`,`RRegCertificate`,`ROtherDoc`,`RMVIReport`
-    ) 
+    `name`, `address`, `regNo`, `pHolderName`, `phoneNo`,`typeOfVehicle`,`voters`,`RYearofManufacture`,`RKum`,
+    `RChasisNo`,`REngineNo`,`RLoan`,`RDetailofPermit`, `RMotorModel`,`RRegCertificate`,`ROtherDoc`,`RMVIReport` ) 
     VALUES (
     '$Rname','$Raddress','$RregNo','$RCurrentOwnerName','$RphoneNo',
     '$RVehicleType','$RvotersFilePath','$RYearofManufacture',

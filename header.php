@@ -51,7 +51,10 @@ if ($result->num_rows > 0) {
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">DEALING</a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="dealingentryList.php">Application Entry</a></li>
+                                        <li><a class="dropdown-item" href="dealingentryList.php">Transfer of permit</a></li>
+                                        <li><a class="dropdown-item" href="RdealingentryList.php">Replacement of Vehicle</a></li>
+                                        <hr/>
+                                        <li>Inspection</li>
                                         <li><a class="dropdown-item" href="inspectionList.php">Transfer of Permit</a></li>
                                         <li><a class="dropdown-item" href="RinspectionList.php">Replacement of Vehicle</a></li>                                         
                                     </ul>

@@ -51,7 +51,9 @@ include("header.php");
                         </td>
 
                         <?php
-                        if ($row['d'] == 1) {
+                        if ($row['dd'] == 2 or $row['jd'] == 2 or $row['d'] == 2) {
+                            echo '<td><a class="btn btn-success" target="_blank" href="">Application Rejected</a></td>';
+                        } else if ($row['d'] == 1) {
                             if (is_null($row['RChasisNo'])) {
                         ?>
                                 <td><a class="btn btn-success" target="_blank" href="approval.php?id=<?php echo $row['entry_id']; ?>">Download Approval Letter</a></td>
