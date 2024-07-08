@@ -48,12 +48,18 @@ include("header.php");
                         </td>
 
                         <?php
-                        if ($row['d'] == 1) {
+                        if ($row['dd'] == 2 or $row['jd'] == 2 or $row['d'] == 2) {
+                            echo '<td><a class="btn btn-danger" target="_blank" href="">Application Rejected<br/>' . $row['ddRemarks'] . $row['jdRemarks'] . $row['dRemarks'] . '</a></td>';
+                        } else if ($row['d'] == 1) {
+                            if (is_null($row['RChasisNo'])) {
                         ?>
-                            <td><a class="btn btn-success" target="_blank" href="approval.php?id=<?php echo $row['entry_id']; ?>">Download Approval Letter</a></td>
-                        <?php
+                                <td><a class="btn btn-success" target="_blank" href="approval.php?id=<?php echo $row['entry_id']; ?>">Download Approval Letter</a></td>
+                            <?php
+                            } else { ?>
+                                <td><a class="btn btn-success" target="_blank" href="Rapproval.php?id=<?php echo $row['entry_id']; ?>">Download Approval Letter</a></td>
+                            <?php }
                         } else {
-                        ?>
+                            ?>
                             <td><a class="btn btn-info" href="RdealingupdateList.php?id=<?php echo $row['entry_id']; ?>">Edit</a>
                                 &nbsp;
                                 <a class="btn btn-danger" href="RdealingdeleteList.php?id=<?php echo $row['entry_id']; ?>">Delete</a>

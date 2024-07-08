@@ -61,8 +61,8 @@ if (isset($_GET['id'])) {
                         <?php
                         if (!is_null($row['inspection'])) {
                             echo '<td><a class="btn btn-success" href="">Inspected</a></td>';
-                        } else if ($row['d'] == 2) {
-                            echo '<td><a class="btn btn-danger" href="inspection.php?id=' . $row["entry_id"] . ';" ?>Rejected</a></td>';
+                        } else if ($row['dd'] == 2 or $row['jd'] == 2 or $row['d'] == 2) {
+                            echo '<td><a class="btn btn-danger" href="inspection.php?id=' . $row["entry_id"] . ';" ?>Rejected<br/>' . $row['ddRemarks'] . $row['jdRemarks'] . $row['dRemarks'] . '</a></td>';
                         } else {
                             echo '<td><a class="btn btn-info" href="inspection.php?id=' . $row["entry_id"] . ';" ?>Inspect</a></td>';
                         }

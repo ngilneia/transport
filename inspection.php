@@ -27,13 +27,15 @@ if (isset($_POST['submit'])) {
     $result = $con->query($updateSql);
     if ($result == TRUE && $insert == TRUE) {
         echo
-        "<script type='text/javascript'>
+        '<script>
         $(document).ready(function(){
-                  Swal . fire(
-            'Application Inspected and Assign to Deputy Director',   
-            'success'
-        )});
-        </script>";
+                Swal.fire({
+                title: "Application Approved",
+                type: "success"
+            }).then(function() {
+                window.location = "inspectionList.php";
+            })});
+        </script>';
     } else {
         echo "Error:" . $updateSql . "<br>" . $con->error;
         echo "Error:" . $sql . "<br>" . $con->error;

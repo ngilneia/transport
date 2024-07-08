@@ -2,6 +2,7 @@
 require('db.php');
 $id = $_GET['id'];
 include("header.php");
+$entrySql = "";
 if (isset($_POST['approve'])) {
     $remarks = $_POST['remarksA'];
     $entrySql = "UPDATE `entry` set jd='1',jdApproveDate=now(),jdRemarks='$remarks' where entry_id=$id;";
@@ -21,11 +22,12 @@ if (isset($_POST['approve'])) {
         echo "Error:" . $entrySql . "<br>" . $con->error;
     }
 } else if (isset($_POST['reject'])) {
+    $remarks = $_POST['remarksA'];
     $deletefromInspection = "DELETE from Inspection where entry_id=$id";
     $deleteStmt = $con->query($deletefromInspection);
-    $rejectSql = "Update `entry` set jd=2,dd=NULL,mvi=NULL,ddremarks=NULL,ddApproveDate=NULL,MVI=NULL,inspection=NULL,inspectionPlace=NULL where entry_id=$id;";
+    $rejectSql = "UPDATE `entry` SET jd=2,jdRemarks='$remarks',dd=NULL,mvi=NULL,ddremarks=NULL,ddApproveDate=NULL,inspection=NULL,inspectionPlace=NULL where entry_id=$id;";
     $reject = $con->query($rejectSql);
-    if ($result == TRUE) {
+    if ($reject == TRUE) {
         echo
         '<script>
          $(document).ready(function(){
