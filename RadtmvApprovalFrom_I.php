@@ -127,10 +127,10 @@ if (isset($_GET['id'])) {
                     while ($row = $result->fetch_assoc()) {
                 ?>
 
-                        <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://localhost/transport/' . $row['voters'] . '">Voters ID</embed><br/>'; ?>
-                        <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://localhost/transport/' . $row['RRegCertificate'] . '">Registration Certificate</embed><br/>'; ?>
-                        <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://localhost/transport/' . $row['ROtherDoc'] . '">Other Document</embed><br/>'; ?>
-                        <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://localhost/transport/' . $row['RMVIReport'] . '">MVI & Police Report</embed><br/>'; ?>
+                        <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.105/transport/' . $row['voters'] . '">Voters ID</embed><br/>'; ?>
+                        <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.105/transport/' . $row['RRegCertificate'] . '">Registration Certificate</embed><br/>'; ?>
+                        <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.105/transport/' . $row['ROtherDoc'] . '">Other Document</embed><br/>'; ?>
+                        <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.105/transport/' . $row['RMVIReport'] . '">MVI & Police Report</embed><br/>'; ?>
 
                 <?php       }
                 }

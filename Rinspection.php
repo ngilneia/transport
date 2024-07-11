@@ -8,7 +8,7 @@ if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $address = $_POST['address'];
     $vClass = $_POST['vClass'];
-    $mYear = date('Y-m-d', strtotime($_POST['mYear']));
+    $mYear = $_POST['mYear'];
     $rTax = date('Y-m-d', strtotime($_POST['rTax']));
     $pTax = date('Y-m-d', strtotime($_POST['pTax']));
     $fc = date('Y-m-d', strtotime($_POST['fc']));
@@ -90,7 +90,7 @@ if (isset($_GET['id'])) {
                 </div>
                 <div class="form-check col-2">
                     <label for="mYear" class="form-check-label">5) Year of Manufacture as printed in RC</label>
-                    <input type="date" name="mYear" class="form-control" id="mYear" autocomplete="off">
+                    <input type="text" name="mYear" class="form-control" id="mYear" autocomplete="off">
                 </div>
                 <div class="form-check">
                     <label class="form-check-label">

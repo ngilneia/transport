@@ -43,11 +43,11 @@ include("header.php");
                         <td><?php echo $row['typeOfVehicle']; ?></td>
                         <td><?php echo $row['dto']; ?></td>
                         <td>
-                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://localhost/transport/' . $row['voters'] . '">Voters ID</a><br/>'; ?>
-                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://localhost/transport/' . $row['saleLetter'] . '">Sales Letter</a><br/>'; ?>
-                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://localhost/transport/' . $row['regCertf'] . '">Registration Certificate</a><br/>'; ?>
-                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://localhost/transport/' . $row['plying'] . '">Plying Permit</a><br/>'; ?>
-                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://localhost/transport/' . $row['pollution'] . '">Pollution Certificate</a>'; ?>
+                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://10.180.21.105/transport/' . $row['voters'] . '">Voters ID</a><br/>'; ?>
+                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://10.180.21.105/transport/' . $row['saleLetter'] . '">Sales Letter</a><br/>'; ?>
+                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://10.180.21.105/transport/' . $row['regCertf'] . '">Registration Certificate</a><br/>'; ?>
+                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://10.180.21.105/transport/' . $row['plying'] . '">Plying Permit</a><br/>'; ?>
+                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://10.180.21.105/transport/' . $row['pollution'] . '">Pollution Certificate</a>'; ?>
                         </td>
 
                         <?php
@@ -56,10 +56,10 @@ include("header.php");
                         } else if ($row['d'] == 1) {
                             if (is_null($row['RChasisNo'])) {
                         ?>
-                                <td><a class="btn btn-success" target="_blank" href="approval.php?id=<?php echo $row['entry_id']; ?>">Download Approval Letter</a></td>
+                                <td><a class="btn btn-success" target="_blank" href="approval.php?id=<?php echo $row['entry_id']; ?>">Download Transfer Approval Letter</a></td>
                             <?php
                             } else { ?>
-                                <td><a class="btn btn-success" target="_blank" href="Rapproval.php?id=<?php echo $row['entry_id']; ?>">Download Approval Letter</a></td>
+                                <td><a class="btn btn-success" target="_blank" href="Rapproval.php?id=<?php echo $row['entry_id']; ?>">Download Replacement Approval Letter</a></td>
                             <?php }
                         } else {
                             ?>

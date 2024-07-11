@@ -21,6 +21,7 @@ if (isset($_POST['submit'])) {
     $RLoan = $_POST['RLoan'];
     $RDetailofPermit = $_POST['RDetailofPermit'];
     $RMotorModel = $_POST['RMotorModel'];
+    $domain = $_POST['domain'];
 
     $Rvoters = $_FILES["Rvoters"]["name"];
     $RRegCertf = $_FILES["RRegCertf"]["name"];
@@ -77,20 +78,22 @@ if (isset($_POST['submit'])) {
     }
     $sql = "INSERT INTO `entry`(
     `name`, `address`, `regNo`, `pHolderName`, `phoneNo`,`typeOfVehicle`,`voters`,`RYearofManufacture`,`RKum`,
-    `RChasisNo`,`REngineNo`,`RLoan`,`RDetailofPermit`, `RMotorModel`,`RRegCertificate`,`ROtherDoc`,`RMVIReport` ) 
+    `RChasisNo`,`REngineNo`,`RLoan`,`RDetailofPermit`, `RMotorModel`,`domain`,`RRegCertificate`,`ROtherDoc`,`RMVIReport` ) 
     VALUES (
     '$Rname','$Raddress','$RregNo','$RCurrentOwnerName','$RphoneNo',
     '$RVehicleType','$RvotersFilePath','$RYearofManufacture',
     '$RKum','$RChasisNo','$REngineNo','$RLoan','$RDetailofPermit',
-    '$RMotorModel','$RRegCertfFilePath','$ROtherDocFilePath','$RMVIReportFilePath')";
+    '$RMotorModel','$domain','$RRegCertfFilePath','$ROtherDocFilePath','$RMVIReportFilePath')";
     if ($result = $con->query($sql)) {
-        echo "<script type='text/javascript'>
-        $(document).ready(function(){
-                  Swal . fire(
-            'Application Submitted!',   
-            'success'
-        )});
-        </script>";
+        echo '<script>
+         $(document).ready(function(){
+                Swal.fire({
+                title: "Application Entered",
+                type: "success"
+            }).then(function() {
+                window.location = "index.php";
+            })});
+        </script>';
     } else {
         echo    "<script type='text/javascript'>
         $(document).ready(function(){
@@ -144,7 +147,7 @@ if (isset($_POST['submit'])) {
         </div>
         <div class="col-md-4">
             <label for="RYearofManufacture" class="form-label fw-semibold">Year of Manufacture</label><br />
-            <input type="date" name="RYearofManufacture" class="form-control" id="RYearofManufacture" placeholder="Year of Manufacture" autocomplete="off">
+            <input type="text" name="RYearofManufacture" class="form-control" id="RYearofManufacture" placeholder="Year of Manufacture" autocomplete="off">
         </div>
         <div class="col-md-4">
             <label for="RChasisNo" class="form-label fw-semibold">Chasis No</label>
@@ -173,6 +176,10 @@ if (isset($_POST['submit'])) {
         <div class="col-md-4">
             <label for="RMotorModel" class="form-label fw-semibold">Replace na tur Motor hming leh Model</label>
             <input type="text" name="RMotorModel" class="form-control" id="RMotorModel" placeholder="Motor Model">
+        </div>
+        <div class="col-md-4">
+            <label for="domain" class="form-label">Domain</label>
+            <input type="text" name="domain" class="form-control" id="domain" placeholder="Domain">
         </div>
         <div class="col-md-8">
 

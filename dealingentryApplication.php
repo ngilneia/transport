@@ -23,6 +23,7 @@ if (isset($_POST['submit'])) {
     $transferDate = $_POST['transferDate'];
     $appName = $_POST['appName'];
     $pNo = $_POST['pNo'];
+    $domain = $_POST['domain'];
 
     $voters = $_FILES["voters"]["name"];
     $pVoters = $_FILES["pVoters"]["name"];
@@ -98,21 +99,19 @@ if (isset($_POST['submit'])) {
     } else {
         $statusMsg = 'Please select a file to upload.';
     }
-    $sql = "INSERT INTO `entry`(`name`, `fName`, `address`, `regNo`, `reason`,`pHolderName`, `pHolder`, `phoneNo`,`typeOfVehicle`,`dto`,`dot`,`deceased`,`place`,
+    $sql = "INSERT INTO `entry`(`name`, `fName`, `address`, `regNo`, `reason`,`pHolderName`, `pHolder`, `phoneNo`,`typeOfVehicle`,`dto`,`domain`,`dot`,`deceased`,`place`,
     `relation`,`news`,`newsDate`,`transferDate`,`appName`,`pNo`,`voters`,`pVoters`,`saleLetter`,`regCertf`,`plying`,`pollution`) 
-    VALUES ('$name','$fName','$address','$regNo','$reason','$currentOwnerName','$currentOwner','$phoneNo','$VehicleType','$dto','$dot','$deceased','$place',
+    VALUES ('$name','$fName','$address','$regNo','$reason','$currentOwnerName','$currentOwner','$phoneNo','$VehicleType','$dto','$domain','$dot','$deceased','$place',
     '$relation','$news','$newsDate','$transferDate','$appName','$pNo','$votersFilePath','$pVotersFilePath','$saleLetterFilePath','$regCertfFilePath','$plyingFilePath','$pollutionFilePath')";
     if ($result = $con->query($sql)) {
-        echo '
-        <script>
-        $(document).ready(function(){
+        echo '<script>
+         $(document).ready(function(){
                 Swal.fire({
                 title: "Application Entered",
                 type: "success"
             }).then(function() {
                 window.location = "index.php";
             })});
-        </script>
         </script>';
     } else {
         echo    "<script type='text/javascript'>
@@ -197,6 +196,10 @@ if (isset($_POST['submit'])) {
         <div class="col-md-4">
             <label for="dot" class="form-label">Date of Transfer</label>
             <input type="date" name="dot" class="form-control" id="dot" placeholder="Date of Transfer" autocomplete="off">
+        </div>
+        <div class="col-md-4">
+            <label for="domain" class="form-label">Domain</label>
+            <input type="text" name="domain" class="form-control" id="domain" placeholder="Domain">
         </div>
         <hr />
         <h5>APPLICATION WITH DEATH CERTIFICATE</h5>

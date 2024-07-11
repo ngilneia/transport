@@ -169,7 +169,7 @@ if (isset($_GET['id'])) {
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://localhost/transport/' . $row['voters'] . '">Voters ID</embed><br/>'; ?>
+                                            <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.105/transport/' . $row['voters'] . '">Voters ID</embed><br/>'; ?>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -187,7 +187,7 @@ if (isset($_GET['id'])) {
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://localhost/transport/' . $row['RRegCertificate'] . '">Registration Certificate</embed><br/>'; ?>
+                                            <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.105/transport/' . $row['RRegCertificate'] . '">Registration Certificate</embed><br/>'; ?>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -205,7 +205,7 @@ if (isset($_GET['id'])) {
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://localhost/transport/' . $row['RMVIReport'] . '">MVI and Police Report</embed><br/>'; ?>
+                                            <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.105/transport/' . $row['RMVIReport'] . '">MVI and Police Report</embed><br/>'; ?>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -223,7 +223,7 @@ if (isset($_GET['id'])) {
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://localhost/transport/' . $row['ROtherDoc'] . '">Other Documents</embed><br/>'; ?>
+                                            <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.105/transport/' . $row['ROtherDoc'] . '">Other Documents</embed><br/>'; ?>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -50,7 +50,7 @@ if (isset($_GET['id'])) {
             $name = $row['name'];
             $address = $row['address'];
             $vClass = $row['vClass'];
-            $mYear = date('d-m-Y', strtotime($row['mYear']));
+            $mYear = $row['mYear'];
             $rTax = date('d-m-Y', strtotime($row['rTax']));
             $pTax = date('d-m-Y', strtotime($row['pTax']));
             $fc = date('d-m-Y', strtotime($row['fc']));

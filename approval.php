@@ -24,7 +24,7 @@ $address = '';
 $filename = '';
 
 $id = $_GET['id'];
-$sql = "SELECT * FROM `entry` WHERE entry_id=$id";
+$sql = "SELECT * FROM `entry` a INNER JOIN class b on a.typeOfVehicle = b.id WHERE entry_id=$id";
 $result = $con->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
@@ -37,8 +37,10 @@ if ($result->num_rows > 0) {
         $pHolder = $row['pHolder'];
         $dot = $row['dot'];
         $pno = $row['pNo'];
-        $vClass = $row['typeOfVehicle'];
+        $vClass = $row['name'];
         $dto = $row['dto'];
+        $domain = $row['domain'];
+        $rate = $row['rate'];
     }
 }
 
@@ -60,7 +62,7 @@ $html = '<html>
                 </table>
                              <br/>
                 <h3 style="text-align: center; text-decoration:underline;">ORDER</h3>
-                <p style="text-align: justify; text-indent:30px;">On payment of Rs 1000/-(Rupees One thousand) only and as permissible under Sec 82 of MV Act 1988 r/w Rule 113 of the Mizoram Motor Vehicle Rules 1996 <strong>' . $vClass . '</strong> bearing Registration Number
+                <p style="text-align: justify; text-indent:30px;">On payment of <strong>Rs. ' . $rate . ' </strong> only and as permissible under Sec 82 of MV Act 1988 r/w Rule 113 of the Mizoram Motor Vehicle Rules 1996 <strong>' . $domain . ' ' . $vClass . '</strong> bearing Registration Number
                 <strong>' . $regNo . '</strong> is hereby allowed transfer of permit from <strong>' . $pHolderName . ' of ' . $pHolder . ' to ' . $name . ' of ' . $address . '</strong></p>
                 <p style="text-align: justify; text-indent:30px;">The new<strong> ' . $vClass . '</strong> owner should contact<strong> DTO ' . $dto . ' District </strong> with his/her Registration Certificates etc. for making necessary correnctions. Payment should be made at the concerned DTO
                 </p>

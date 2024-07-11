@@ -41,10 +41,10 @@ include("header.php");
                         <td><?php echo $row['RDetailofPermit']; ?></td>
                         <td><?php echo $row['RMotorModel']; ?></td>
                         <td>
-                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://localhost/transport/' . $row['RRegCertificate'] . '">Registration Certificate</a><br/>'; ?>
-                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://localhost/transport/' . $row['ROtherDoc'] . '">Other Documents</a><br/>'; ?>
-                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://localhost/transport/' . $row['RMVIReport'] . '">MVI & Police Report</a><br/>'; ?>
-                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://localhost/transport/' . $row['voters'] . '">Voters ID</a><br/>'; ?>
+                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://10.180.21.105/transport/' . $row['RRegCertificate'] . '">Registration Certificate</a><br/>'; ?>
+                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://10.180.21.105/transport/' . $row['ROtherDoc'] . '">Other Documents</a><br/>'; ?>
+                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://10.180.21.105/transport/' . $row['RMVIReport'] . '">MVI & Police Report</a><br/>'; ?>
+                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://10.180.21.105/transport/' . $row['voters'] . '">Voters ID</a><br/>'; ?>
                         </td>
 
                         <?php
