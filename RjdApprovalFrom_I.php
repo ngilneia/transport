@@ -52,7 +52,7 @@ if (isset($_GET['id'])) {
             $name = $row['name'];
             $address = $row['address'];
             $vClass = $row['vClass'];
-            $mYear = date('d-m-Y', strtotime($row['mYear']));
+            $mYear = $row['mYear'];
             $rTax = date('d-m-Y', strtotime($row['rTax']));
             $pTax = date('d-m-Y', strtotime($row['pTax']));
             $fc = date('d-m-Y', strtotime($row['fc']));
@@ -64,7 +64,7 @@ if (isset($_GET['id'])) {
             $approve = $row['adtmvApproveDate'];
             $currentDateTime = new DateTime('now');
             $currentDate = $currentDateTime->format('d-m-Y');
-            $mYearD = date_diff(date_create($currentDate), date_create($mYear));
+
             $rTaxD = date_diff(date_create($currentDate), date_create($rTax));
             $pTaxD = date_diff(date_create($currentDate), date_create($pTax));
             $fcD = date_diff(date_create($currentDate), date_create($fc));
@@ -95,7 +95,7 @@ if (isset($_GET['id'])) {
                                     </tr>
                                     <tr>
                                         <td>Year of Manufacture<br />(As printed in RC)</td>
-                                        <td colspan="3"><?php echo $mYear . ', ' . $mYearD->format("%d Days left for renewal"); ?></td>
+                                        <td colspan="3"><?php echo $mYear; ?></td>
                                     </tr>
                                     <tr>
                                         <td colapan="4">Validity of Documents</td>

@@ -99,10 +99,11 @@ if (isset($_POST['submit'])) {
     } else {
         $statusMsg = 'Please select a file to upload.';
     }
+
     $sql = "INSERT INTO `entry`(`name`, `fName`, `address`, `regNo`, `reason`,`pHolderName`, `pHolder`, `phoneNo`,`typeOfVehicle`,`dto`,`domain`,`dot`,`deceased`,`place`,
-    `relation`,`news`,`newsDate`,`transferDate`,`appName`,`pNo`,`voters`,`pVoters`,`saleLetter`,`regCertf`,`plying`,`pollution`) 
+    `relation`,`news`,`newsDate`,`transferDate`,`appName`,`pNo`,`voters`,`pVoters`,`saleLetter`,`regCertf`,`plying`,`pollution`,`adtsta`) 
     VALUES ('$name','$fName','$address','$regNo','$reason','$currentOwnerName','$currentOwner','$phoneNo','$VehicleType','$dto','$domain','$dot','$deceased','$place',
-    '$relation','$news','$newsDate','$transferDate','$appName','$pNo','$votersFilePath','$pVotersFilePath','$saleLetterFilePath','$regCertfFilePath','$plyingFilePath','$pollutionFilePath')";
+    '$relation','$news','$newsDate','$transferDate','$appName','$pNo','$votersFilePath','$pVotersFilePath','$saleLetterFilePath','$regCertfFilePath','$plyingFilePath','$pollutionFilePath',1)";
     if ($result = $con->query($sql)) {
         echo '<script>
          $(document).ready(function(){

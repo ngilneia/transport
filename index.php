@@ -7,21 +7,21 @@ $ddcount = 0;
 $Rddcount = 0;
 $jdcount = 0;
 $Rjdcount = 0;
-$sql = "SELECT SUM(CASE WHEN mvi is null THEN 1 ELSE 0 END) AS mvi_null FROM entry WHERE RChasisNo is null; ";
+$sql = "SELECT SUM(CASE WHEN mvi is null AND dd is null AND jd is null AND d is null THEN 1 ELSE 0 END) AS mvi_null FROM entry WHERE RChasisNo is null; ";
 $result = $con->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $mvicount = $row['mvi_null'];
     }
 }
-$sql = "SELECT SUM(CASE WHEN mvi is null THEN 1 ELSE 0 END) AS Rmvi_null FROM entry WHERE RChasisNo is not null; ";
+$sql = "SELECT SUM(CASE WHEN mvi is null AND  dd is null AND jd is null AND d is null THEN 1 ELSE 0 END) AS Rmvi_null FROM entry WHERE RChasisNo is not null; ";
 $result = $con->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $Rmvicount = $row['Rmvi_null'];
     }
 }
-$sql = "SELECT SUM(CASE WHEN dd is null AND mvi is not NULL THEN 1 ELSE 0 END) AS dd_null FROM entry WHERE RChasisNo is null; ";
+$sql = "SELECT SUM(CASE WHEN dd is null AND mvi is NOT NULL THEN 1 ELSE 0 END) AS dd_null FROM entry WHERE RChasisNo is null; ";
 $result = $con->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
@@ -35,20 +35,29 @@ if ($result->num_rows > 0) {
         $Rddcount = $row['Rdd_null'];
     }
 }
-$sql = "SELECT SUM(CASE WHEN jd is null AND dd is not null THEN 1 ELSE 0 END) AS jd_null FROM entry WHERE RChasisNo is null; ";
+$sql = "SELECT SUM(CASE WHEN jd is null AND mvi is not NULL AND dd is not null THEN 1 ELSE 0 END) AS jd_null FROM entry WHERE RChasisNo is null; ";
 $result = $con->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $jdcount = $row['jd_null'];
     }
 }
-$sql = "SELECT SUM(CASE WHEN jd is null AND dd is not null THEN 1 ELSE 0 END) AS Rjd_null FROM entry WHERE RChasisNo is not null; ";
+$sql = "SELECT SUM(CASE WHEN jd is null AND mvi is not NULL AND dd is not null THEN 1 ELSE 0 END) AS Rjd_null FROM entry WHERE RChasisNo is not null; ";
 $result = $con->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $Rjdcount = $row['Rjd_null'];
     }
 }
+$sql = "SELECT regNo from entry where adtsta=1";
+$result = $con->query($sql);
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $r[] = $row['regNo'];
+        $uninspected = implode(',', $r);
+    }
+}
+
 ?>
 <div class="form">
     <p>Welcome <?php
@@ -80,7 +89,7 @@ if ($result->num_rows > 0) {
 
             </div>
             <div class="col">
-                <h4>MVI</h4>
+                <h4>INSPECTING AUTHORITY</h4>
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Transfer of Permit</h5>
@@ -99,11 +108,12 @@ if ($result->num_rows > 0) {
                 </div>
 
             </div>
-        </div>';
+        </div>
+        ';
                     } else if ($s == 2) {
                         echo '
         <div class="col">
-                <h4>INSPECTION</h4>
+                <h4>INSPECTING AUTHORITY</h4>
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Transfer of Permit</h5>
@@ -116,20 +126,23 @@ if ($result->num_rows > 0) {
                     <div class="card-body">
                         <h5 class="card-title">Replacement of Vehicle</h5>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            ' . $Rmvicount . '</span>
+                            ' . $Rmvicount .
+                            '</span>
                         <a href="RinspectionList.php" class="btn btn-info">List of Applications</a><br />
                     </div>
                 </div>
-
-            </div>';
+                </div>
+';
                     } else if ($s == 3) {
                         echo '
+            
         <div class="row">
             <div class="col">
                 <h4>DEPUTY DIRECTOR</h4>
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Transfer of Permit</h5>
+                        <h5>' . $uninspected . '</h5>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             ' . $ddcount . '
                         </span>
@@ -140,12 +153,14 @@ if ($result->num_rows > 0) {
                     <div class="card-body">
                         <h5 class="card-title">Replacement of Vehicle</h5>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            ' . $Rddcount . '
+                            ' . $Rddcount .
+                            '
                         </span>
                         <a href="RinspectedList.php" class="btn btn-info">LIST OF INSPECTED APPLICATIONS</a>
                     </div>
                 </div>
-            </div>';
+            </div>
+            ';
                     } else if ($s == 4) {
                         echo '
             <div class="col">
@@ -173,11 +188,13 @@ if ($result->num_rows > 0) {
             </div>';
                     } else if ($s == 5) {
                         header("Location: dApprovalList.php");
-                    } ?>
+                    }
+        ?>
     </div>
 </div>
 <?php
                 }
+
 ?>
 </div>
 </body>

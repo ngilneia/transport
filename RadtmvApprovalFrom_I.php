@@ -51,7 +51,7 @@ if (isset($_GET['id'])) {
             $name = $row['name'];
             $address = $row['address'];
             $vClass = $row['vClass'];
-            $mYear = date('d-m-Y', strtotime($row['mYear']));
+            $mYear = $row['mYear'];
             $rTax = date('d-m-Y', strtotime($row['rTax']));
             $pTax = date('d-m-Y', strtotime($row['pTax']));
             $fc = date('d-m-Y', strtotime($row['fc']));
@@ -61,7 +61,6 @@ if (isset($_GET['id'])) {
             $remarks = $row['remarks'];
             $currentDateTime = new DateTime('now');
             $currentDate = $currentDateTime->format('d-m-Y');
-            $mYearD = date_diff(date_create($currentDate), date_create($mYear));
             $rTaxD = date_diff(date_create($currentDate), date_create($rTax));
             $pTaxD = date_diff(date_create($currentDate), date_create($pTax));
             $fcD = date_diff(date_create($currentDate), date_create($fc));

@@ -51,8 +51,10 @@ if (isset($_GET['id'])) {
                             <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://10.180.21.105/transport/' . $row['RMVIReport'] . '">MVI or Police Report</a><br/>'; ?>
                         </td>
                         <?php
-                        if ($row['inspection'] > 0) {
+                        if (!is_null($row['inspection'])) {
                             echo '<td><a class="btn btn-success" href="">Inspected</a></td>';
+                        } else if ($row['dd'] == 2 or $row['jd'] == 2 or $row['d'] == 2) {
+                            echo '<td><a class="btn btn-danger" href="Rinspection.php?id=' . $row["entry_id"] . ';" ?>Rejected<br/>' . $row['ddRemarks'] . $row['jdRemarks'] . $row['dRemarks'] . '</a></td>';
                         } else {
                             echo '<td><a class="btn btn-info" href="Rinspection.php?id=' . $row["entry_id"] . ';" ?>Inspect</a></td>';
                         }
@@ -63,9 +65,7 @@ if (isset($_GET['id'])) {
             ?>
         </tbody>
     </table>
-
 </div>
-
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="DataTables/datatables.min.js"></script>
 <script type='text/javascript'>

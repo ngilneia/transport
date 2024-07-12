@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
     values ('$entry_id','$regNo','$name','$address','$vClass','$mYear','$rTax','$pTax','$fc','$fp','$i','$p','$remarks')";
     $insert = $con->query($sql);
 
-    $updateSql = "UPDATE `entry` set `mvi`=1, inspection=now(),`chasis`='$chasis', `inspectionPlace`='$place' where entry_id=$ids";
+    $updateSql = "UPDATE `entry` set `mvi`=1,`adtsta`=NULL, inspection=now(),`chasis`='$chasis', `inspectionPlace`='$place' where entry_id=$ids";
     $result = $con->query($updateSql);
     if ($result == TRUE && $insert == TRUE) {
         echo
@@ -153,7 +153,6 @@ if (isset($_GET['id'])) {
                 <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Remarks">
             </div>
             <div class="col-12  text-center">
-                <button type="submit" name="submit" value="submit" class="btn btn-primary"> Submit </button>
                 <button type="submit" name="submit" value="submit" class="btn btn-primary"> Submit </button>
             </div>
             </form>

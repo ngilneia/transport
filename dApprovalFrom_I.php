@@ -27,7 +27,7 @@ if (isset($_POST['approve'])) {
 } else if (isset($_POST['reject'])) {
     $deletefromInspection = "DELETE from Inspection where entry_id=$id";
     $deleteStmt = $con->query($deletefromInspection);
-    $rejectSql = "Update `entry` set d=2,dd=NULL,jd=NULL,mvi=NULL,dApprovedate=NULL,ddremarks=NULL,ddApproveDate=NULL,jdRemarks=NULL,jdApproveDate=NULL,dRemarks=NULL,dApproveDate=NULL,inspection=NULL,inspectionPlace=NULL where entry_id=$id;";
+    $rejectSql = "UPDATE `entry` SET d=2,dd=NULL,jd=NULL,mvi=NULL,dApprovedate=NULL,ddremarks=NULL,ddApproveDate=NULL,jdRemarks=NULL,jdApproveDate=NULL,dRemarks=NULL,dApproveDate=NULL,inspection=NULL,inspectionPlace=NULL where entry_id=$id;";
     $reject = $con->query($rejectSql);
     if ($reject == TRUE) {
         echo
