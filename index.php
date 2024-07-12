@@ -49,12 +49,20 @@ if ($result->num_rows > 0) {
         $Rjdcount = $row['Rjd_null'];
     }
 }
-$sql = "SELECT regNo from entry where adtsta=1";
+$sql = "SELECT regNo from entry where adtsta=1 and RChasisNo is null";
 $result = $con->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $r[] = $row['regNo'];
         $uninspected = implode(',', $r);
+    }
+}
+$sql = "SELECT regNo from entry where adtsta=1 AND RChasisNo is not null";
+$rresult = $con->query($sql);
+if ($rresult->num_rows > 0) {
+    while ($rrow = $rresult->fetch_assoc()) {
+        $rr[] = $rrow['regNo'];
+        $Runinspected = implode(',', $rr);
     }
 }
 
@@ -142,7 +150,11 @@ if ($result->num_rows > 0) {
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Transfer of Permit</h5>
-                        <h5>' . $uninspected . '</h5>
+                       ';
+                        if (!empty($uninspected)) {
+                            echo ' <h5 class="text-warning">' . $uninspected . '</h5>';
+                        }
+                        echo '
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             ' . $ddcount . '
                         </span>
@@ -151,8 +163,11 @@ if ($result->num_rows > 0) {
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Replacement of Vehicle</h5>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        <h5 class="card-title">Replacement of Vehicle</h5>';
+                        if (!empty($Runinspected)) {
+                            echo ' <h5 class="text-danger">' . $Runinspected . '</h5>';
+                        }
+                        echo '<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             ' . $Rddcount .
                             '
                         </span>

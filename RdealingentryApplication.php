@@ -78,12 +78,12 @@ if (isset($_POST['submit'])) {
     }
     $sql = "INSERT INTO `entry`(
     `name`, `address`, `regNo`, `pHolderName`, `phoneNo`,`typeOfVehicle`,`voters`,`RYearofManufacture`,`RKum`,
-    `RChasisNo`,`REngineNo`,`RLoan`,`RDetailofPermit`, `RMotorModel`,`domain`,`RRegCertificate`,`ROtherDoc`,`RMVIReport` ) 
+    `RChasisNo`,`REngineNo`,`RLoan`,`RDetailofPermit`, `RMotorModel`,`domain`,`RRegCertificate`,`ROtherDoc`,`RMVIReport`,`adtsta` ) 
     VALUES (
     '$Rname','$Raddress','$RregNo','$RCurrentOwnerName','$RphoneNo',
     '$RVehicleType','$RvotersFilePath','$RYearofManufacture',
     '$RKum','$RChasisNo','$REngineNo','$RLoan','$RDetailofPermit',
-    '$RMotorModel','$domain','$RRegCertfFilePath','$ROtherDocFilePath','$RMVIReportFilePath')";
+    '$RMotorModel','$domain','$RRegCertfFilePath','$ROtherDocFilePath','$RMVIReportFilePath',1)";
     if ($result = $con->query($sql)) {
         echo '<script>
          $(document).ready(function(){
