@@ -405,9 +405,9 @@ if (isset($_GET['id'])) {
             <form class="row g-3" method="post" enctype="multipart/form-data">
                 <div class="form-check">
                     <label class="form-check-label" for="remarksA">
-                        Remarks of Inspecting Authority
+                        Remarks of Joint Director
                     </label>
-                    <input type="text" name="remarksA" class="form-control" id="remarksA">
+                    <input type="text" name="remarksA" class="form-control border-primary" id="remarksA">
                 </div>
                 <div class="col text-center">
                     <button type="submit" name="approve" value="approve" class="btn btn-primary">Approve</button>

@@ -26,6 +26,7 @@ if (isset($_POST['submit'])) {
     $updateSql = "UPDATE `entry` set `mvi`=1,`adtsta`=NULL, inspection=now(),`chasis`='$chasis', `inspectionPlace`='$place' where entry_id=$ids";
     $result = $con->query($updateSql);
     if ($result == TRUE && $insert == TRUE) {
+        header("Location: https://regencyaizawl.com/noti/public/send.php");
         echo
         '<script>
         $(document).ready(function(){
@@ -63,29 +64,29 @@ if (isset($_GET['id'])) {
                     <label class="form-check-label" for="11">
                         1) Registration No
                     </label>
-                    <input type="text" name="regNo" class="form-control" id="11" value="<?php echo $regNo; ?>" readonly="readonly">
+                    <input type="text" name="regNo" class="form-control border-primary" id="11" value="<?php echo $regNo; ?>" readonly="readonly">
                 </div>
                 <div class="form-check col-2">
                     <label class="form-check-label" for="12">
                         2) Owner's Name
                     </label>
-                    <input type="text" name="name" class="form-control" id="12" value="<?php echo $name; ?>" readonly="readonly">
+                    <input type="text" name="name" class="form-control border-primary" id="12" value="<?php echo $name; ?>" readonly="readonly">
                 </div>
                 <div class="form-check col-4">
                     <label class="form-check-label" for="13">
                         3) Address
                     </label>
-                    <input type="text" name="address" class="form-control" id="13" value="<?php echo $address; ?>" readonly="readonly">
+                    <input type="text" name="address" class="form-control border-primary" id="13" value="<?php echo $address; ?>" readonly="readonly">
                 </div>
                 <div class="form-check col-2">
                     <label for="vClass" class="form-check-label">4) Vehicle Class</label>
-                    <select name="vClass" class="form-control" id="vClass">
+                    <select name="vClass" class="form-control border-primary" id="vClass">
                         <?php
                         $run = 'SELECT * from class';
                         $queryt = $con->query($run);
                         if ($queryt->num_rows > 0) {
                             while ($row = $queryt->fetch_assoc()) {
-                                echo '<option value="' . $row['name'] . '">' . $row['name'] . '</option>';
+                                echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
                             }
                         }
                         ?>
@@ -93,7 +94,7 @@ if (isset($_GET['id'])) {
                 </div>
                 <div class="form-check col-2">
                     <label for="mYear" class="form-check-label">5) Year of Manufacture as printed in RC</label>
-                    <input type="text" name="mYear" class="form-control" id="mYear" autocomplete="off">
+                    <input type="text" name="mYear" class="form-control border-primary" id="mYear" autocomplete="off">
                 </div>
                 <div class="form-check">
                     <label class="form-check-label">
@@ -102,27 +103,27 @@ if (isset($_GET['id'])) {
                 </div>
                 <div class="form-check col-4">
                     <label class="form-check-label" for="4">1) Road Tax</label>
-                    <input class="form-control" type="date" name="rTax" id="4" autocomplete="off">
+                    <input class="form-control border-primary" type="date" name="rTax" id="4" autocomplete="off">
                 </div>
                 <div class="form-check col-4">
                     <label class="form-check-label" for="5">2) P&amp;G TAX</label>
-                    <input class="form-control" type="date" name="pTax" id="5" autocomplete="off">
+                    <input class="form-control border-primary" type="date" name="pTax" id="5" autocomplete="off">
                 </div>
                 <div class="form-check col-4">
                     <label class="form-check-label" for="6">3) Fitness Certificate</label>
-                    <input class="form-control" type="date" name="fc" id="6" autocomplete="off">
+                    <input class="form-control border-primary" type="date" name="fc" id="6" autocomplete="off">
                 </div>
                 <div class="form-check col-4">
                     <label class="form-check-label" for="7">4) Plying Permit</label>
-                    <input class="form-control" type="date" name="fp" id="7" autocomplete="off">
+                    <input class="form-control border-primary" type="date" name="fp" id="7" autocomplete="off">
                 </div>
                 <div class="form-check col-4">
                     <label class="form-check-label" for="8">5) Insurance</label>
-                    <input class="form-control" type="date" name="i" id="8" autocomplete="off">
+                    <input class="form-control border-primary" type="date" name="i" id="8" autocomplete="off">
                 </div>
                 <div class="form-check col-4">
                     <label class="form-check-label" for="9">6) Pollution</label>
-                    <input class="form-control" type="date" name="p" id="9" autocomplete="off">
+                    <input class="form-control border-primary" type="date" name="p" id="9" autocomplete="off">
                 </div>
 
 
@@ -134,23 +135,19 @@ if (isset($_GET['id'])) {
             <div class="row">
                 <div class="form-check col-6">
                     <label class="form-check-label" for="chasis">Chasis No. Pencil Print enclosed</label>
-                    <select name="chasis" class="form-select">
+                    <select name="chasis" class="form-select form-control border-primary">
                         <option value="YES">YES</option>
                         <option value="NO">NO</option>
                     </select>
                 </div>
                 <div class="form-check col-6">
-                    <label class="form-check-label" for="place">
-                        Place of Inspection
-                    </label>
-                    <input type="text" name="place" class="form-control" id="place">
+                    <label class="form-check-label" for="place">Place of Inspection</label>
+                    <input type="text" name="place" class="form-control border-primary" id="place">
                 </div>
             </div>
             <div class="form-check col-8">
-                <label class="form-check-label" for="remarks">
-                    Remarks
-                </label>
-                <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Remarks">
+                <label class="form-check-label" for="remarks">Remarks</label>
+                <input type="text" class="form-control border-primary" id="remarks" name="remarks" placeholder="Remarks">
             </div>
             <div class="col-12  text-center">
                 <button type="submit" name="submit" value="submit" class="btn btn-primary"> Submit </button>

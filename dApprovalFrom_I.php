@@ -136,10 +136,6 @@ if (isset($_GET['id'])) {
                             <td>6. PUCC</td>
                             <td><?php echo $fp . ', ' . $fpD->format("%R%a Days left for renewal"); ?></td>
                         </tr>
-                        <tr>
-                            <td>Approved on</td>
-                            <td><?php echo $approve; ?></td>
-                        </tr>
                     </table>
 
                 </div>
@@ -293,12 +289,6 @@ if (isset($_GET['id'])) {
                             <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#regCertf">
                                 Registration Certificate
                             </button><br />
-                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#plying">
-                                Plying Permit
-                            </button><br />
-                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#pollution">
-                                Pollution Certificate
-                            </button>
 
                             <?php
                             $sql = "SELECT * FROM entry a inner join inspection b on a.entry_id=b.entry_id where a.entry_id='$id' ";
@@ -378,42 +368,7 @@ if (isset($_GET['id'])) {
                                         </div>
                                     </div>
                                     <!-- End Modal -->
-                                    <!-- Plying Modal -->
-                                    <div class="modal fade" id="plying" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-xl">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel"><?php echo $row['regNo']; ?></h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.105/transport/' . $row['plying'] . '">Plying Certificate</embed><br/>'; ?>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Modal -->
-                                    <!-- Pollution Modal -->
-                                    <div class="modal fade" id="pollution" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-xl">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel"><?php echo $row['regNo']; ?></h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.105/transport/' . $row['pollution'] . '">Pollution Certificate</embed><br/>'; ?>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Modal -->
+
 
                             <?php   }
                             }
@@ -530,7 +485,7 @@ if (isset($_GET['id'])) {
 
             <form class="row g-3" method="post" enctype="multipart/form-data" ;>
                 <div class=" form-check">
-                    <label class="form-check-label" for="inspection">Inspection Date</label>
+                    <label class="form-check-label" for="inspection">Inspection Report</label>
                     <input type="text" name="inspection" class="form-control" id="inspection" value="<?php echo $remarks; ?>">
                     <label class=" form-check-label" for="ddRemarks">Remarks of Deputy Director</label>
                     <input type="text" name="ddRemarks" class="form-control" id="ddRemarks" value="<?php echo $ddremarks; ?>">
@@ -540,7 +495,7 @@ if (isset($_GET['id'])) {
                     <label class=" form-check-label" for="remarksA">
                         Remarks of Secretary
                     </label>
-                    <input type="text" name="remarksA" class="form-control" id="remarksA">
+                    <input type="text" name="remarksA" class="form-control border-primary" id="remarksA">
                 </div>
                 <div class="col text-center">
                     <button type="submit" name="approve" value="approve" class="btn btn-primary">Approve</button>

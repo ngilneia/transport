@@ -385,12 +385,11 @@ if (isset($_GET['id'])) {
                 </div>
             </div>
             <form class="row g-3" method="post" enctype="multipart/form-data">
-                <p>I, the udersigned hereby declare the above validity of documents shown are true and correct</p>
                 <div class="form-check">
                     <label class="form-check-label" for="remarksA">
-                        Remarks of Inspecting Authority
+                        Remarks of Deputy Director
                     </label>
-                    <input type="text" name="remarksA" class="form-control" id="remarksA">
+                    <input type="text" name="remarksA" class="form-control border-primary" id="remarksA">
                 </div>
                 <div class="col text-center">
                     <button type="submit" name="approve" value="approve" class="btn btn-primary">Approve</button>
