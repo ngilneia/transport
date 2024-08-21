@@ -50,39 +50,39 @@ if (isset($_GET['id'])) {
 ?>
 
         <form class="row g-3" method="post" enctype="multipart/form-data">
-            <div class="col-md-6">
+            <div class="col-4">
                 <label for="name" class="form-label">Name of Applicant</label>
                 <input type="text" name="name" class="form-control" id="name" value="<?php echo $name; ?>">
             </div>
-            <div class="col-md-6">
+            <div class="col-4">
                 <label for="fName" class="form-label">S/o / D/o / W/o</label>
                 <input type="text" name="fName" class="form-control" id="fName" value="<?php echo $fName; ?>">
             </div>
-            <div class="col-12">
+            <div class="col-4">
                 <label for="inputAddress" class="form-label">Address</label>
                 <input type="text" name="inputAddress" class="form-control" id="inputAddress" value="<?php echo $address; ?>">
             </div>
-            <div class="col-6">
+            <div class="col-4">
                 <label for="regNo" class="form-label">Registration No</label>
                 <input type="text" name="regNo" class="form-control" id="regNo" value="<?php echo $regNo; ?>">
             </div>
-            <div class="col-6">
+            <div class="col-4">
                 <label for="reason" class="form-label">Reason</label>
                 <input type="text" name="reason" class="form-control" id="reason" value="<?php echo $reason; ?>">
             </div>
-            <div class="col-md-12">
+            <div class="col-4">
                 <label for="currentOwner" class="form-label">Name of Present Permit Holder with Full address</label>
                 <input type="text" name="currentOwner" class="form-control" id="currentOwner" value="<?php echo $pHolder; ?>">
             </div>
-            <div class="col-md-4">
+            <div class="col-4">
                 <label for="phoneNo" class="form-label">Phone No</label>
                 <input type="text" name="phoneNo" class="form-control" id="phoneNo" value="<?php echo $phoneNo; ?>">
             </div>
-            <div class=" col-md-4">
+            <div class=" col-4">
                 <label for="VehicleType" class="form-label">Type of Vehicle</label>
                 <input type="text" name="VehicleType" class="form-control" id="VehicleType" value="<?php echo $vehicleType; ?>">
             </div>
-            <div class="col-md-4">
+            <div class="col-4">
                 <label for="dto" class="form-label">DTO</label>
                 <input type="text" name="dto" class="form-control" id="dto" value="<?php echo $dto; ?>">
             </div>

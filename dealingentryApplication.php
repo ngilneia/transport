@@ -30,7 +30,12 @@ if (isset($_POST['submit'])) {
     $saleLetter = $_FILES["saleLetter"]["name"];
     $regCertf = $_FILES["regCertf"]["name"];
     $targetDir = $targetDir . '/' . $regNo . '/';
-    mkdir($targetDir . '/' . $regNo . '/', 0666, true);
+
+    if (!file_exists(
+        $targetDir . '/' . $regNo . '/'
+    )) {
+        mkdir($targetDir . '/' . $regNo . '/', 0777, true);
+    }
 
     $voters = basename($_FILES["voters"]["name"]);
     $votersFilePath = $targetDir . $voters;
