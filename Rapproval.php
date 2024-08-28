@@ -24,27 +24,27 @@ $address = '';
 $filename = '';
 
 $id = $_GET['id'];
-$sql = "SELECT a.name,a.fName, a.pHolderName,a.address,a.regNo,a.reason,a.pHolder,a.dot,a.pno,b.name as className,a.dto,a.replacement,b.RRate,a.domain,c.rFile_no, a.dApproveDate 
-FROM `entry` a INNER JOIN class b on a.typeOfVehicle = b.id inner join fileno c on a.typeOfVehicle=c.class_id WHERE a.entry_id=$id";
+$sql = "SELECT a.name,a.fName, a.pHolderName,a.address,a.regNo,a.reason,a.pHolder,a.dot,a.pno,b.name as className,a.dto,a.replacement,b.RRate,a.domain,eFileNo, a.dApproveDate 
+FROM `entry` a INNER JOIN class b on a.typeOfVehicle = b.id WHERE a.entry_id=$id";
 $result = $con->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $name = strtoupper($row['name'] ? $row['name']:"NA");
-        $fName = strtoupper($row['fName'] ? $row['fName']:"NA");
-        $pHolderName = strtoupper($row['pHolderName'] ? $row['pHolderName']:"NA");
-        $address = strtoupper($row['address'] ? $row['address']:"NA");
-        $regNo = strtoupper($row['regNo'] ? $row['regNo']:"NA");
-        $reason = strtoupper($row['reason'] ? $row['reason']:"NA");
-        $pHolder = strtoupper($row['pHolder'] ? $row['pHolder']:"NA");
-        $dot = strtoupper($row['dot'] ? $row['dot']:"NA");
-        $pno = strtoupper($row['pno'] ? $row['pno']:"NA");
-        $vClass = strtoupper($row['className']? $row['className']:"NA");
-        $dto = strtoupper($row['dto'] ? $row['dto']:"NA");
-		$replacement = strtoupper($row['replacement'] ? $row['replacement']:"NA");
-        $rate = strtoupper($row['RRate']? $row['RRate']:"NA");
-        $domain = strtoupper($row['domain']? $row['domain']: "NA");
-		$file_no = strtoupper($row['rFile_no']? $row['rFile_no']:"NA");
-		$dApproveDate = date('d-m-Y',strtotime($row['dApproveDate']));
+        $name = strtoupper($row['name'] ? $row['name'] : "NA");
+        $fName = strtoupper($row['fName'] ? $row['fName'] : "NA");
+        $pHolderName = strtoupper($row['pHolderName'] ? $row['pHolderName'] : "NA");
+        $address = strtoupper($row['address'] ? $row['address'] : "NA");
+        $regNo = strtoupper($row['regNo'] ? $row['regNo'] : "NA");
+        $reason = strtoupper($row['reason'] ? $row['reason'] : "NA");
+        $pHolder = strtoupper($row['pHolder'] ? $row['pHolder'] : "NA");
+        $dot = strtoupper($row['dot'] ? $row['dot'] : "NA");
+        $pno = strtoupper($row['pno'] ? $row['pno'] : "NA");
+        $vClass = strtoupper($row['className'] ? $row['className'] : "NA");
+        $dto = strtoupper($row['dto'] ? $row['dto'] : "NA");
+        $replacement = strtoupper($row['replacement'] ? $row['replacement'] : "NA");
+        $rate = strtoupper($row['RRate'] ? $row['RRate'] : "NA");
+        $domain = strtoupper($row['domain'] ? $row['domain'] : "NA");
+        $file_no = strtoupper($row['eFileNo'] ? $row['eFileNo'] : "NA");
+        $dApproveDate = date('d-m-Y', strtotime($row['dApproveDate']));
     }
 }
 
@@ -60,14 +60,14 @@ $html = '<html>
                 <h1></h1>
                 <table>
                     <tr>
-                        <td style="text-align: left;"><strong>'. $file_no .'</strong></td>
+                        <td style="text-align: left;"><strong>' . $file_no . '</strong></td>
                         <td style="text-align: right;"><strong>Dated Aizawl the ' . $dApproveDate . '</strong></td>
                     </tr>
                 </table>
                    <h3 style="text-align: center; text-decoration:underline;">ORDER</h3>
                 <p style="text-align: justify; text-indent:30px;">
                 As per Section 83 of the Central Motor Vehicle Act, 1988 and STA meeting decision made on the date 26/07/2016, <strong>' . $domain . ' ' . $vClass . '</strong> bearing Regn No <strong>' . $regNo . '</strong>
-                belonging to, <strong>Pi/Pu ' . $name . ' s/o ' . $fName . ' of ' . $address . ' </strong>is hereby allowed for <strong>'.$replacement.'</strong> replacement, subjected to the following terms and condition.</p>
+                belonging to, <strong>Pi/Pu ' . $name . ' s/o ' . $fName . ' of ' . $address . ' </strong>is hereby allowed for <strong>' . $replacement . '</strong> replacement, subjected to the following terms and condition.</p>
                 <ol>
                 <li>Replacement should be done within 1(One) year from the date of issue of this order and should replace only with brand new vehicle.</li>
                 <li>The old taxi(Two wheeler) should be converted into private vehicle/off roaded immediately.</li>
@@ -91,7 +91,7 @@ $html = '<html>
                     <tr><td></td><td></td></tr>
 
                     <tr>
-                        <td style="text-align: left;"><strong>'. $file_no .'</strong></td>
+                        <td style="text-align: left;"><strong>' . $file_no . '</strong></td>
                         <td style="text-align: right;"><strong>Dated Aizawl the ' . $dApproveDate . '</strong></td>
                     </tr>
                     <tr>

@@ -37,7 +37,7 @@ if (isset($_GET['id'])) {
         <tbody>
 
             <?php
-            $sql = "SELECT * FROM entry a inner join inspection b on a.entry_id=b.entry_id where a.RChasisNo is null";
+            $sql = "SELECT * FROM entry a inner join inspection b on a.entry_id=b.entry_id where a.RChasisNo is null and dd is null";
             $result = $con->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {

@@ -37,7 +37,7 @@ if (isset($_GET['id'])) {
         <tbody>
 
             <?php
-            $sql = "SELECT * FROM entry where RChasisNo is null";
+            $sql = "SELECT * FROM entry where RChasisNo is null and fromRoute is null and mvi is null";
             $result = $con->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {

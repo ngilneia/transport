@@ -30,11 +30,17 @@ if ($result->num_rows > 0) {
         <link href="css/sweetalert2.min.css" rel="stylesheet">
         <link href="DataTables/datatables.min.css" rel="stylesheet">
         <link href="css/datepicker.material.css" rel="stylesheet">
+
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/sweetalert2.all.min.js"></script>
         <script src="js/jquery-3.7.1.min.js"></script>
-        <script src="js/datepicker.js"></script>
+        <script src="DataTables/datatables.min.js"></script>
+
+
+    </head>
 
     <body class="col-lg-12 mx-auto p-4 py-md-5">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Eleventh navbar example">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Eleventh navbar example" data-bs-theme="dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Transport Department</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">

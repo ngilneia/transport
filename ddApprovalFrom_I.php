@@ -243,13 +243,15 @@ if (isset($_GET['id'])) {
                                                 <td><?php echo $pTax; ?></td>
                                             </tr>
                                             <tr>
-                                                <td>5. Insuarance</td>
+                                                <td>5. Insurance</td>
                                                 <td><?php echo $i; ?></td>
                                             </tr>
                                             <tr>
-                                                <td>6. PUCC</td>
-                                                <td><?php echo $fp; ?></td>
+                                                <td>5. PUCC</td>
+                                                <td><?php echo $p; ?></td>
                                             </tr>
+                                            ?>
+                                            ?>
                                             <tr>
                                                 <td>Approved on</td>
                                                 <td><?php echo $approve; ?></td>

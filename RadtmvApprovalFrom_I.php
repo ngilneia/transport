@@ -121,10 +121,10 @@ if (isset($_GET['id'])) {
                     while ($row = $result->fetch_assoc()) {
                 ?>
 
-                        <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.99/transport/' . $row['voters'] . '">Voters ID</embed><br/>'; ?>
+                        <!-- <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.99/transport/' . $row['voters'] . '">Voters ID</embed><br/>'; ?>
                         <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.99/transport/' . $row['RRegCertificate'] . '">Registration Certificate</embed><br/>'; ?>
                         <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.99/transport/' . $row['ROtherDoc'] . '">Other Document</embed><br/>'; ?>
-                        <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.99/transport/' . $row['RMVIReport'] . '">MVI & Police Report</embed><br/>'; ?>
+                        <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.99/transport/' . $row['RMVIReport'] . '">MVI & Police Report</embed><br/>'; ?> -->
 
                 <?php       }
                 }

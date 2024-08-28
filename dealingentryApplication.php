@@ -25,43 +25,50 @@ if (isset($_POST['submit'])) {
     $pNo = $_POST['pNo'];
     $domain = $_POST['domain'];
 
-    $voters = $_FILES["voters"]["name"];
+    $sqlFile = "SELECT * from fileno where class_id=$VehicleType";
+    $fileResult  = $con->query($sqlFile);
+    $rowfile = $fileResult->fetch_assoc();
+    $fileNo = $rowfile['file_no'];
+
+    /* $voters = $_FILES["voters"]["name"];
     $pVoters = $_FILES["pVoters"]["name"];
     $saleLetter = $_FILES["saleLetter"]["name"];
     $regCertf = $_FILES["regCertf"]["name"];
     $plying = $_FILES["plying"]["name"];
-    $pollution = $_FILES["pollution"]["name"];
-	
-	if(!file_exists($targetDir = $targetDir . '/' . $regNo . '/')){
-		mkdir($targetDir . '/' . $regNo . '/', 0777, true);
-	}
+    $pollution = $_FILES["pollution"]["name"]; */
 
-    $voters = basename($_FILES["voters"]["name"]);
-    $votersFilePath = $targetDir . $voters;
+    // if (!file_exists($targetDir = $targetDir . '/' . $regNo . '/')) {
+    //     mkdir($targetDir . '/' . $regNo . '/', 0777, true);
+    // }
 
-    $pVoters = basename($_FILES["pVoters"]["name"]);
-    $pVotersFilePath = $targetDir . $pVoters;
+    // $voters = basename($_FILES["voters"]["name"]);
+    // $votersFilePath = $targetDir . $voters;
 
-    $saleLetter = basename($_FILES["saleLetter"]["name"]);
-    $saleLetterFilePath = $targetDir . $saleLetter;
+    // $pVoters = basename($_FILES["pVoters"]["name"]);
+    // $pVotersFilePath = $targetDir . $pVoters;
 
-    $regCertf = basename($_FILES["regCertf"]["name"]);
-    $regCertfFilePath = $targetDir . $regCertf;
+    // $saleLetter = basename($_FILES["saleLetter"]["name"]);
+    // $saleLetterFilePath = $targetDir . $saleLetter;
 
-    $plying = basename($_FILES["plying"]["name"]);
-    $plyingFilePath = $targetDir . $plying;
+    // $regCertf = basename($_FILES["regCertf"]["name"]);
+    // $regCertfFilePath = $targetDir . $regCertf;
 
-    $pollution = basename($_FILES["pollution"]["name"]);
-    $pollutionFilePath = $targetDir . $pollution;
+    // $plying = basename($_FILES["plying"]["name"]);
+    // $plyingFilePath = $targetDir . $plying;
 
-    $fileType = pathinfo($votersFilePath, PATHINFO_EXTENSION);
+    // $pollution = basename($_FILES["pollution"]["name"]);
+    // $pollutionFilePath = $targetDir . $pollution;
 
-    if (
+    // $fileType = pathinfo($votersFilePath, PATHINFO_EXTENSION);
+
+    /*     if (
         isset($_POST["submit"]) && !empty($_FILES["voters"]["name"]) && !empty($_FILES["pVoters"]["name"]) && !empty($_FILES["saleLetter"]["name"]) && !empty($_FILES["regCertf"]["name"])
         && !empty($_FILES["plying"]["name"]) && !empty($_FILES["pollution"]["name"])
-    ) {
+    ) { */
 
-        //allow certain file formats
+    if (isset($_POST["submit"])) {
+
+        /* //allow certain file formats
         $allowTypes = array('jpg', 'png', 'jpeg', 'pdf');
         if (in_array($fileType, $allowTypes)) {
             //upload file to server
@@ -100,33 +107,43 @@ if (isset($_POST['submit'])) {
         }
     } else {
         $statusMsg = 'Please select a file to upload.';
-    }
+    } */
 
-    $sql = "INSERT INTO `entry`(`name`, `fName`, `address`, `regNo`, `reason`,`pHolderName`, `pHolder`, `phoneNo`,`typeOfVehicle`,`dto`,`domain`,`dot`,`deceased`,`place`,
+        /*  $sql = "INSERT INTO `entry`(`name`, `fName`, `address`, `regNo`, `reason`,`pHolderName`, `pHolder`, `phoneNo`,`typeOfVehicle`,`dto`,`domain`,`dot`,`deceased`,`place`,
     `relation`,`news`,`newsDate`,`transferDate`,`appName`,`pNo`,`voters`,`pVoters`,`saleLetter`,`regCertf`,`plying`,`pollution`,`adtsta`) 
     VALUES ('$name','$fName','$address','$regNo','$reason','$currentOwnerName','$currentOwner','$phoneNo','$VehicleType','$dto','$domain','$dot','$deceased','$place',
-    '$relation','$news','$newsDate','$transferDate','$appName','$pNo','$votersFilePath','$pVotersFilePath','$saleLetterFilePath','$regCertfFilePath','$plyingFilePath','$pollutionFilePath',1)";
-    if ($result = $con->query($sql)) {
-        echo '<script>
-         $(document).ready(function(){
+    '$relation','$news','$newsDate','$transferDate','$appName','$pNo','$votersFilePath','$pVotersFilePath','$saleLetterFilePath','$regCertfFilePath','$plyingFilePath','$pollutionFilePath',1)"; */
+        $sql = "INSERT INTO `entry`(`name`, `fName`, `address`, `regNo`, `reason`,`pHolderName`, `pHolder`, `phoneNo`,`typeOfVehicle`,`dto`,`domain`,`dot`,`deceased`,`place`,
+    `relation`,`news`,`newsDate`,`transferDate`,`appName`,`adtsta`, `efileNo`) 
+    VALUES ('$name','$fName','$address','$regNo','$reason','$currentOwnerName','$currentOwner','$phoneNo','$VehicleType','$dto','$domain','$dot','$deceased','$place',
+    '$relation','$news','$newsDate','$transferDate','$appName',1, '$fileNo')";
+        $result = $con->query($sql);
+        $last_id = $con->insert_id;
+        if ($result == TRUE) {
+            echo '<script>
+        $(document).ready(function(){
                 Swal.fire({
-                title: "Application Entered",
+                title: "Application Submitted",
+                type: "success"
+            }).then(function() {
+                window.location = "inspection.php?id=' . $last_id . '";
+                
+            })});
+        </script>';
+        } else {
+            echo '<script>
+        $(document).ready(function(){
+                Swal.fire({
+                title: "Application Approved",
                 type: "success"
             }).then(function() {
                 window.location = "index.php";
+                
             })});
         </script>';
-    } else {
-        echo    "<script type='text/javascript'>
-        $(document).ready(function(){
-                  Swal . fire(
-            'Error!',
-            'Not Recorded!',   
-            'error'
-        )});
-        </script>";
+        }
+        $con->close();
     }
-    $con->close();
 }
 ?>
 <div class="container">
@@ -242,7 +259,7 @@ if (isset($_POST['submit'])) {
         <div class="col-md-8">
 
         </div>
-        <div class="col-6">
+        <!-- <div class="col-6">
             <hr />
             <h5>Documents</h5>
             <hr />
@@ -269,11 +286,13 @@ if (isset($_POST['submit'])) {
             <input class="form-control" name="mvi" type="file" id="formFile6">
             <label for="formFile7" class="form-label">Death Certificate</label>
             <input class="form-control" name="death" type="file" id="formFile7">
-        </div>
+        </div> -->
         <div class="mb-3">
             <button type="submit" name="submit" value="submit" class="btn btn-primary">Submit</button>
         </div>
     </form>
 </div>
 
-<?php include('footer.php') ?>
+</body>
+
+</html>

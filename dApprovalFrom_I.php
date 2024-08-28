@@ -60,9 +60,9 @@ if (isset($_GET['id'])) {
             $fc = date('d-m-Y', strtotime($row['fc']));
             $fp = date('d-m-Y', strtotime($row['fp']));
             $i = date('d-m-Y', strtotime($row['i']));
-			$p = isset($row['p']) ? date('d-m-Y', strtotime($row['p'])) : ''; 
+            $p = isset($row['p']) ? date('d-m-Y', strtotime($row['p'])) : '';
             $remarks = $row['remarks'];
-            $RChasisNo = $row['RChasisNo'];
+            $RChasisNo = $row['RChasisNo'] ? $row['RChasisNo'] : "NA";
             $approve = $row['adtmvApproveDate'];
             $inspection = $row['inspection'];
             $ddremarks = $row['ddRemarks'];
@@ -132,10 +132,13 @@ if (isset($_GET['id'])) {
                             <td>5. Insurance</td>
                             <td><?php echo $i . ', ' . $iD->format("%R%a Days left for renewal"); ?></td>
                         </tr>
-                        <tr>
-                            <td>6. PUCC</td>
-                            <td><?php echo $p . ', ' . $pD->format("%R%a Days left for renewal"); ?></td>
-                        </tr>
+                        <?php if ($RChasisNo == "NA") {
+                            echo '<tr>
+                                                <td>6. PUCC</td>
+                                                <td>' . $p . ', ' . $pD->format("%R%a Days left for renewal") . '</td>
+                                            </tr>';
+                        }
+                        ?>
                         <tr>
                             <td>Approved on</td>
                             <td><?php echo $approve; ?></td>

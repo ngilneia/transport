@@ -9,10 +9,10 @@ $targetDir = "uploads";
 $statusMsg = '';
 if (isset($_POST['submit'])) {
     $Rname = $_POST['Rname'];
-	$RFname = $_POST['RFname'];
+    $RFname = $_POST['RFname'];
     $Raddress = $_POST['Raddress'];
     $RregNo = $_POST['RregNo'];
-    $RCurrentOwnerName = $_POST['RCurrentOwnerName'];
+    $RCurrentOwnerName = $_POST['RCurrentOwnerName'] ? $_POST['RCurrentOwnerName'] : "NA";
     $RKum = $_POST['RKum'];
     $RphoneNo = $_POST['RphoneNo'];
     $RVehicleType = $_POST['RVehicleType'];
@@ -21,19 +21,25 @@ if (isset($_POST['submit'])) {
     $REngineNo = $_POST['REngineNo'];
     $RLoan = $_POST['RLoan'];
     $RDetailofPermit = $_POST['RDetailofPermit'];
-    $RMotorModel = $_POST['RMotorModel'];
+    $RMotorModel = $_POST['RMotorModel'] ? $_POST['RMotorModel'] : "NA";
     $domain = $_POST['domain'];
-	$dto = $_POST['dto'];
-	$replacement = $_POST['replacement'];
+    $dto = $_POST['dto'];
+    $replacement = $_POST['replacement'];
 
-    $Rvoters = $_FILES["Rvoters"]["name"];
+
+    $sqlFile = "SELECT * from fileno where class_id=$RVehicleType";
+    $fileResult  = $con->query($sqlFile);
+    $rowfile = $fileResult->fetch_assoc();
+    $fileNo = $rowfile['rFile_no'];
+
+    /*$Rvoters = $_FILES["Rvoters"]["name"];
     $RRegCertf = $_FILES["RRegCertf"]["name"];
     $ROtherDoc = $_FILES["ROtherDoc"]["name"];
     $RMVIReport = $_FILES["RMVIReport"]["name"];
 
-    if(!file_exists($targetDir = $targetDir . '/' . $regNo . '/')){
-		mkdir($targetDir . '/' . $regNo . '/', 0777, true);
-	}
+    if (!file_exists($targetDir = $targetDir . '/' . $RregNo . '/')) {
+        mkdir($targetDir . '/' . $RregNo . '/', 0777, true);
+    }
 
     $Rvoters = basename($_FILES["Rvoters"]["name"]);
     $RvotersFilePath = $targetDir . $Rvoters;
@@ -79,15 +85,15 @@ if (isset($_POST['submit'])) {
         }
     } else {
         $statusMsg = 'Please select a file to upload.';
-    }
+    }*/
     $sql = "INSERT INTO `entry`(
-    `name`,`fname`, `address`, `regNo`, `pHolderName`, `phoneNo`,`typeOfVehicle`,`dto`,`replacement`,`voters`,`RYearofManufacture`,`RKum`,
-    `RChasisNo`,`REngineNo`,`RLoan`,`RDetailofPermit`, `RMotorModel`,`domain`,`RRegCertificate`,`ROtherDoc`,`RMVIReport`,`adtsta` ) 
+    `name`,`fname`, `address`, `regNo`, `pHolderName`, `phoneNo`,`typeOfVehicle`,`dto`,`replacement`,`RYearofManufacture`,`RKum`,
+    `RChasisNo`,`REngineNo`,`RLoan`,`RDetailofPermit`, `RMotorModel`,`domain`,`adtsta`,`eFileNo` ) 
     VALUES (
     '$Rname','$RFname','$Raddress','$RregNo','$RCurrentOwnerName','$RphoneNo',
-    '$RVehicleType','$dto','$replacement','$RvotersFilePath','$RYearofManufacture',
+    '$RVehicleType','$dto','$replacement','$RYearofManufacture',
     '$RKum','$RChasisNo','$REngineNo','$RLoan','$RDetailofPermit',
-    '$RMotorModel','$domain','$RRegCertfFilePath','$ROtherDocFilePath','$RMVIReportFilePath',1)";
+    '$RMotorModel','$domain',1,'$fileNo')";
     if ($result = $con->query($sql)) {
         echo '<script>
          $(document).ready(function(){
@@ -118,7 +124,7 @@ if (isset($_POST['submit'])) {
             <label for="name" class="form-label fw-semibold">Name of Applicant</label>
             <input type="text" name="Rname" class="form-control" id="name" placeholder="Name">
         </div>
-		        <div class="col-md-4">
+        <div class="col-md-4">
             <label for="fname" class="form-label fw-semibold">Fathers Name</label>
             <input type="text" name="RFname" class="form-control" id="fname" placeholder="Fathers Name">
         </div>
@@ -165,10 +171,10 @@ if (isset($_POST['submit'])) {
             <label for="REngineNo" class="form-label fw-semibold">Engine No</label>
             <input type="text" name="REngineNo" class="form-control" id="REngineNo" placeholder="Engine No">
         </div>
-        <div class="col-md-4">
+        <!--<div class="col-md-4">
             <label for="RCurrentOwnerName" class="form-label fw-semibold">Current Owner Name</label>
             <input type="text" name="RCurrentOwnerName" class="form-control" id="RCurrentOwnerName" placeholder="Current Owner Name">
-        </div>
+        </div>-->
         <div class="col-md-4">
             <label for="RLoan" class="form-label fw-semibold">Loan hmang a lei a ni em</label>
             <select name="RLoan" class="form-control" id="RLoan">
@@ -181,15 +187,15 @@ if (isset($_POST['submit'])) {
             <label for="RDetailofPermit" class="form-label fw-semibold">Detail of Permit</label>
             <input type="text" name="RDetailofPermit" class="form-control" id="RDetailofPermit" placeholder="Detail of Permit">
         </div>
-        <div class="col-md-4">
+        <!--<div class="col-md-4">
             <label for="RMotorModel" class="form-label fw-semibold">Replace na tur Motor hming leh Model</label>
             <input type="text" name="RMotorModel" class="form-control" id="RMotorModel" placeholder="Motor Model">
-        </div>
+        </div>-->
         <div class="col-md-4">
             <label for="domain" class="form-label">Domain</label>
             <input type="text" name="domain" class="form-control" id="domain" placeholder="Domain">
         </div>
-		<div class="col-md-4">
+        <div class="col-md-4">
             <label for="dto" class="form-label">DTO</label>
             <select name="dto" class="form-control" id="dto">
                 <option value="">---SELECT---</option>
@@ -206,19 +212,19 @@ if (isset($_POST['submit'])) {
                 ?>
             </select>
         </div>
-		
-		<div class="col-md-4">
+
+        <div class="col-md-4">
             <label for="replacement" class="form-label">Replacement</label>
             <select name="replacement" class="form-control" id="replacement">
                 <option value="">---SELECT---</option>
-				<option value="FIRST TIME REPLACEMENT">FIRST TIME</option>
-				<option value="SECOND TIME REPLACEMENT">SECOND TIME</option>                
+                <option value="FIRST TIME REPLACEMENT">FIRST TIME</option>
+                <option value="SECOND TIME REPLACEMENT">SECOND TIME</option>
             </select>
         </div>
         <div class="col-md-8">
 
         </div>
-        <div class="col-6">
+        <!--<div class="col-6">
             <hr />
             <h5>Documents</h5>
             <hr />
@@ -231,12 +237,15 @@ if (isset($_POST['submit'])) {
             <input class="form-control" name="RMVIReport" type="file" id="formFile2">
             <label for="formFile" class="form-label">4. Motor neitu Voter ID</label>
             <input class="form-control" name="Rvoters" type="file" id="formFile">
-        </div>
+        </div>-->
 
         <div class="mb-3">
             <button type="submit" name="submit" value="submit" class="btn btn-primary">Submit</button>
         </div>
     </form>
 </div>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/sweetalert2.all.min.js"></script>
+</body>
 
-<?php include('footer.php') ?>
+</html>

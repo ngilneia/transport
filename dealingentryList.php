@@ -14,38 +14,46 @@ include("header.php");
                 <th>Fathers Name</th>
                 <th>Address</th>
                 <th>Registration No</th>
-                <th>Current Holder</th>
                 <th>Phone No</th>
-                <th>Type of Vehicle</th>
                 <th>DTO</th>
-                <th>Documents</th>
+                <th>Status</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
 
             <?php
+
             $sql = "SELECT * FROM entry where RChasisNo is null order by entry_id desc";
             $result = $con->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
+                    $id = $row['entry_id'];
             ?>
                     <tr>
-                        <td><?php echo $row['entry_id']; ?></td>
+                        <td><?php echo $id; ?></td>
                         <td><?php echo $row['name']; ?></td>
                         <td><?php echo $row['fname']; ?></td>
                         <td><?php echo $row['address']; ?></td>
                         <td><?php echo $row['regNo']; ?></td>
-                        <td><?php echo $row['pHolder']; ?></td>
                         <td><?php echo $row['phoneNo']; ?></td>
-                        <td><?php echo $row['typeOfVehicle']; ?></td>
                         <td><?php echo $row['dto']; ?></td>
                         <td>
-                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://10.180.21.105/transport/' . $row['voters'] . '">Voters ID</a><br/>'; ?>
-                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://10.180.21.105/transport/' . $row['saleLetter'] . '">Sales Letter</a><br/>'; ?>
-                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://10.180.21.105/transport/' . $row['regCertf'] . '">Registration Certificate</a><br/>'; ?>
-                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://10.180.21.105/transport/' . $row['plying'] . '">Plying Permit</a><br/>'; ?>
-                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://10.180.21.105/transport/' . $row['pollution'] . '">Pollution Certificate</a>'; ?>
+                            <?php
+                            $sqldd = "SELECT dd,jd,d FROM entry WHERE entry_id=$id";
+                            $result9 = $con->query($sqldd);
+                            while ($row9 = $result9->fetch_assoc()) {
+                                if (empty($row9['dd']) && empty($row9['jd']) && empty($row9['d'])) {
+                                    echo '<button class="btn btn-warning">DD</button>';
+                                } else if (!empty($row9['dd']) && empty($row9['jd']) && empty($row9['d'])) {
+                                    echo '<button class="btn btn-warning">JD</button>';
+                                } else if (!empty($row9['dd']) && !empty($row9['jd']) && empty($row9['d'])) {
+                                    echo '<button class="btn btn-warning">DIRECTOR</button>';
+                                } else {
+                                    echo 'Approved';
+                                }
+                            }
+                            ?>
                         </td>
 
                         <?php
@@ -74,5 +82,12 @@ include("header.php");
     </table>
 
 </div>
+<script type='text/javascript'>
+    $('#entry').DataTable({
+        order: [
+            [0, 'desc']
+        ]
+    });
+</script>
 
 <?php include('footer.php') ?>

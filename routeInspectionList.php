@@ -8,11 +8,10 @@ if (isset($_GET['id'])) {
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $name = $row['name'];
-            $fName = $row['fname'];
             $address = $row['address'];
             $regNo = $row['regNo'];
             $reason = $row['reason'];
-            $pHolder = $row['pHolder'];
+            $phoneNo = $row['phoneNo'];
         }
     }
 }
@@ -27,36 +26,35 @@ if (isset($_GET['id'])) {
                 <th>Name</th>
                 <th>Address</th>
                 <th>Registration No</th>
-                <th>File</th>
+                <th>Reason</th>
+                <th>Phone No</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
 
             <?php
-            $sql = "SELECT * FROM entry where RCHasisNo is not null and mvi is null";
+            $sql = "SELECT * FROM entry where fromRoute is not null and mvi is null";
             $result = $con->query($sql);
             if ($result->num_rows > 0) {
+                $i = 1;
                 while ($row = $result->fetch_assoc()) {
             ?>
                     <tr>
-                        <td><?php echo $row['entry_id']; ?></td>
+                        <td><?php echo $i++; ?></td>
                         <td><?php echo $row['name']; ?></td>
                         <td><?php echo $row['address']; ?></td>
                         <td><?php echo $row['regNo']; ?></td>
-                        <td>
-                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://10.180.21.99/transport/' . $row['voters'] . '">Voters ID</a><br/>'; ?>
-                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://10.180.21.99/transport/' . $row['RRegCertificate'] . '">Registration Certificate</a><br/>'; ?>
-                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://10.180.21.99/transport/' . $row['ROtherDoc'] . '">Other Documents</a><br/>'; ?>
-                            <?php echo '<a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="http://10.180.21.99/transport/' . $row['RMVIReport'] . '">MVI or Police Report</a><br/>'; ?>
-                        </td>
+                        <td><?php echo $row['reason']; ?></td>
+                        <td><?php echo $row['phoneNo']; ?></td>
+
                         <?php
                         if (!is_null($row['inspection'])) {
                             echo '<td><a class="btn btn-success" href="">Inspected</a></td>';
                         } else if ($row['dd'] == 2 or $row['jd'] == 2 or $row['d'] == 2) {
-                            echo '<td><a class="btn btn-danger" href="Rinspection.php?id=' . $row["entry_id"] . ';" ?>Rejected<br/>' . $row['ddRemarks'] . $row['jdRemarks'] . $row['dRemarks'] . '</a></td>';
+                            echo '<td><a class="btn btn-danger" href="routeInspection.php?id=' . $row["entry_id"] . ';" ?>Rejected<br/>' . $row['ddRemarks'] . $row['jdRemarks'] . $row['dRemarks'] . '</a></td>';
                         } else {
-                            echo '<td><a class="btn btn-info" href="Rinspection.php?id=' . $row["entry_id"] . ';" ?>Inspect</a></td>';
+                            echo '<td><a class="btn btn-info" href="routeInspection.php?id=' . $row["entry_id"] . ';" ?>Inspect</a></td>';
                         }
                         ?>
                     </tr>
@@ -65,7 +63,9 @@ if (isset($_GET['id'])) {
             ?>
         </tbody>
     </table>
+
 </div>
+
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="DataTables/datatables.min.js"></script>
 <script type='text/javascript'>

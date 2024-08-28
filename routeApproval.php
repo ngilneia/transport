@@ -12,7 +12,7 @@ if (@file_exists(dirname(__FILE__) . '/lang/eng.php')) {
 }
 $pdf->setPrintHeader(false);
 $pdf->setPrintFooter(false);
-$pdf->SetTitle('Transfer of Permit');
+$pdf->SetTitle('Route Transfer');
 $pdf->SetMargins(15, 5, 15);
 $pdf->SetFont('times', '', 12);
 $pdf->AddPage('P', 'A4');
@@ -25,25 +25,27 @@ $address = '';
 $filename = '';
 
 $id = $_GET['id'];
-$sql = "SELECT a.name as Name,fname,pHolderName, address,regNo,reason,pHolder,dot,pNo,b.name as ClassName,dto,domain,rate,a.eFileNo,dApproveDate FROM `entry` a INNER JOIN class b on a.typeOfVehicle = b.id  WHERE entry_id=$id";
+$sql = "SELECT a.name as Name,fname,address,regNo,reason,b.name as ClassName,dto,fromRoute,toRoute,routeRate,eFileNo,dApproveDate FROM `entry` a 
+INNER JOIN class b on a.typeOfVehicle = b.id  
+WHERE entry_id=$id";
 $result = $con->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $name = strtoupper($row['Name'] ? $row['Name'] : "");
-        $fName = strtoupper($row['fname']);
-        $pHolderName = strtoupper($row['pHolderName'] ? $row['pHolderName'] : "");
+        $fName = strtoupper($row['fname'] ? $row['fname'] : "");
         $address = strtoupper($row['address'] ? $row['address'] : "");
         $regNo = strtoupper($row['regNo']);
+        $fromRoute =
+            strtoupper($row['fromRoute'] ? $row['fromRoute'] : "");
+        $toRoute =
+            strtoupper($row['toRoute'] ? $row['toRoute'] : "");
+
+        $routeRate = $row['routeRate'] ? $row['routeRate'] : "";
         $reason = strtoupper($row['reason'] ? $row['reason'] : "");
-        $pHolder = strtoupper($row['pHolder'] ? $row['pHolder'] : "");
-        $dot = strtoupper($row['dot'] ? $row['dot'] : "");
-        $pno = strtoupper($row['pNo'] ? $row['pNo'] : "");
         $vClass = strtoupper($row['ClassName']);
         $dto = strtoupper($row['dto'] ? $row['dto'] : "");
-        $domain = strtoupper($row['domain'] ? $row['domain'] : "");
-        $rate = strtoupper($row['rate'] ? $row['rate'] : "");
-        $file_no = $row['eFileNo'] ? strtoupper($row['eFileNo']) : "NA";
-        $dApproveDate = date('d-m-Y', strtotime($row['dApproveDate']));
+        $routeFileno = strtoupper($row['eFileNo'] ? $row['eFileNo'] : "");
+        $dApproveDate = date('d-m-Y', strtotime($row['dApproveDate'] ? $row['dApproveDate'] : ""));
     }
 }
 
@@ -59,15 +61,16 @@ $html = '<html>
                 <h1></h1>
                 <table>
                     <tr>
-                        <td style="text-align: left;"><strong>' . $file_no . '</strong></td>
+                        <td style="text-align: left;"><strong>' . $routeFileno . '</strong></td>
                         <td style="text-align: right;"><strong>Dated Aizawl the ' . $dApproveDate . '</strong></td>
                     </tr>
                 </table>
                              <br/>
                 <h3 style="text-align: center; text-decoration:underline;">ORDER</h3>
-                <p style="text-align: justify; text-indent:30px;">On payment of <strong>Rs. ' . $rate . ' </strong> only and as permissible under Sec 82 of MV Act 1988 r/w Rule 113 of the Mizoram Motor Vehicle Rules 1996 <strong>' . $domain . ' ' . $vClass . '</strong> bearing Registration Number
-                <strong>' . $regNo . '</strong> is hereby allowed transfer of permit from <strong>' . $pHolderName . ' of ' . $pHolder . ' to ' . $name . ' S/o,D/o,H/o ' . $fName . ' of ' . $address . '</strong></p>
-                <p style="text-align: justify; text-indent:30px;">The new<strong> ' . $vClass . '</strong> owner should contact<strong> DTO ' . $dto . ' District </strong> with his/her Registration Certificates etc. for making necessary corrections. Payment should be made at the concerned DTO
+                <p style="text-align: justify; text-indent:30px;"><strong>' . $vClass . '</strong> bearing registration no <strong>' . $regNo . ' </strong>belonging to <strong>' . $name . ' s/o ' . $fName . ' of ' . $address . '</strong> is hereby
+                allowed to change its service route from <strong>' . $fromRoute . ' to ' . $toRoute . '</strong>
+                on usual payment of route transfer fee amounting to Rs ' . $routeRate . ' with immediate effect and until futher order. Payment should be made at the concerned DTO for issuance of fresh permit.
+                
                 </p>
                 <br/>
                 <br/>
@@ -91,7 +94,7 @@ $html = '<html>
 
                     <tr>
 					<td></td>
-                        <td style="text-align: left; width:65%;"><strong>' . $file_no . '</strong></td>
+                        <td style="text-align: left; width:65%;"><strong>' . $routeFileno . '</strong></td>
                         <td style="text-align: right; width:35%;"><strong>Dated Aizawl the ' . $dApproveDate . '</strong></td>
                     </tr>
                     <tr>
@@ -101,7 +104,8 @@ $html = '<html>
                     1. DTO, ' . $dto . ' District for kind information<br/>
                     2. Holder concerned for information and necessary action<br/>
                     3. IT Cell, Transport Dept. for information and necessary action<br/>
-                    4. Office Order Book</p>
+                    4. Office Order Book<br/>
+                    5. Dealing Assistant(STA) for information</p>
                     </td>
                     </tr>
                     <tr>
