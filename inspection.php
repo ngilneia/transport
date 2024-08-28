@@ -27,7 +27,15 @@ if (isset($_POST['submit'])) {
     $result = $con->query($updateSql);
     if ($result == TRUE && $insert == TRUE) {
         echo
-        '';
+        '<script>
+        $(document).ready(function(){
+                Swal.fire({
+                title: "Application Approved",
+                type: "success"
+            }).then(function() {
+                window.location = "inspectionList.php";
+            })});
+        </script>';
     } else {
         echo "Error:" . $updateSql . "<br>" . $con->error;
         echo "Error:" . $sql . "<br>" . $con->error;
@@ -52,32 +60,32 @@ if (isset($_GET['id'])) {
             <p>Inspection</p>
             <form class="row g-3" method="post" enctype="multipart/form-data">
                 <div class="form-check col-2">
-                    <label class="form-check-label" for="regNo">
+                    <label class="form-check-label" for="11">
                         1) Registration No
                     </label>
-                    <input type="text" name="regNo" class="form-control border-primary" id="regNo" value="<?php echo $regNo; ?>" readonly="readonly">
+                    <input type="text" name="regNo" class="form-control" id="11" value="<?php echo $regNo; ?>" readonly="readonly">
                 </div>
                 <div class="form-check col-2">
-                    <label class="form-check-label" for="name">
+                    <label class="form-check-label" for="12">
                         2) Owner's Name
                     </label>
-                    <input type="text" name="name" class="form-control border-primary" id="name" value="<?php echo $name; ?>" readonly="readonly">
+                    <input type="text" name="name" class="form-control" id="12" value="<?php echo $name; ?>" readonly="readonly">
                 </div>
                 <div class="form-check col-4">
-                    <label class="form-check-label" for="address">
+                    <label class="form-check-label" for="13">
                         3) Address
                     </label>
-                    <input type="text" name="address" class="form-control border-primary" id="address" value="<?php echo $address; ?>" readonly="readonly">
+                    <input type="text" name="address" class="form-control" id="13" value="<?php echo $address; ?>" readonly="readonly">
                 </div>
                 <div class="form-check col-2">
                     <label for="vClass" class="form-check-label">4) Vehicle Class</label>
-                    <select name="vClass" class="form-control border-primary" id="vClass">
+                    <select name="vClass" class="form-control" id="vClass">
                         <?php
                         $run = 'SELECT * from class';
                         $queryt = $con->query($run);
                         if ($queryt->num_rows > 0) {
                             while ($row = $queryt->fetch_assoc()) {
-                                echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
+                                echo '<option value="' . $row['name'] . '">' . $row['name'] . '</option>';
                             }
                         }
                         ?>
@@ -85,7 +93,7 @@ if (isset($_GET['id'])) {
                 </div>
                 <div class="form-check col-2">
                     <label for="mYear" class="form-check-label">5) Year of Manufacture as printed in RC</label>
-                    <input type="text" name="mYear" class="form-control border-primary" id="mYear" autocomplete="off">
+                    <input type="text" name="mYear" class="form-control" id="mYear" autocomplete="off">
                 </div>
                 <div class="form-check">
                     <label class="form-check-label">
@@ -93,34 +101,32 @@ if (isset($_GET['id'])) {
                     </label>
                 </div>
                 <div class="form-check col-4">
-                    <label class="form-check-label" for="rTax">1) Road Tax</label>
-                    <input class="form-control border-primary" type="date" name="rTax" id="rTax" autocomplete="off">
+                    <label class="form-check-label" for="4">1) Road Tax</label>
+                    <input class="form-control" type="date" name="rTax" id="4" autocomplete="off">
                 </div>
                 <div class="form-check col-4">
-                    <label class="form-check-label" for="pTax">2) P&amp;G TAX</label>
-                    <input class="form-control border-primary" type="date" name="pTax" id="pTax" autocomplete="off">
+                    <label class="form-check-label" for="5">2) P&amp;G TAX</label>
+                    <input class="form-control" type="date" name="pTax" id="5" autocomplete="off">
                 </div>
                 <div class="form-check col-4">
-                    <label class="form-check-label" for="fc">3) Fitness Certificate</label>
-                    <input class="form-control border-primary" type="date" name="fc" id="fc" autocomplete="off">
+                    <label class="form-check-label" for="6">3) Fitness Certificate</label>
+                    <input class="form-control" type="date" name="fc" id="6" autocomplete="off">
                 </div>
                 <div class="form-check col-4">
-                    <label class="form-check-label" for="fp">4) Plying Permit</label>
-                    <input class="form-control border-primary" type="date" name="fp" id="fp" autocomplete="off">
+                    <label class="form-check-label" for="7">4) Plying Permit</label>
+                    <input class="form-control" type="date" name="fp" id="7" autocomplete="off">
                 </div>
                 <div class="form-check col-4">
-                    <label class="form-check-label" for="i">5) Insurance</label>
-                    <input class="form-control border-primary" type="date" name="i" id="i" autocomplete="off">
+                    <label class="form-check-label" for="8">5) Insurance</label>
+                    <input class="form-control" type="date" name="i" id="8" autocomplete="off">
                 </div>
                 <div class="form-check col-4">
-                    <label class="form-check-label" for="p">6) Pollution</label>
-                    <input class="form-control border-primary" type="date" name="p" id="p" autocomplete="off">
+                    <label class="form-check-label" for="9">6) Pollution</label>
+                    <input class="form-control" type="date" name="p" id="9" autocomplete="off">
                 </div>
-                <div>
-                    <input type="text" id="dd" name="dd" value="DEPUTY DIRECTOR">
-                    <input type="text" id="jd" name="jd" value="JOINT DIRECTOR">
-                    <input type="text" id="director" name="director" value="DIRECTOR">
-                </div>
+
+
+
         </div>
         <hr />
         <div class="col">
@@ -128,22 +134,26 @@ if (isset($_GET['id'])) {
             <div class="row">
                 <div class="form-check col-6">
                     <label class="form-check-label" for="chasis">Chasis No. Pencil Print enclosed</label>
-                    <select name="chasis" id="chasis" class="form-select form-control border-primary">
+                    <select name="chasis" class="form-select">
                         <option value="YES">YES</option>
                         <option value="NO">NO</option>
                     </select>
                 </div>
                 <div class="form-check col-6">
-                    <label class="form-check-label" for="place">Place of Inspection</label>
-                    <input type="text" name="place" class="form-control border-primary" id="place">
+                    <label class="form-check-label" for="place">
+                        Place of Inspection
+                    </label>
+                    <input type="text" name="place" class="form-control" id="place">
                 </div>
             </div>
             <div class="form-check col-8">
-                <label class="form-check-label" for="remarks">Remarks</label>
-                <input type="text" class="form-control border-primary" id="remarks" name="remarks" placeholder="Remarks">
+                <label class="form-check-label" for="remarks">
+                    Remarks
+                </label>
+                <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Remarks">
             </div>
             <div class="col-12  text-center">
-                <button type="submit" name="submit" value="submit" id="AddBtn" class="btn btn-primary"> Submit </button>
+                <button type="submit" name="submit" value="submit" class="btn btn-primary"> Submit </button>
             </div>
             </form>
         </div>
@@ -152,60 +162,6 @@ if (isset($_GET['id'])) {
 } ?>
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/sweetalert2.all.min.js"></script>
-<script type="module">
-    // Import the functions you need from the SDKs you need
-    import {
-        initializeApp
-    } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyC6GEHIsRxqejh-6WwXssKP9aHumxgkBbY",
-        authDomain: "permit-43daf.firebaseapp.com",
-        databaseURL: "https://permit-43daf-default-rtdb.firebaseio.com",
-        projectId: "permit-43daf",
-        storageBucket: "permit-43daf.appspot.com",
-        messagingSenderId: "288540294121",
-        appId: "1:288540294121:web:eacc6855623701ed6e6978"
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    import {
-        getDatabase,
-        ref,
-        set
-    } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
-
-    const db = getDatabase();
-    let name = document.getElementById('name');
-    let regNo = document.getElementById('regNo');
-    let dd = document.getElementById('dd');
-    let jd = document.getElementById('jd');
-    let director = document.getElementById('director');
-
-    let AddBtn = document.getElementById('AddBtn');
-
-    function AddData() {
-        set(ref(db, 'exmp/' + regNo.value), {
-                name: name.value,
-                regNo: regNo.value,
-                jd: jd.value,
-                dd: dd.value,
-                director: director.value
-            })
-            .then(() => {
-                alert("Data Added Successfully")
-            })
-            .catch((error) => {
-                alert("Unsuccessful");
-                console.log(error)
-            })
-
-    }
-
-    AddBtn.addEventListener('click', AddData);
-</script>
-
 </body>
 
 </html>

@@ -4,7 +4,7 @@
 <script type='text/javascript'>
     $('#entry').DataTable({
         order: [
-            [0, 'desc']
+            [57, 'desc']
         ]
     });
 </script>

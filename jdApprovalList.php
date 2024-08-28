@@ -18,7 +18,7 @@ include("header.php");
         <tbody>
 
             <?php
-            $sql = "SELECT * FROM entry a join inspection b on a.entry_id=b.entry_id where dd<2 and RChasisNo is null";
+            $sql = "SELECT * FROM entry a join inspection b on a.entry_id=b.entry_id where dd<2 and RChasisNo is null order by a.entry_id desc";
             $result = $con->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {

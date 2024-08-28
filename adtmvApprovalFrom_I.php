@@ -99,7 +99,7 @@ if (isset($_GET['id'])) {
                     </tr>
                     <tr>
                         <td>2. P&G Tax</td>
-                        <td><?php echo $p . ', ' . $pD->format("%R%a Days left for renewal"); ?></td>
+                        <td><?php echo $pTax . ', ' . $pTaxD->format("%R%a Days left for renewal"); ?></td>
                     </tr>
                     <tr>
                         <td>3. Fitness</td>
@@ -107,7 +107,7 @@ if (isset($_GET['id'])) {
                     </tr>
                     <tr>
                         <td>4. Plying permit</td>
-                        <td><?php echo $pTax . ', ' . $pTaxD->format("%R%a Days left for renewal"); ?></td>
+                        <td><?php echo $fp . ', ' . $fpD->format("%R%a Days left for renewal"); ?></td>
                     </tr>
                     <tr>
                         <td>5. Insurance</td>
@@ -115,7 +115,7 @@ if (isset($_GET['id'])) {
                     </tr>
                     <tr>
                         <td>6. PUCC</td>
-                        <td><?php echo $fp . ', ' . $fpD->format("%R%a Days left for renewal"); ?></td>
+                        <td><?php echo $p . ', ' . $pD->format("%R%a Days left for renewal"); ?></td>
                     </tr>
                 </table>
             </div>
@@ -385,11 +385,12 @@ if (isset($_GET['id'])) {
                 </div>
             </div>
             <form class="row g-3" method="post" enctype="multipart/form-data">
+                <p>I, the udersigned hereby declare the above validity of documents shown are true and correct</p>
                 <div class="form-check">
                     <label class="form-check-label" for="remarksA">
-                        Remarks of Deputy Director
+                        Remarks
                     </label>
-                    <input type="text" name="remarksA" class="form-control border-primary" id="remarksA">
+                    <input type="text" name="remarksA" class="form-control" id="remarksA">
                 </div>
                 <div class="col text-center">
                     <button type="submit" name="approve" value="approve" class="btn btn-primary">Approve</button>

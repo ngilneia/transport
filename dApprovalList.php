@@ -17,7 +17,7 @@ include("header.php");
         <tbody>
 
             <?php
-            $sql = "SELECT * FROM entry a inner join inspection b on a.entry_id=b.entry_id where chasis is not null and jd<2 and dd<2";
+            $sql = "SELECT * FROM entry a inner join inspection b on a.entry_id=b.entry_id where chasis is not null and jd<2 and dd<2 order by jdApproveDate desc";
             $result = $con->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
@@ -52,7 +52,12 @@ include("header.php");
 <script src="DataTables/datatables.min.js"></script>
 <script type='text/javascript'>
     $(document).ready(function() {
-        new DataTable('#entry');
+        new DataTable('#entry',{
+    pageLength: 50,
+	order: [
+            [54, 'desc']
+        ]
+});
     });
 </script>
 </body>

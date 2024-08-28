@@ -57,7 +57,6 @@ if (isset($_GET['id'])) {
             $fc = date('d-m-Y', strtotime($row['fc']));
             $fp = date('d-m-Y', strtotime($row['fp']));
             $i = date('d-m-Y', strtotime($row['i']));
-            $p = date('d-m-Y', strtotime($row['p']));
             $remarks = $row['remarks'];
             $currentDateTime = new DateTime('now');
             $currentDate = $currentDateTime->format('d-m-Y');
@@ -66,7 +65,6 @@ if (isset($_GET['id'])) {
             $fcD = date_diff(date_create($currentDate), date_create($fc));
             $fpD = date_diff(date_create($currentDate), date_create($fp));
             $iD = date_diff(date_create($currentDate), date_create($i));
-            $pD = date_diff(date_create($currentDate), date_create($p));
         }
 ?>
         <div class="row">
@@ -97,7 +95,7 @@ if (isset($_GET['id'])) {
                     </tr>
                     <tr>
                         <td>2. P&G Tax</td>
-                        <td><?php echo $p . ', ' . $pD->format("%R%a Days left for renewal"); ?></td>
+                        <td><?php echo $pTax . ', ' . $pTaxD->format("%R%a Days left for renewal"); ?></td>
                     </tr>
                     <tr>
                         <td>3. Fitness</td>
@@ -105,16 +103,13 @@ if (isset($_GET['id'])) {
                     </tr>
                     <tr>
                         <td>4. Plying permit</td>
-                        <td><?php echo $pTax . ', ' . $pTaxD->format("%R%a Days left for renewal"); ?></td>
+                        <td><?php echo $fp . ', ' . $fpD->format("%R%a Days left for renewal"); ?></td>
                     </tr>
                     <tr>
                         <td>5. Insurance</td>
                         <td><?php echo $i . ', ' . $iD->format("%R%a Days left for renewal"); ?></td>
                     </tr>
-                    <tr>
-                        <td>6. PUCC</td>
-                        <td><?php echo $fp . ', ' . $fpD->format("%R%a Days left for renewal"); ?></td>
-                    </tr>
+
                 </table>
             </div>
             <div class="col">
@@ -126,10 +121,10 @@ if (isset($_GET['id'])) {
                     while ($row = $result->fetch_assoc()) {
                 ?>
 
-                        <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.105/transport/' . $row['voters'] . '">Voters ID</embed><br/>'; ?>
-                        <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.105/transport/' . $row['RRegCertificate'] . '">Registration Certificate</embed><br/>'; ?>
-                        <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.105/transport/' . $row['ROtherDoc'] . '">Other Document</embed><br/>'; ?>
-                        <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.105/transport/' . $row['RMVIReport'] . '">MVI & Police Report</embed><br/>'; ?>
+                        <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.99/transport/' . $row['voters'] . '">Voters ID</embed><br/>'; ?>
+                        <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.99/transport/' . $row['RRegCertificate'] . '">Registration Certificate</embed><br/>'; ?>
+                        <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.99/transport/' . $row['ROtherDoc'] . '">Other Document</embed><br/>'; ?>
+                        <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.99/transport/' . $row['RMVIReport'] . '">MVI & Police Report</embed><br/>'; ?>
 
                 <?php       }
                 }
@@ -140,7 +135,7 @@ if (isset($_GET['id'])) {
                 <p>I, the udersigned hereby declare the above validity of documents shown are true and correct</p>
                 <div class="form-check">
                     <label class="form-check-label" for="remarksA">
-                        Remarks of Inspecting Authority
+                        Remarks
                     </label>
                     <input type="text" name="remarksA" class="form-control" id="remarksA">
                 </div>

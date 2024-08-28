@@ -9,6 +9,7 @@ $targetDir = "uploads";
 $statusMsg = '';
 if (isset($_POST['submit'])) {
     $Rname = $_POST['Rname'];
+	$RFname = $_POST['RFname'];
     $Raddress = $_POST['Raddress'];
     $RregNo = $_POST['RregNo'];
     $RCurrentOwnerName = $_POST['RCurrentOwnerName'];
@@ -22,14 +23,17 @@ if (isset($_POST['submit'])) {
     $RDetailofPermit = $_POST['RDetailofPermit'];
     $RMotorModel = $_POST['RMotorModel'];
     $domain = $_POST['domain'];
+	$dto = $_POST['dto'];
+	$replacement = $_POST['replacement'];
 
     $Rvoters = $_FILES["Rvoters"]["name"];
     $RRegCertf = $_FILES["RRegCertf"]["name"];
     $ROtherDoc = $_FILES["ROtherDoc"]["name"];
     $RMVIReport = $_FILES["RMVIReport"]["name"];
 
-    $targetDir = $targetDir . '/' . $RregNo . '/';
-    mkdir($targetDir . '/' . $RregNo . '/', 0666, true);
+    if(!file_exists($targetDir = $targetDir . '/' . $regNo . '/')){
+		mkdir($targetDir . '/' . $regNo . '/', 0777, true);
+	}
 
     $Rvoters = basename($_FILES["Rvoters"]["name"]);
     $RvotersFilePath = $targetDir . $Rvoters;
@@ -77,11 +81,11 @@ if (isset($_POST['submit'])) {
         $statusMsg = 'Please select a file to upload.';
     }
     $sql = "INSERT INTO `entry`(
-    `name`, `address`, `regNo`, `pHolderName`, `phoneNo`,`typeOfVehicle`,`voters`,`RYearofManufacture`,`RKum`,
+    `name`,`fname`, `address`, `regNo`, `pHolderName`, `phoneNo`,`typeOfVehicle`,`dto`,`replacement`,`voters`,`RYearofManufacture`,`RKum`,
     `RChasisNo`,`REngineNo`,`RLoan`,`RDetailofPermit`, `RMotorModel`,`domain`,`RRegCertificate`,`ROtherDoc`,`RMVIReport`,`adtsta` ) 
     VALUES (
-    '$Rname','$Raddress','$RregNo','$RCurrentOwnerName','$RphoneNo',
-    '$RVehicleType','$RvotersFilePath','$RYearofManufacture',
+    '$Rname','$RFname','$Raddress','$RregNo','$RCurrentOwnerName','$RphoneNo',
+    '$RVehicleType','$dto','$replacement','$RvotersFilePath','$RYearofManufacture',
     '$RKum','$RChasisNo','$REngineNo','$RLoan','$RDetailofPermit',
     '$RMotorModel','$domain','$RRegCertfFilePath','$ROtherDocFilePath','$RMVIReportFilePath',1)";
     if ($result = $con->query($sql)) {
@@ -112,27 +116,31 @@ if (isset($_POST['submit'])) {
     <form class="row g-3" method="post" enctype="multipart/form-data">
         <div class="col-md-4">
             <label for="name" class="form-label fw-semibold">Name of Applicant</label>
-            <input type="text" name="Rname" class="form-control border-primary" id="name" placeholder="Name">
+            <input type="text" name="Rname" class="form-control" id="name" placeholder="Name">
+        </div>
+		        <div class="col-md-4">
+            <label for="fname" class="form-label fw-semibold">Fathers Name</label>
+            <input type="text" name="RFname" class="form-control" id="fname" placeholder="Fathers Name">
         </div>
         <div class="col-md-4">
             <label for="Raddress" class="form-label fw-semibold">Address</label>
-            <input type="text" name="Raddress" class="form-control border-primary" id="Raddress" placeholder="Proof of address to be enclosed">
+            <input type="text" name="Raddress" class="form-control" id="Raddress" placeholder="Proof of address to be enclosed">
         </div>
         <div class="col-md-4">
             <label for="RphoneNo" class="form-label fw-semibold">Phone No</label>
-            <input type="text" name="RphoneNo" class="form-control border-primary" id="RphoneNo" placeholder="Phone No">
+            <input type="text" name="RphoneNo" class="form-control" id="RphoneNo" placeholder="Phone No">
         </div>
         <div class="col-md-4">
             <label for="RKum" class="form-label fw-semibold">Kum</label>
-            <input type="text" name="RKum" class="form-control border-primary" id="RKum" placeholder="Kum">
+            <input type="text" name="RKum" class="form-control" id="RKum" placeholder="Kum">
         </div>
         <div class="col-md-4">
             <label for="regNo" class="form-label fw-semibold">Registration No</label>
-            <input type="text" name="RregNo" class="form-control border-primary" id="regNo" placeholder="MZ0XXX1234">
+            <input type="text" name="RregNo" class="form-control" id="regNo" placeholder="MZ0XXX1234">
         </div>
         <div class="col-md-4">
             <label for="VehicleType" class="form-label">Type of Vehicle</label>
-            <select name="RVehicleType" class="form-control border-primary" id="VehicleType">
+            <select name="RVehicleType" class="form-control" id="VehicleType">
                 <option value="">----SELECT-----</option>
                 <?php
                 $query = "SELECT * from class";
@@ -147,23 +155,23 @@ if (isset($_POST['submit'])) {
         </div>
         <div class="col-md-4">
             <label for="RYearofManufacture" class="form-label fw-semibold">Year of Manufacture</label><br />
-            <input type="text" name="RYearofManufacture" class="form-control border-primary" id="RYearofManufacture" placeholder="Year of Manufacture" autocomplete="off">
+            <input type="text" name="RYearofManufacture" class="form-control" id="RYearofManufacture" placeholder="Year of Manufacture" autocomplete="off">
         </div>
         <div class="col-md-4">
             <label for="RChasisNo" class="form-label fw-semibold">Chasis No</label>
-            <input type="text" name="RChasisNo" class="form-control border-primary" id="RChasisNo" placeholder="Chasis No">
+            <input type="text" name="RChasisNo" class="form-control" id="RChasisNo" placeholder="Chasis No">
         </div>
         <div class="col-md-4">
             <label for="REngineNo" class="form-label fw-semibold">Engine No</label>
-            <input type="text" name="REngineNo" class="form-control border-primary" id="REngineNo" placeholder="Engine No">
+            <input type="text" name="REngineNo" class="form-control" id="REngineNo" placeholder="Engine No">
         </div>
         <div class="col-md-4">
             <label for="RCurrentOwnerName" class="form-label fw-semibold">Current Owner Name</label>
-            <input type="text" name="RCurrentOwnerName" class="form-control border-primary" id="RCurrentOwnerName" placeholder="Current Owner Name">
+            <input type="text" name="RCurrentOwnerName" class="form-control" id="RCurrentOwnerName" placeholder="Current Owner Name">
         </div>
         <div class="col-md-4">
             <label for="RLoan" class="form-label fw-semibold">Loan hmang a lei a ni em</label>
-            <select name="RLoan" class="form-control border-primary" id="RLoan">
+            <select name="RLoan" class="form-control" id="RLoan">
                 <option value="">----SELECT---</option>
                 <option value="YES">YES</option>
                 <option value="NO">NO</option>
@@ -171,15 +179,41 @@ if (isset($_POST['submit'])) {
         </div>
         <div class="col-md-4">
             <label for="RDetailofPermit" class="form-label fw-semibold">Detail of Permit</label>
-            <input type="text" name="RDetailofPermit" class="form-control border-primary" id="RDetailofPermit" placeholder="Detail of Permit">
+            <input type="text" name="RDetailofPermit" class="form-control" id="RDetailofPermit" placeholder="Detail of Permit">
         </div>
         <div class="col-md-4">
             <label for="RMotorModel" class="form-label fw-semibold">Replace na tur Motor hming leh Model</label>
-            <input type="text" name="RMotorModel" class="form-control border-primary" id="RMotorModel" placeholder="Motor Model">
+            <input type="text" name="RMotorModel" class="form-control" id="RMotorModel" placeholder="Motor Model">
         </div>
         <div class="col-md-4">
             <label for="domain" class="form-label">Domain</label>
-            <input type="text" name="domain" class="form-control border-primary" id="domain" placeholder="Domain">
+            <input type="text" name="domain" class="form-control" id="domain" placeholder="Domain">
+        </div>
+		<div class="col-md-4">
+            <label for="dto" class="form-label">DTO</label>
+            <select name="dto" class="form-control" id="dto">
+                <option value="">---SELECT---</option>
+                <?php
+                $sql = "SELECT * FROM dto";
+                $result1 = $con->query($sql);
+                if ($result1->num_rows > 0) {
+                    while ($row = $result1->fetch_assoc()) {
+                        echo
+                        '<option value="' . $row['dto_name'] . '">' . $row['dto_code'] . '-' . $row['dto_name'] . '</option>';
+                    }
+                }
+
+                ?>
+            </select>
+        </div>
+		
+		<div class="col-md-4">
+            <label for="replacement" class="form-label">Replacement</label>
+            <select name="replacement" class="form-control" id="replacement">
+                <option value="">---SELECT---</option>
+				<option value="FIRST TIME REPLACEMENT">FIRST TIME</option>
+				<option value="SECOND TIME REPLACEMENT">SECOND TIME</option>                
+            </select>
         </div>
         <div class="col-md-8">
 
@@ -190,13 +224,13 @@ if (isset($_POST['submit'])) {
             <hr />
 
             <label for="formFilev" class="form-label">1. Duplicate copy of Registration Certificate</label>
-            <input class="form-control border-primary" name="RRegCertf" type="file" id="formFilev">
+            <input class="form-control" name="RRegCertf" type="file" id="formFilev">
             <label for="formFile1" class="form-label">2. Duplicate Copy of Other Documents</label>
-            <input class="form-control border-primary" name="ROtherDoc" type="file" id="formFile1">
+            <input class="form-control" name="ROtherDoc" type="file" id="formFile1">
             <label for="formFile2" class="form-label">3. MVI and Police Report(Accident Case Bikah)</label>
-            <input class="form-control border-primary" name="RMVIReport" type="file" id="formFile2">
+            <input class="form-control" name="RMVIReport" type="file" id="formFile2">
             <label for="formFile" class="form-label">4. Motor neitu Voter ID</label>
-            <input class="form-control border-primary" name="Rvoters" type="file" id="formFile">
+            <input class="form-control" name="Rvoters" type="file" id="formFile">
         </div>
 
         <div class="mb-3">

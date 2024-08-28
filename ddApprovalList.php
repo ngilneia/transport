@@ -18,7 +18,7 @@ include("header.php");
         <tbody>
 
             <?php
-            $sql = "SELECT * FROM entry where adtmv is not null and adtsta is not null";
+            $sql = "SELECT * FROM entry where adtmv is not null and adtsta is not null and dd!=1";
             $result = $con->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {

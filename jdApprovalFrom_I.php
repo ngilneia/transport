@@ -230,7 +230,7 @@ if (isset($_GET['id'])) {
                             </tr>
                             <tr>
                                 <td>2. P&G Tax</td>
-                                <td><?php echo $p . ', ' . $pD->format("%R%a Days left for renewal"); ?></td>
+                                <td><?php echo $pTax . ', ' . $pTaxD->format("%R%a Days left for renewal"); ?></td>
                             </tr>
                             <tr>
                                 <td>3. Fitness</td>
@@ -238,7 +238,7 @@ if (isset($_GET['id'])) {
                             </tr>
                             <tr>
                                 <td>4. Plying permit</td>
-                                <td><?php echo $pTax . ', ' . $pTaxD->format("%R%a Days left for renewal"); ?></td>
+                                <td><?php echo $fp . ', ' . $fpD->format("%R%a Days left for renewal"); ?></td>
                             </tr>
                             <tr>
                                 <td>5. Insurance</td>
@@ -246,7 +246,7 @@ if (isset($_GET['id'])) {
                             </tr>
                             <tr>
                                 <td>6. PUCC</td>
-                                <td><?php echo $fp . ', ' . $fpD->format("%R%a Days left for renewal"); ?></td>
+                                <td><?php echo $p . ', ' . $pD->format("%R%a Days left for renewal"); ?></td>
                             </tr>
                             <tr>
                                 <td>Deputy Director Approved on</td>
@@ -296,7 +296,7 @@ if (isset($_GET['id'])) {
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.105/transport/' . $row['voters'] . '">Voters ID</embed><br/>'; ?>
+                                            <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.99/transport/' . $row['voters'] . '">Voters ID</embed><br/>'; ?>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -314,7 +314,7 @@ if (isset($_GET['id'])) {
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.105/transport/' . $row['pVoters'] . '">Voters ID(Transferer)</embed><br/>'; ?>
+                                            <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.99/transport/' . $row['pVoters'] . '">Voters ID(Transferer)</embed><br/>'; ?>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -332,7 +332,7 @@ if (isset($_GET['id'])) {
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.105/transport/' . $row['saleLetter'] . '">Sale Letter</embed><br/>'; ?>
+                                            <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.99/transport/' . $row['saleLetter'] . '">Sale Letter</embed><br/>'; ?>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -350,7 +350,7 @@ if (isset($_GET['id'])) {
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.105/transport/' . $row['regCertf'] . '">Registration Certificate</embed><br/>'; ?>
+                                            <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.99/transport/' . $row['regCertf'] . '">Registration Certificate</embed><br/>'; ?>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -368,7 +368,7 @@ if (isset($_GET['id'])) {
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.105/transport/' . $row['plying'] . '">Plying Certificate</embed><br/>'; ?>
+                                            <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.99/transport/' . $row['plying'] . '">Plying Certificate</embed><br/>'; ?>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -386,7 +386,7 @@ if (isset($_GET['id'])) {
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.105/transport/' . $row['pollution'] . '">Pollution Certificate</embed><br/>'; ?>
+                                            <?php echo '<embed frameborder="0" width="100%" height="400px" src="http://10.180.21.99/transport/' . $row['pollution'] . '">Pollution Certificate</embed><br/>'; ?>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -407,7 +407,7 @@ if (isset($_GET['id'])) {
                     <label class="form-check-label" for="remarksA">
                         Remarks of Joint Director
                     </label>
-                    <input type="text" name="remarksA" class="form-control border-primary" id="remarksA">
+                    <input type="text" name="remarksA" class="form-control" id="remarksA">
                 </div>
                 <div class="col text-center">
                     <button type="submit" name="approve" value="approve" class="btn btn-primary">Approve</button>
